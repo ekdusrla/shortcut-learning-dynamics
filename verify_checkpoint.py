@@ -65,7 +65,8 @@ def main():
     import shortcut_experiment as se  # noqa: E402
 
     device = torch.device("cpu")
-    cfg = {"model": args.model, "pretrained": False, "lr": 0.01, "weight_decay": 1e-4,
+    # build_model sizes the head from cfg["dataset"]; waterbirds is 2-way like the synthetic labels.
+    cfg = {"dataset": "waterbirds", "model": args.model, "pretrained": False, "lr": 0.01, "weight_decay": 1e-4,
            "epochs": 2, "seed": args.seed, "batch_size": 8, "num_workers": 0, "amp": False}
 
     results = {}

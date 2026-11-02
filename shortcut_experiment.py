@@ -1,8 +1,6 @@
 """Epoch-wise shortcut-learning experiments: PyTorch models + Hugging Face datasets.
 
-Datasets:
-- colored_mnist: binary classification (0-4 vs 5-9), configurable color-label correlation.
-- waterbirds: grodino/waterbirds, image label and background place.
+Datasets (colored_mnist, waterbirds) are built in data.py.
 
 Checkpoints, metrics, and group-balanced hidden representations can be inspected
 at each epoch. See README.md for commands and protocol details.
@@ -20,15 +18,12 @@ from pathlib import Path
 
 import numpy as np
 import torch
-from PIL import Image
 from torch import nn
-from torch.utils.data import DataLoader, Dataset, Subset
-from torchvision import models, transforms
+from torch.utils.data import DataLoader, Subset
+from torchvision import models
 
-
-IMAGENET_MEAN = (0.485, 0.456, 0.406)
-IMAGENET_STD = (0.229, 0.224, 0.225)
-SPLIT_SEEDS = {"train": 100, "val": 200, "test": 300}
+from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, STRESS_TYPES,
+                  WATERBIRDS_ROOT, Stress, build_datasets, parse_corr)
 
 
 def seed_everything(seed: int):
@@ -50,113 +45,20 @@ def get_device(requested: str):
     return torch.device("cpu")
 
 
-def image_transform(size: int, train: bool = False, augment: bool = False):
-    operations = [transforms.Resize((size, size))]
-    if train and augment:
-        operations.append(transforms.RandomHorizontalFlip())
-    operations += [transforms.ToTensor(), transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD)]
-    return transforms.Compose(operations)
-
-
-class ColoredMNIST(Dataset):
-    """Stable colors assigned once, independently for each disjoint split.
-
-    y = 0 for digits 0..4, 1 for 5..9. s = 0 red / 1 green.
-    P(s == y) = correlation. Counterfactual swaps red and green while
-    preserving the original digit pixels (no new digit is generated).
-    """
-    def __init__(self, base, indices, correlation, seed, size, counterfactual=False):
-        if not 0 <= correlation <= 1:
-            raise ValueError("correlation must be in [0,1]")
-        self.base = base
-        self.indices = np.asarray(indices, dtype=np.int64)
-        digit_labels = np.asarray(base["label"], dtype=np.int64)
-        self.labels = (digit_labels[self.indices] >= 5).astype(np.int64)
-        rng = np.random.default_rng(seed)
-        aligned = rng.random(len(self.indices)) < correlation
-        self.spurious = np.where(aligned, self.labels, 1 - self.labels).astype(np.int64)
-        self.transform = image_transform(size)
-        self.counterfactual = counterfactual
-
-    def __len__(self):
-        return len(self.indices)
-
-    def paint(self, grayscale, color):
-        a = np.asarray(grayscale.convert("L"), dtype=np.uint8)
-        rgb = np.zeros((*a.shape, 3), dtype=np.uint8)
-        rgb[..., int(color)] = a  # red or green channel
-        return self.transform(Image.fromarray(rgb, mode="RGB"))
-
-    def __getitem__(self, i):
-        row = self.base[int(self.indices[i])]
-        y, s = int(self.labels[i]), int(self.spurious[i])
-        out = {"pixel_values": self.paint(row["image"], s),
-               "labels": y, "spurious": s, "index": int(self.indices[i])}
-        if self.counterfactual:
-            out["cf_pixel_values"] = self.paint(row["image"], 1 - s)
-        return out
-
-
-class Waterbirds(Dataset):
-    """Hugging Face grodino/waterbirds: label 0/1 and place 0/1."""
-    def __init__(self, hf_split, size, train=False, augment=False):
-        self.base = hf_split
-        self.labels = np.asarray(hf_split["label"], dtype=np.int64)
-        self.spurious = np.asarray(hf_split["place"], dtype=np.int64)
-        self.transform = image_transform(size, train=train, augment=augment)
-
-    def __len__(self):
-        return len(self.base)
-
-    def __getitem__(self, i):
-        row = self.base[int(i)]
-        return {"pixel_values": self.transform(row["image"].convert("RGB")),
-                "labels": int(self.labels[i]), "spurious": int(self.spurious[i]),
-                "index": int(i)}
-
-
-def build_datasets(cfg):
-    # Import only when loading a real HF dataset, enabling offline code sanity tests.
-    from datasets import load_dataset
-
-    if cfg["dataset"] == "colored_mnist":
-        raw = load_dataset("ylecun/mnist")
-        n = len(raw["train"])
-        rng = np.random.default_rng(cfg["seed"])
-        indices = rng.permutation(n)
-        n_val = int(cfg["mnist_val_size"])
-        if n_val <= 0 or n_val >= n:
-            raise ValueError(f"mnist_val_size must be between 1 and {n-1}")
-        ids = {"train": indices[n_val:], "val": indices[:n_val],
-               "test": np.arange(len(raw["test"]))}
-        return {name: ColoredMNIST(
-            base=raw["test"] if name == "test" else raw["train"],
-            indices=ids[name], correlation=cfg[f"{name}_corr"],
-            seed=cfg["seed"] + SPLIT_SEEDS[name], size=cfg["image_size"],
-            counterfactual=(name != "train")) for name in ("train", "val", "test")}
-
-    if cfg["dataset"] == "waterbirds":
-        raw = load_dataset("grodino/waterbirds")
-        return {name: Waterbirds(raw["validation" if name == "val" else name],
-                                size=cfg["image_size"], train=(name == "train"),
-                                augment=cfg["augment"])
-                for name in ("train", "val", "test")}
-    raise ValueError(f"Unsupported dataset: {cfg['dataset']}")
-
-
 def build_model(cfg):
     architecture = cfg["model"]
     pre = cfg["pretrained"]
+    num_classes = NUM_CLASSES[cfg["dataset"]]
     if architecture == "resnet18":
         weights = models.ResNet18_Weights.DEFAULT if pre else None
         model = models.resnet18(weights=weights)
-        model.fc = nn.Linear(model.fc.in_features, 2)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif architecture == "vgg11_bn":
         weights = models.VGG11_BN_Weights.DEFAULT if pre else None
         model = models.vgg11_bn(weights=weights)
         # A compact head makes small-image experiments and per-epoch storage feasible.
         model.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        model.classifier = nn.Linear(512, 2)
+        model.classifier = nn.Linear(512, num_classes)
     else:
         raise ValueError(f"Unsupported model: {architecture}")
     return model
@@ -206,8 +108,8 @@ def balanced_indices(dataset, per_group=32, seed=0):
     """Select a fixed subset from each existing (target, spurious) group."""
     rng = np.random.default_rng(seed)
     out = []
-    for y in range(2):
-        for s in range(2):
+    for y in range(dataset.num_classes):
+        for s in range(dataset.num_classes):
             candidates = np.flatnonzero((dataset.labels == y) & (dataset.spurious == s))
             if len(candidates) == 0:
                 continue
@@ -292,10 +194,11 @@ def train_one_epoch(model, loader, optimizer, scaler, device, amp):
 @torch.inference_mode()
 def evaluate(model, loader, device, amp=False):
     model.eval()
+    k = loader.dataset.num_classes
     correct = total = 0
     loss_sum = 0.0
-    group_total = np.zeros((2, 2), dtype=np.int64)
-    group_correct = np.zeros((2, 2), dtype=np.int64)
+    group_total = np.zeros((k, k), dtype=np.int64)
+    group_correct = np.zeros((k, k), dtype=np.int64)
     aligned_n = aligned_ok = conflicted_n = conflicted_ok = 0
     cf_n = cf_ok = cf_flips = 0
     for batch in loader:
@@ -310,11 +213,10 @@ def evaluate(model, loader, device, amp=False):
         loss_sum += nn.functional.cross_entropy(logits.float(), y, reduction="sum").item()
         correct += ok.sum().item()
         total += n
-        for yi in range(2):
-            for si in range(2):
-                mask = (y == yi) & (s == si)
-                group_total[yi, si] += mask.sum().item()
-                group_correct[yi, si] += (ok & mask).sum().item()
+        # Flattened (y, s) group id; bincount avoids k*k per-group device syncs.
+        group = y * k + s
+        group_total += torch.bincount(group, minlength=k * k).cpu().numpy().reshape(k, k)
+        group_correct += torch.bincount(group[ok], minlength=k * k).cpu().numpy().reshape(k, k)
         aligned = (y == s)
         aligned_n += aligned.sum().item()
         aligned_ok += (ok & aligned).sum().item()
@@ -333,17 +235,18 @@ def evaluate(model, loader, device, amp=False):
     result = {"loss": ratio(loss_sum, total), "acc": ratio(correct, total),
               "aligned_acc": ratio(aligned_ok, aligned_n),
               "conflicting_acc": ratio(conflicted_ok, conflicted_n)}
+    # Only groups that can occur by construction (e.g. 2 colors per digit) are reported.
     populated = []
-    for yi in range(2):
-        for si in range(2):
-            key = f"g{yi}{si}"
-            v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
-            result[f"{key}_acc"] = v
-            result[f"{key}_n"] = int(group_total[yi, si])
-            if group_total[yi, si] > 0:
-                populated.append(v)
-    # Require all four groups; otherwise WGA is undefined rather than inflated.
-    result["wga"] = min(populated) if len(populated) == 4 else float("nan")
+    for yi, si in loader.dataset.groups:
+        key = f"g{yi}{si}"
+        v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
+        result[f"{key}_acc"] = v
+        result[f"{key}_n"] = int(group_total[yi, si])
+        if group_total[yi, si] > 0:
+            populated.append(v)
+    # Require every possible group; otherwise WGA is undefined rather than inflated.
+    result["wga"] = (min(populated) if len(populated) == len(loader.dataset.groups)
+                     else float("nan"))
     result["cf_acc"] = ratio(cf_ok, cf_n)
     result["cf_flip_rate"] = ratio(cf_flips, cf_n)
     result["cf_acc_drop"] = result["acc"] - result["cf_acc"] if cf_n else float("nan")
@@ -353,7 +256,7 @@ def evaluate(model, loader, device, amp=False):
 def pretty_metrics(m):
     text = f"acc={m['acc']:.4f}, WGA={m['wga']:.4f}, aligned={m['aligned_acc']:.4f}, conflict={m['conflicting_acc']:.4f}"
     if not math.isnan(m["cf_flip_rate"]):
-        text += f", color-flip-rate={m['cf_flip_rate']:.4f}, cf-acc={m['cf_acc']:.4f}"
+        text += f", flip-rate={m['cf_flip_rate']:.4f}, cf-acc={m['cf_acc']:.4f}"
     return text
 
 
@@ -427,6 +330,8 @@ def configure_from_args(args):
             "seed": args.seed, "image_size": args.image_size,
             "train_corr": args.train_corr, "val_corr": args.val_corr,
             "test_corr": args.test_corr, "mnist_val_size": args.mnist_val_size,
+            "color_mode": args.color_mode, "color_pairing": args.color_pairing,
+            "waterbirds_root": args.waterbirds_root,
             "pretrained": args.pretrained, "augment": args.augment,
             "lr": args.lr, "momentum": args.momentum,
             "scheduler": args.scheduler, "optimizer": "sgd",
@@ -546,6 +451,29 @@ def run_training(args):
     print(f"Run directory: {output}")
 
 
+def run_stress_test(model, dataset, args, device, amp, seed):
+    """Evaluate clean and under every requested (stress type, severity) pair.
+
+    The corruption is applied to both the original and the counterfactual image,
+    so flip-rate still isolates the shortcut feature.
+    """
+    kinds = STRESS_TYPES if "all" in args.stress else tuple(dict.fromkeys(args.stress))
+    settings = [None] + [Stress(k, sev, seed) for k in kinds for sev in args.stress_severity]
+    results = {}
+    for stress in settings:
+        dataset.stress = stress
+        loader = create_loader(dataset, args.batch_size, False, args.num_workers, device=device)
+        name = "clean" if stress is None else repr(stress)
+        metrics = evaluate(model, loader, device, amp)
+        if stress is not None:
+            metrics = {"stress": stress.kind, "severity": stress.severity,
+                       "param": stress.param, **metrics}
+        results[name] = metrics
+        print(f"{name:<18} | " + pretty_metrics(metrics), flush=True)
+    dataset.stress = None
+    return results
+
+
 def run_from_checkpoint(args):
     device = get_device(args.device)
     ckpt = choose_checkpoint(args.run, args.checkpoint)
@@ -556,15 +484,25 @@ def run_from_checkpoint(args):
     model = build_model(cfg).to(device)
     model.load_state_dict(saved["model"])
     print(f"checkpoint={ckpt} epoch={saved['epoch']} {cfg['model']} / {cfg['dataset']}")
-    loader = create_loader(ds[args.split], args.batch_size or cfg["batch_size"],
+    args.batch_size = args.batch_size or cfg["batch_size"]
+    loader = create_loader(ds[args.split], args.batch_size,
                            False, args.num_workers, device=device)
-    if args.command == "eval":
+    if args.command == "eval" and args.stress:
+        results = run_stress_test(model, ds[args.split], args, device,
+                                  is_amp_enabled(device, cfg), cfg["seed"])
+        file = Path(args.stress_output or (Path(args.run) / "stress" /
+                                           f"{args.split}_epoch_{saved['epoch']:03d}.json"))
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.write_text(json.dumps({"epoch": saved["epoch"], "split": args.split,
+                                    "results": results}, indent=2), encoding="utf-8")
+        print(f"Saved {file}")
+    elif args.command == "eval":
         metrics = evaluate(model, loader, device, is_amp_enabled(device, cfg))
         print(json.dumps(metrics, indent=2, ensure_ascii=False))
     elif args.command == "features":
         file = args.output or (Path(args.run) / "features" / f"{args.split}_epoch_{saved['epoch']:03d}.npz")
         save_feature_snapshot(model, ds[args.split], cfg["model"], device,
-                              args.batch_size or cfg["batch_size"], args.features_per_group,
+                              args.batch_size, args.features_per_group,
                               file, args.num_workers, cfg["seed"])
 
 
@@ -581,10 +519,19 @@ def main():
     train.add_argument("--seed", type=int, default=42)
     train.add_argument("--image-size", type=int, default=None,
                        help="64 for colored_mnist; 128 for waterbirds by default")
-    train.add_argument("--train-corr", type=float, default=.95)
-    train.add_argument("--val-corr", type=float, default=.50)
-    train.add_argument("--test-corr", type=float, default=.10)
+    corr_help = ("colored_mnist: P(main color); waterbirds: P(place == label). "
+                 "A float or one of " + str(list(CORR_PRESETS)))
+    train.add_argument("--train-corr", type=parse_corr, default="strong", help=corr_help)
+    train.add_argument("--val-corr", type=parse_corr, default=.50, help=corr_help)
+    train.add_argument("--test-corr", type=parse_corr, default=.50, help=corr_help)
     train.add_argument("--mnist-val-size", type=int, default=5000)
+    train.add_argument("--color-mode", choices=COLOR_MODES, default="foreground",
+                       help="colored_mnist only: region painted with the shortcut color")
+    train.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next",
+                       help="colored_mnist only: how each digit's alternate color is chosen")
+    train.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT,
+                       help="waterbirds only: directory with CUB_200_2011/ and places365/ "
+                            "from download_waterbirds.sh")
     train.add_argument("--pretrained", action="store_true",
                        help="use ImageNet pretrained weights (recommended for Waterbirds)")
     train.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
@@ -608,6 +555,14 @@ def main():
         p.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
         p.add_argument("--batch-size", type=int, default=None)
         p.add_argument("--num-workers", type=int, default=2)
+        if cmd == "eval":
+            p.add_argument("--stress", nargs="+", choices=STRESS_TYPES + ("all",), default=None,
+                           help="stress test: evaluate clean and under these corruptions")
+            p.add_argument("--stress-severity", nargs="+", type=int, default=[1, 2, 3, 4, 5],
+                           choices=range(1, 6), metavar="{1..5}",
+                           help="severity levels to evaluate for each --stress type")
+            p.add_argument("--stress-output", default=None,
+                           help="JSON path (default: <run>/stress/<split>_epoch_XXX.json)")
         if cmd == "features":
             p.add_argument("--features-per-group", type=int, default=32)
             p.add_argument("--output", default=None)
