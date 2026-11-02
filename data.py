@@ -4,7 +4,9 @@ Datasets:
 - colored_mnist: 10-way digit classification. Each digit has a main and an
   alternate color (see COLOR_PAIRINGS); the main:alternate ratio is configurable
   (see CORR_PRESETS), as is where the color is painted (see COLOR_MODES).
-- waterbirds: grodino/waterbirds, image label and background place.
+- waterbirds: CUB-200-2011 birds composited onto Places365 land/water scenes on the
+  fly (group_DRO recipe); configurable bird-background correlation (CORR_PRESETS).
+  Raw files come from download_waterbirds.sh.
 
 `build_datasets(cfg)` returns {"train", "val", "test"} datasets whose items are
 dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
@@ -12,14 +14,17 @@ dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
 `num_classes`; both `labels` and `spurious` take values in [0, num_classes).
 `groups` lists the (y, s) pairs that can occur by construction.
 
-Run `python data.py` to save example images for each Colored MNIST color mode.
+Run `python data.py` to save example images of both datasets into images/.
 """
 from __future__ import annotations
 
 import argparse
+import tarfile
+import urllib.request
 from pathlib import Path
 
 import numpy as np
+import pandas as pd
 from PIL import Image, ImageFilter
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -37,13 +42,24 @@ MNIST_COLORS = np.array([
     (255, 0, 0), (255, 127, 0), (255, 255, 0), (0, 255, 0), (0, 0, 255),
     (75, 0, 130), (148, 0, 211), (255, 105, 180), (0, 255, 255), (160, 82, 45),
 ], dtype=np.float32)
-# P(main color) for the training split; val/test default to 0.5 (no color cue
-# beyond the two-color pairing).
+# Training-split correlation: P(main color) for colored_mnist, P(place == label)
+# for waterbirds. val/test default to 0.5.
 CORR_PRESETS = {"strong": .95, "medium": .80, "weak": .65}
 # How digit k's alternate color is chosen:
 #   next: color (k + 1) % 10.
 #   random: a seeded derangement, so no digit's alternate equals its main color.
 COLOR_PAIRINGS = ("next", "random")
+# Waterbirds raw data (download_waterbirds.sh): <root>/CUB_200_2011 and <root>/places365.
+WATERBIRDS_ROOT = "data/raw"
+WATERBIRDS_VAL_FRAC = 0.2  # share of CUB train images used for validation
+PLACES_URL = "https://data.csail.mit.edu/places/places365/train_256_places365standard.tar"
+PLACES_PREFIX = "data_256"
+# Index = place label: 0 land, 1 water.
+TARGET_PLACES = [["bamboo_forest", "forest/broadleaf"], ["ocean", "lake/natural"]]
+# Seabirds and waterfowl; a species is a waterbird if its name contains one of these.
+WATER_BIRDS = ["Albatross", "Auklet", "Cormorant", "Frigatebird", "Fulmar", "Gull",
+               "Jaeger", "Kittiwake", "Pelican", "Puffin", "Tern", "Gadwall", "Grebe",
+               "Mallard", "Merganser", "Guillemot", "Pacific_Loon"]
 WHITE = np.array((255, 255, 255), dtype=np.float32)
 BLACK = np.zeros(3, dtype=np.float32)
 # Backgrounds are dimmed so the digit always stays brighter than its surroundings.
@@ -144,32 +160,216 @@ class ColoredMNIST(Dataset):
         return out
 
 
+# Waterbirds compositing, adapted from kohpangwei/group_DRO (MIT License),
+# dataset_scripts/generate_waterbirds.py and dataset_utils.py.
+
+def crop_and_resize(source_img, target_img):
+    """Resize/crop source_img to exactly target_img's size, keeping aspect ratio."""
+    source_width, source_height = source_img.size
+    target_width, target_height = target_img.size
+    # Upscale first if the source does not fully cover the target.
+    if source_width < target_width or source_height < target_height:
+        width_resize = (target_width, int(target_width / source_width * source_height))
+        if width_resize[1] >= target_height:
+            source_img = source_img.resize(width_resize, Image.LANCZOS)
+        else:
+            height_resize = (int(target_height / source_height * source_width), target_height)
+            source_img = source_img.resize(height_resize, Image.LANCZOS)
+        return crop_and_resize(source_img, target_img)
+    source_aspect = source_width / source_height
+    target_aspect = target_width / target_height
+    if source_aspect > target_aspect:  # crop left/right
+        new_width = int(target_aspect * source_height)
+        offset = (source_width - new_width) // 2
+        box = (offset, 0, source_width - offset, source_height)
+    else:  # crop top/bottom
+        new_height = int(source_width / target_aspect)
+        offset = (source_height - new_height) // 2
+        box = (0, offset, source_width, source_height - offset)
+    return source_img.crop(box).resize((target_width, target_height), Image.LANCZOS)
+
+
+def combine_and_mask(place, mask, img_black):
+    """Paste the masked bird (img_black) onto `place` using the soft mask."""
+    place_np = np.asarray(crop_and_resize(place, img_black))
+    background = np.around(place_np * (1 - mask)).astype(np.uint8)
+    return Image.fromarray(np.asarray(img_black) + background)
+
+
+def place_files(places_dir, categories):
+    """Sorted Places365 paths (relative to data_256/) for the given categories."""
+    files = []
+    for category in categories:
+        folder = Path(places_dir) / PLACES_PREFIX / category[0] / category
+        files += sorted(f"{category[0]}/{category}/{p.name}" for p in folder.glob("*.jpg"))
+    if not files:
+        raise FileNotFoundError(f"No Places365 images for {categories}; run download_waterbirds.sh")
+    return files
+
+
+def waterbirds_metadata(root, correlations, seed, val_frac=WATERBIRDS_VAL_FRAC):
+    """One row per CUB image: split, label y, place, and a fixed land and water scene.
+
+    - y: waterbird (seabird/waterfowl species) 1, landbird 0.
+    - split: CUB test -> test; CUB train -> train, with `val_frac` moved to val.
+    - place: within each (split, y), exactly round(p * n) images get the place that
+      matches y, with p = correlations[split] (group_DRO's confounder strength).
+    - land_file / water_file: every image owns one scene of each kind, so `place`
+      picks the background and the counterfactual uses the other one. Splits and
+      scenes depend only on `seed`, not on the correlations.
+    """
+    cub = Path(root) / "CUB_200_2011"
+    df = pd.read_csv(cub / "images.txt", sep=" ", header=None, names=["img_id", "img_filename"])
+    split_df = pd.read_csv(cub / "train_test_split.txt", sep=" ", header=None,
+                           names=["img_id", "is_train"])
+    df = df.merge(split_df, on="img_id").sort_values("img_id").reset_index(drop=True)
+    species = df["img_filename"].str.split("/").str[0].str.split(".", n=1).str[1].str.lower()
+    water = [w.lower() for w in WATER_BIRDS]
+    df["y"] = [int(any(w in s for w in water)) for s in species]
+
+    rng = np.random.default_rng(seed)
+    train_ids = np.flatnonzero(df["is_train"] == 1)
+    val_ids = rng.choice(train_ids, size=int(np.round(val_frac * len(train_ids))), replace=False)
+    df["split"] = np.where(df["is_train"] == 1, "train", "test")
+    df.loc[val_ids, "split"] = "val"
+
+    df["place"] = 0
+    for split, corr in correlations.items():
+        split_rng = np.random.default_rng(seed + SPLIT_SEEDS[split])
+        for y in (0, 1):
+            ids = np.flatnonzero((df["split"] == split) & (df["y"] == y))
+            water_fraction = corr if y == 1 else 1 - corr
+            chosen = split_rng.choice(ids, size=int(np.round(water_fraction * len(ids))),
+                                      replace=False)
+            df.loc[chosen, "place"] = 1
+
+    for place, column in enumerate(("land_file", "water_file")):
+        files = place_files(Path(root) / "places365", TARGET_PLACES[place])
+        order = np.random.default_rng(seed + 1000 + place).permutation(len(files))
+        # Unique scenes while the pool lasts (10,000 per kind for 11,788 birds).
+        df[column] = [files[order[i % len(files)]] for i in range(len(df))]
+    return df.drop(columns="is_train")
+
+
 class Waterbirds(Dataset):
-    """Hugging Face grodino/waterbirds: label 0/1 and place 0/1."""
+    """CUB birds pasted onto Places365 scenes when an item is loaded.
+
+    y = landbird 0 / waterbird 1, s = place: land 0 / water 1. `meta` rows come
+    from waterbirds_metadata(). Counterfactual pastes the same bird onto its
+    scene of the other place. `index` is the CUB img_id.
+    """
     num_classes = NUM_CLASSES["waterbirds"]
     groups = [(y, s) for y in range(2) for s in range(2)]
 
-    def __init__(self, hf_split, size, train=False, augment=False):
-        self.base = hf_split
-        self.labels = np.asarray(hf_split["label"], dtype=np.int64)
-        self.spurious = np.asarray(hf_split["place"], dtype=np.int64)
+    def __init__(self, root, meta, size, train=False, augment=False, counterfactual=False):
+        self.cub_dir = Path(root) / "CUB_200_2011"
+        self.places_dir = Path(root) / "places365" / PLACES_PREFIX
+        self.files = meta["img_filename"].tolist()
+        self.scenes = meta[["land_file", "water_file"]].to_numpy()
+        self.ids = meta["img_id"].to_numpy(dtype=np.int64)
+        self.labels = meta["y"].to_numpy(dtype=np.int64)
+        self.spurious = meta["place"].to_numpy(dtype=np.int64)
         self.transform = image_transform(size, train=train, augment=augment)
+        self.counterfactual = counterfactual
 
     def __len__(self):
-        return len(self.base)
+        return len(self.files)
+
+    def composite(self, i, place, bird=None):
+        if bird is None:
+            rel = self.files[i]
+            img = np.asarray(Image.open(self.cub_dir / "images" / rel).convert("RGB"))
+            seg = np.asarray(Image.open(self.cub_dir / "segmentations" / rel.replace(".jpg", ".png"))
+                             .convert("RGB")) / 255
+            bird = (seg, Image.fromarray(np.around(img * seg).astype(np.uint8)))
+        scene = Image.open(self.places_dir / self.scenes[i, place]).convert("RGB")
+        return self.transform(combine_and_mask(scene, *bird)), bird
 
     def __getitem__(self, i):
-        row = self.base[int(i)]
-        return {"pixel_values": self.transform(row["image"].convert("RGB")),
-                "labels": int(self.labels[i]), "spurious": int(self.spurious[i]),
-                "index": int(i)}
+        y, s = int(self.labels[i]), int(self.spurious[i])
+        image, bird = self.composite(i, s)
+        out = {"pixel_values": image, "labels": y, "spurious": s, "index": int(self.ids[i])}
+        if self.counterfactual:
+            out["cf_pixel_values"] = self.composite(i, 1 - s, bird)[0]
+        return out
+
+
+def _category_key(member_name):
+    """'data_256/f/forest/broadleaf/00000001.jpg' -> ('f', 'forest', 'broadleaf')."""
+    return tuple(member_name.split("/")[1:-1])
+
+
+def _tar_header_at(url, offset, span=1 << 16):
+    """First tar header at or after `offset` (512-aligned): (absolute offset, name)."""
+    offset -= offset % 512
+    req = urllib.request.Request(url, headers={"Range": f"bytes={offset}-{offset + span - 1}"})
+    with urllib.request.urlopen(req, timeout=60) as resp:
+        data = resp.read()
+    for i in range(0, len(data) - 511, 512):
+        try:
+            info = tarfile.TarInfo.frombuf(data[i:i + 512], "utf-8", "surrogateescape")
+        except tarfile.HeaderError:
+            continue
+        if info.name.startswith(PLACES_PREFIX + "/"):
+            return offset + i, info.name
+    return _tar_header_at(url, offset, span * 4)  # a large member; widen the window
+
+
+def fetch_places_category(places_dir, category, url=PLACES_URL):
+    """Extract one category from the (sorted, uncompressed) Places365 tar.
+
+    Binary-searches the archive for the category's first header, then streams
+    from there and stops after the category ends, so only ~1% of the 26 GB
+    archive is downloaded per category.
+    """
+    out = Path(places_dir) / PLACES_PREFIX / category[0] / category
+    marker = out / ".complete"
+    if marker.exists():
+        print(f"[places] {category}: already downloaded")
+        return
+    target = (category[0], *category.split("/"))
+    with urllib.request.urlopen(urllib.request.Request(url, method="HEAD"), timeout=60) as resp:
+        total = int(resp.headers["Content-Length"])
+    lo, hi = 0, total
+    while hi - lo > 1 << 20:
+        mid = (lo + hi) // 2
+        pos, name = _tar_header_at(url, mid)
+        if _category_key(name) < target:
+            lo = pos
+        else:
+            hi = mid
+    start, _ = _tar_header_at(url, lo)
+    req = urllib.request.Request(url, headers={"Range": f"bytes={start}-"})
+    out.mkdir(parents=True, exist_ok=True)
+    n = 0
+    with urllib.request.urlopen(req, timeout=120) as resp, \
+            tarfile.open(fileobj=resp, mode="r|") as archive:
+        for member in archive:
+            key = _category_key(member.name)
+            if key < target or not member.isfile():
+                continue
+            if key > target:
+                break
+            (out / Path(member.name).name).write_bytes(archive.extractfile(member).read())
+            n += 1
+    if n == 0:
+        raise RuntimeError(f"No images found for Places365 category {category}")
+    marker.write_text(str(n))
+    print(f"[places] {category}: {n} images -> {out}")
+
+
+def fetch_places(places_dir):
+    """Download the four Waterbirds scene categories (used by download_waterbirds.sh)."""
+    for categories in TARGET_PLACES:
+        for category in categories:
+            fetch_places_category(places_dir, category)
 
 
 def build_datasets(cfg):
-    # Import only when loading a real HF dataset, enabling offline code sanity tests.
-    from datasets import load_dataset
-
     if cfg["dataset"] == "colored_mnist":
+        # Import only when loading a real HF dataset, enabling offline code sanity tests.
+        from datasets import load_dataset
+
         raw = load_dataset("ylecun/mnist")
         n = len(raw["train"])
         rng = np.random.default_rng(cfg["seed"])
@@ -189,11 +389,17 @@ def build_datasets(cfg):
             color_mode=cfg.get("color_mode", "foreground"), alt_colors=alt) for name in ("train", "val", "test")}
 
     if cfg["dataset"] == "waterbirds":
-        raw = load_dataset("grodino/waterbirds")
-        return {name: Waterbirds(raw["validation" if name == "val" else name],
-                                size=cfg["image_size"], train=(name == "train"),
-                                augment=cfg["augment"])
-                for name in ("train", "val", "test")}
+        root = Path(cfg.get("waterbirds_root", WATERBIRDS_ROOT))
+        if not (root / "CUB_200_2011" / "images.txt").exists():
+            raise FileNotFoundError(
+                f"{root}/CUB_200_2011 not found; run `bash download_waterbirds.sh` first "
+                "or pass --waterbirds-root")
+        names = ("train", "val", "test")
+        meta = waterbirds_metadata(root, {name: cfg[f"{name}_corr"] for name in names}, cfg["seed"])
+        return {name: Waterbirds(root, meta[meta["split"] == name], size=cfg["image_size"],
+                                 train=(name == "train"), augment=cfg["augment"],
+                                 counterfactual=(name != "train"))
+                for name in names}
     raise ValueError(f"Unsupported dataset: {cfg['dataset']}")
 
 
@@ -255,11 +461,7 @@ def save_colored_mnist_examples(out_file, color_modes=COLOR_MODES, split="train"
         axes[m * per_digit, 0].text(-0.15, 0.5, mode, transform=axes[m * per_digit, 0].transAxes,
                                     rotation=90, ha="right", va="center", fontsize=9)
     fig.suptitle(f"Colored MNIST / {split} split / corr={cfg[f'{split}_corr']}")
-    out_file = Path(out_file)
-    out_file.parent.mkdir(parents=True, exist_ok=True)
-    fig.savefig(out_file, dpi=150)
-    plt.close(fig)
-    print(f"Saved {out_file}")
+    _save(fig, out_file)
 
 
 def save_corr_comparison(out_file, color_mode="foreground", samples=20, cols=5, cfg=None):
@@ -294,6 +496,119 @@ def save_corr_comparison(out_file, color_mode="foreground", samples=20, cols=5, 
         axes[r, 0].set_ylabel(f"{name}\n{corr:.0%}:{1 - corr:.0%}\nactual {actual:.3f}", fontsize=9)
     fig.suptitle(f"Colored MNIST train split / main:alternate color ratio / {color_mode} / "
                  f"pairing={cfg.get('color_pairing', 'next')}")
+    _save(fig, out_file)
+
+
+WATERBIRDS_GROUP_NAMES = {(0, 0): "landbird / land", (0, 1): "landbird / water",
+                          (1, 0): "waterbird / land", (1, 1): "waterbird / water"}
+
+
+def waterbirds_example_cfg(cfg=None):
+    """Training-default Waterbirds config, overridden by `cfg`."""
+    return {"dataset": "waterbirds", "seed": 42, "image_size": 128, "augment": False,
+            "waterbirds_root": WATERBIRDS_ROOT, "train_corr": CORR_PRESETS["strong"],
+            "val_corr": .50, "test_corr": .50, **(cfg or {})}
+
+
+def save_waterbirds_examples(out_file, split="train", samples=6, cfg=None):
+    """Save a grid of Waterbirds samples: one row per (bird, place) group."""
+    import matplotlib.pyplot as plt
+
+    cfg = waterbirds_example_cfg(cfg)
+    ds = build_datasets(cfg)[split]
+    fig, axes = plt.subplots(len(ds.groups), samples, figsize=(samples * 1.6, len(ds.groups) * 1.75),
+                             squeeze=False, layout="constrained")
+    for r, (y, s) in enumerate(ds.groups):
+        members = np.flatnonzero((ds.labels == y) & (ds.spurious == s))
+        for c in range(samples):
+            ax = axes[r, c]
+            ax.axis("off")
+            if c < len(members):
+                ax.imshow(to_image(ds[int(members[c])]["pixel_values"]))
+        axes[r, 0].set_title(f"{WATERBIRDS_GROUP_NAMES[y, s]} (n={len(members)})",
+                             fontsize=9, loc="left", color="red" if s != y else "black")
+    fig.suptitle(f"Waterbirds / {split} split / P(place == label)={cfg[f'{split}_corr']}")
+    _save(fig, out_file)
+
+
+def save_waterbirds_corr_comparison(out_file, samples=16, cols=4, cfg=None):
+    """Compare CORR_PRESETS on the train split: one row per preset, one column per bird class.
+
+    Each cell is a mosaic of the first `samples` training birds of that class.
+    Splits do not depend on the correlation, so every row shows the same birds
+    and only their backgrounds change; minority-place tiles get a red frame.
+    """
+    import matplotlib.pyplot as plt
+
+    cfg = waterbirds_example_cfg({"image_size": 64, **(cfg or {})})
+    classes = ("landbird", "waterbird")
+    fig, axes = plt.subplots(len(CORR_PRESETS), len(classes),
+                             figsize=(len(classes) * 3.2, len(CORR_PRESETS) * 3.0),
+                             squeeze=False, layout="constrained")
+    for r, (name, corr) in enumerate(CORR_PRESETS.items()):
+        ds = build_datasets({**cfg, "train_corr": corr})["train"]
+        for y, label in enumerate(classes):
+            chosen = np.flatnonzero(ds.labels == y)[:samples]
+            tiles = []
+            for i in chosen:
+                tile = to_image(ds[int(i)]["pixel_values"])
+                if ds.spurious[i] != y:
+                    frame = np.ones(tile.shape[:2], dtype=bool)
+                    frame[2:-2, 2:-2] = False
+                    tile[frame] = (1, 0, 0)
+                tiles.append(tile)
+            tiles += [np.ones_like(tiles[0])] * (-len(tiles) % cols)
+            mosaic = np.concatenate([np.concatenate(tiles[j:j + cols], axis=1)
+                                     for j in range(0, len(tiles), cols)], axis=0)
+            n_minor = int((ds.spurious[chosen] != y).sum())
+            ax = axes[r, y]
+            ax.imshow(mosaic)
+            ax.set_xticks([])
+            ax.set_yticks([])
+            other = "water" if y == 0 else "land"
+            ax.set_title(f"{label}: on {other} {n_minor}/{len(chosen)}", fontsize=9)
+        actual = float((ds.labels == ds.spurious).mean())
+        counts = " / ".join(str(int(((ds.labels == y) & (ds.spurious == s)).sum()))
+                            for y, s in ds.groups)
+        axes[r, 0].set_ylabel(f"{name}\n{corr:.0%}:{1 - corr:.0%}\nactual {actual:.3f}\n"
+                              f"groups {counts}", fontsize=9)
+    fig.suptitle("Waterbirds train split / P(place == label) per preset\n"
+                 "(groups: landbird-land / landbird-water / waterbird-land / waterbird-water)",
+                 fontsize=10)
+    _save(fig, out_file)
+
+
+def save_waterbirds_counterfactuals(out_file, split="test", per_group=2, cfg=None):
+    """Original vs counterfactual pairs: the same bird on its land and water scenes."""
+    import matplotlib.pyplot as plt
+
+    if split == "train":
+        raise ValueError("counterfactual images exist only for val/test")
+    ds = build_datasets(waterbirds_example_cfg(cfg))[split]
+    chosen = [int(i) for y, s in ds.groups
+              for i in np.flatnonzero((ds.labels == y) & (ds.spurious == s))[:per_group]]
+    fig, axes = plt.subplots(2, len(chosen), figsize=(len(chosen) * 1.6, 3.7), squeeze=False,
+                             layout="constrained")
+    for c, i in enumerate(chosen):
+        item = ds[i]
+        y, s = item["labels"], item["spurious"]
+        for r, (key, place) in enumerate((("pixel_values", s), ("cf_pixel_values", 1 - s))):
+            ax = axes[r, c]
+            ax.imshow(to_image(item[key]))
+            ax.axis("off")
+            ax.set_title(WATERBIRDS_GROUP_NAMES[y, place], fontsize=8,
+                         color="red" if place != y else "black")
+    axes[0, 0].text(-0.08, 0.5, "original", transform=axes[0, 0].transAxes, rotation=90,
+                    ha="right", va="center", fontsize=9)
+    axes[1, 0].text(-0.08, 0.5, "counterfactual", transform=axes[1, 0].transAxes, rotation=90,
+                    ha="right", va="center", fontsize=9)
+    fig.suptitle(f"Waterbirds / {split} split / same bird, other place's scene")
+    _save(fig, out_file)
+
+
+def _save(fig, out_file):
+    import matplotlib.pyplot as plt
+
     out_file = Path(out_file)
     out_file.parent.mkdir(parents=True, exist_ok=True)
     fig.savefig(out_file, dpi=150)
@@ -303,34 +618,70 @@ def save_corr_comparison(out_file, color_mode="foreground", samples=20, cols=5, 
 
 def main():
     parser = argparse.ArgumentParser(
-        description="Save Colored MNIST example images: one per color mode, plus a "
-                    "strong/medium/weak correlation comparison.")
+        description="Save example images: Colored MNIST (one row per color mode, plus a "
+                    "strong/medium/weak comparison) and Waterbirds (groups, counterfactuals).")
+    parser.add_argument("--dataset", choices=["all", "colored_mnist", "waterbirds"], default="all",
+                        help="'all' skips Waterbirds when its raw data is missing")
     parser.add_argument("--output", default="images/colored_mnist_examples.png")
     parser.add_argument("--color-modes", nargs="+", choices=COLOR_MODES, default=list(COLOR_MODES))
     parser.add_argument("--split", choices=["train", "val", "test"], default="train")
     parser.add_argument("--per-digit", type=int, default=1, help="samples shown per digit and mode")
     parser.add_argument("--corr", type=parse_corr, default=None,
-                        help="P(main color) for the chosen split: a float or one of "
-                             f"{list(CORR_PRESETS)} (default: training default)")
+                        help="P(main color) / P(place == label) for the chosen split: a float "
+                             f"or one of {list(CORR_PRESETS)} (default: training default)")
     parser.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next")
     parser.add_argument("--seed", type=int, default=42)
-    parser.add_argument("--image-size", type=int, default=64)
+    parser.add_argument("--image-size", type=int, default=None,
+                        help="default: 64 for colored_mnist, 128 for waterbirds")
     parser.add_argument("--corr-output", default="images/colored_mnist_corr_comparison.png",
                         help="strong/medium/weak comparison image; pass '' to skip")
     parser.add_argument("--corr-mode", choices=COLOR_MODES, default="foreground",
                         help="color mode used in the comparison image")
     parser.add_argument("--corr-samples", type=int, default=20,
                         help="samples per digit in each comparison cell")
+    parser.add_argument("--waterbirds-output", default="images/waterbirds_examples.png",
+                        help="one row per group; pass '' to skip")
+    parser.add_argument("--waterbirds-cf-output", default="images/waterbirds_counterfactual.png",
+                        help="original vs counterfactual pairs (test split); pass '' to skip")
+    parser.add_argument("--waterbirds-corr-output", default="images/waterbirds_corr_comparison.png",
+                        help="strong/medium/weak comparison image; pass '' to skip")
+    parser.add_argument("--waterbirds-corr-samples", type=int, default=16,
+                        help="birds per class in each comparison cell")
+    parser.add_argument("--waterbirds-samples", type=int, default=6, help="samples per group")
+    parser.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT)
     args = parser.parse_args()
-    if args.per_digit <= 0 or args.corr_samples <= 0:
-        parser.error("--per-digit and --corr-samples must be positive")
-    cfg = {"seed": args.seed, "image_size": args.image_size, "color_pairing": args.color_pairing}
+    if min(args.per_digit, args.corr_samples, args.waterbirds_samples,
+           args.waterbirds_corr_samples) <= 0:
+        parser.error("--per-digit and the --*-samples options must be positive")
+    cfg = {"seed": args.seed}
+    if args.image_size is not None:
+        cfg["image_size"] = args.image_size
     if args.corr is not None:
         cfg[f"{args.split}_corr"] = args.corr
-    save_colored_mnist_examples(args.output, args.color_modes, args.split, args.per_digit, cfg)
-    if args.corr_output:
-        save_corr_comparison(args.corr_output, args.corr_mode, args.corr_samples,
-                             cfg={"seed": args.seed, "color_pairing": args.color_pairing})
+    if args.dataset in ("all", "colored_mnist"):
+        save_colored_mnist_examples(args.output, args.color_modes, args.split, args.per_digit,
+                                    {**cfg, "color_pairing": args.color_pairing})
+        if args.corr_output:
+            save_corr_comparison(args.corr_output, args.corr_mode, args.corr_samples,
+                                 cfg={"seed": args.seed, "color_pairing": args.color_pairing})
+    if args.dataset in ("all", "waterbirds"):
+        wb_cfg = {**cfg, "waterbirds_root": args.waterbirds_root}
+        if not (Path(args.waterbirds_root) / "CUB_200_2011" / "images.txt").exists():
+            if args.dataset == "waterbirds":
+                parser.error(f"no Waterbirds raw data in {args.waterbirds_root}; "
+                             "run `bash download_waterbirds.sh`")
+            print(f"[skip] Waterbirds: no raw data in {args.waterbirds_root}")
+            return
+        if args.waterbirds_output:
+            save_waterbirds_examples(args.waterbirds_output, args.split, args.waterbirds_samples,
+                                     wb_cfg)
+        if args.waterbirds_cf_output:
+            save_waterbirds_counterfactuals(args.waterbirds_cf_output, cfg=wb_cfg)
+        if args.waterbirds_corr_output:
+            save_waterbirds_corr_comparison(args.waterbirds_corr_output,
+                                            args.waterbirds_corr_samples,
+                                            cfg={"seed": args.seed,
+                                                 "waterbirds_root": args.waterbirds_root})
 
 
 if __name__ == "__main__":

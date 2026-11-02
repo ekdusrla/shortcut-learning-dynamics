@@ -22,8 +22,8 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import models
 
-from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, build_datasets,
-                  parse_corr)
+from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, WATERBIRDS_ROOT,
+                  build_datasets, parse_corr)
 
 
 def seed_everything(seed: int):
@@ -253,7 +253,7 @@ def evaluate(model, loader, device, amp=False):
 def pretty_metrics(m):
     text = f"acc={m['acc']:.4f}, WGA={m['wga']:.4f}, aligned={m['aligned_acc']:.4f}, conflict={m['conflicting_acc']:.4f}"
     if not math.isnan(m["cf_flip_rate"]):
-        text += f", color-flip-rate={m['cf_flip_rate']:.4f}, cf-acc={m['cf_acc']:.4f}"
+        text += f", flip-rate={m['cf_flip_rate']:.4f}, cf-acc={m['cf_acc']:.4f}"
     return text
 
 
@@ -328,6 +328,7 @@ def configure_from_args(args):
             "train_corr": args.train_corr, "val_corr": args.val_corr,
             "test_corr": args.test_corr, "mnist_val_size": args.mnist_val_size,
             "color_mode": args.color_mode, "color_pairing": args.color_pairing,
+            "waterbirds_root": args.waterbirds_root,
             "pretrained": args.pretrained, "augment": args.augment,
             "lr": args.lr, "weight_decay": args.weight_decay,
             "batch_size": args.batch_size, "num_workers": args.num_workers,
@@ -466,7 +467,8 @@ def main():
     train.add_argument("--seed", type=int, default=42)
     train.add_argument("--image-size", type=int, default=None,
                        help="64 for colored_mnist; 128 for waterbirds by default")
-    corr_help = "colored_mnist: P(main color), a float or one of " + str(list(CORR_PRESETS))
+    corr_help = ("colored_mnist: P(main color); waterbirds: P(place == label). "
+                 "A float or one of " + str(list(CORR_PRESETS)))
     train.add_argument("--train-corr", type=parse_corr, default="strong", help=corr_help)
     train.add_argument("--val-corr", type=parse_corr, default=.50, help=corr_help)
     train.add_argument("--test-corr", type=parse_corr, default=.50, help=corr_help)
@@ -475,6 +477,9 @@ def main():
                        help="colored_mnist only: region painted with the shortcut color")
     train.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next",
                        help="colored_mnist only: how each digit's alternate color is chosen")
+    train.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT,
+                       help="waterbirds only: directory with CUB_200_2011/ and places365/ "
+                            "from download_waterbirds.sh")
     train.add_argument("--pretrained", action="store_true",
                        help="use ImageNet pretrained weights (recommended for Waterbirds)")
     train.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")

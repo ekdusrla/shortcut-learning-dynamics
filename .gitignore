@@ -4,8 +4,12 @@ __pycache__/
 venv/
 .env
 
+# Downloaded / generated datasets (download_waterbirds.sh writes under data/)
 data/
 datasets/
+*.tar
+*.tgz
+*.tar.gz
 checkpoints/
 *.pt
 *.pth
