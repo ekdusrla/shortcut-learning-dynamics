@@ -22,7 +22,7 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import models
 
-from data import build_datasets
+from data import NUM_CLASSES, build_datasets
 
 
 def seed_everything(seed: int):
@@ -47,16 +47,17 @@ def get_device(requested: str):
 def build_model(cfg):
     architecture = cfg["model"]
     pre = cfg["pretrained"]
+    num_classes = NUM_CLASSES[cfg["dataset"]]
     if architecture == "resnet18":
         weights = models.ResNet18_Weights.DEFAULT if pre else None
         model = models.resnet18(weights=weights)
-        model.fc = nn.Linear(model.fc.in_features, 2)
+        model.fc = nn.Linear(model.fc.in_features, num_classes)
     elif architecture == "vgg11_bn":
         weights = models.VGG11_BN_Weights.DEFAULT if pre else None
         model = models.vgg11_bn(weights=weights)
         # A compact head makes small-image experiments and per-epoch storage feasible.
         model.avgpool = nn.AdaptiveAvgPool2d((1, 1))
-        model.classifier = nn.Linear(512, 2)
+        model.classifier = nn.Linear(512, num_classes)
     else:
         raise ValueError(f"Unsupported model: {architecture}")
     return model
@@ -106,8 +107,8 @@ def balanced_indices(dataset, per_group=32, seed=0):
     """Select a fixed subset from each existing (target, spurious) group."""
     rng = np.random.default_rng(seed)
     out = []
-    for y in range(2):
-        for s in range(2):
+    for y in range(dataset.num_classes):
+        for s in range(dataset.num_classes):
             candidates = np.flatnonzero((dataset.labels == y) & (dataset.spurious == s))
             if len(candidates) == 0:
                 continue
@@ -189,10 +190,11 @@ def train_one_epoch(model, loader, optimizer, scaler, device, amp):
 @torch.inference_mode()
 def evaluate(model, loader, device, amp=False):
     model.eval()
+    k = loader.dataset.num_classes
     correct = total = 0
     loss_sum = 0.0
-    group_total = np.zeros((2, 2), dtype=np.int64)
-    group_correct = np.zeros((2, 2), dtype=np.int64)
+    group_total = np.zeros((k, k), dtype=np.int64)
+    group_correct = np.zeros((k, k), dtype=np.int64)
     aligned_n = aligned_ok = conflicted_n = conflicted_ok = 0
     cf_n = cf_ok = cf_flips = 0
     for batch in loader:
@@ -207,11 +209,10 @@ def evaluate(model, loader, device, amp=False):
         loss_sum += nn.functional.cross_entropy(logits.float(), y, reduction="sum").item()
         correct += ok.sum().item()
         total += n
-        for yi in range(2):
-            for si in range(2):
-                mask = (y == yi) & (s == si)
-                group_total[yi, si] += mask.sum().item()
-                group_correct[yi, si] += (ok & mask).sum().item()
+        # Flattened (y, s) group id; bincount avoids k*k per-group device syncs.
+        group = y * k + s
+        group_total += torch.bincount(group, minlength=k * k).cpu().numpy().reshape(k, k)
+        group_correct += torch.bincount(group[ok], minlength=k * k).cpu().numpy().reshape(k, k)
         aligned = (y == s)
         aligned_n += aligned.sum().item()
         aligned_ok += (ok & aligned).sum().item()
@@ -231,16 +232,16 @@ def evaluate(model, loader, device, amp=False):
               "aligned_acc": ratio(aligned_ok, aligned_n),
               "conflicting_acc": ratio(conflicted_ok, conflicted_n)}
     populated = []
-    for yi in range(2):
-        for si in range(2):
+    for yi in range(k):
+        for si in range(k):
             key = f"g{yi}{si}"
             v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
             result[f"{key}_acc"] = v
             result[f"{key}_n"] = int(group_total[yi, si])
             if group_total[yi, si] > 0:
                 populated.append(v)
-    # Require all four groups; otherwise WGA is undefined rather than inflated.
-    result["wga"] = min(populated) if len(populated) == 4 else float("nan")
+    # Require all k*k groups; otherwise WGA is undefined rather than inflated.
+    result["wga"] = min(populated) if len(populated) == k * k else float("nan")
     result["cf_acc"] = ratio(cf_ok, cf_n)
     result["cf_flip_rate"] = ratio(cf_flips, cf_n)
     result["cf_acc_drop"] = result["acc"] - result["cf_acc"] if cf_n else float("nan")

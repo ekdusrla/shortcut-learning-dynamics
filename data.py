@@ -1,12 +1,14 @@
 """Dataset construction for shortcut-learning experiments.
 
 Datasets:
-- colored_mnist: binary classification (0-4 vs 5-9), configurable color-label correlation.
+- colored_mnist: 10-way digit classification, one color per digit, configurable
+  color-label correlation.
 - waterbirds: grodino/waterbirds, image label and background place.
 
 `build_datasets(cfg)` returns {"train", "val", "test"} datasets whose items are
 dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
-`cf_pixel_values`). Each dataset also exposes `labels` and `spurious` arrays.
+`cf_pixel_values`). Each dataset also exposes `labels` and `spurious` arrays and
+`num_classes`; both `labels` and `spurious` take values in [0, num_classes).
 """
 from __future__ import annotations
 
@@ -19,6 +21,12 @@ from torchvision import transforms
 IMAGENET_MEAN = (0.485, 0.456, 0.406)
 IMAGENET_STD = (0.229, 0.224, 0.225)
 SPLIT_SEEDS = {"train": 100, "val": 200, "test": 300}
+NUM_CLASSES = {"colored_mnist": 10, "waterbirds": 2}
+# One distinct RGB color per digit; spurious attribute s indexes this palette.
+MNIST_COLORS = np.array([
+    (230, 25, 75), (60, 180, 75), (255, 225, 25), (0, 130, 200), (245, 130, 48),
+    (145, 30, 180), (70, 240, 240), (240, 50, 230), (210, 245, 60), (250, 190, 212),
+], dtype=np.float32)
 
 
 def image_transform(size: int, train: bool = False, augment: bool = False):
@@ -32,20 +40,27 @@ def image_transform(size: int, train: bool = False, augment: bool = False):
 class ColoredMNIST(Dataset):
     """Stable colors assigned once, independently for each disjoint split.
 
-    y = 0 for digits 0..4, 1 for 5..9. s = 0 red / 1 green.
-    P(s == y) = correlation. Counterfactual swaps red and green while
-    preserving the original digit pixels (no new digit is generated).
+    y = digit 0..9. s = color index 0..9 into MNIST_COLORS.
+    P(s == y) = correlation; otherwise s is uniform over the other 9 colors.
+    Counterfactual repaints the same digit pixels with a fixed, per-example
+    random color different from s (no new digit is generated).
     """
+    num_classes = NUM_CLASSES["colored_mnist"]
+
     def __init__(self, base, indices, correlation, seed, size, counterfactual=False):
         if not 0 <= correlation <= 1:
             raise ValueError("correlation must be in [0,1]")
         self.base = base
         self.indices = np.asarray(indices, dtype=np.int64)
         digit_labels = np.asarray(base["label"], dtype=np.int64)
-        self.labels = (digit_labels[self.indices] >= 5).astype(np.int64)
+        self.labels = digit_labels[self.indices]
+        k = self.num_classes
         rng = np.random.default_rng(seed)
         aligned = rng.random(len(self.indices)) < correlation
-        self.spurious = np.where(aligned, self.labels, 1 - self.labels).astype(np.int64)
+        # A nonzero offset mod k picks uniformly among the colors other than y (or s).
+        other = (self.labels + rng.integers(1, k, len(self.indices))) % k
+        self.spurious = np.where(aligned, self.labels, other).astype(np.int64)
+        self.cf_spurious = (self.spurious + rng.integers(1, k, len(self.indices))) % k
         self.transform = image_transform(size)
         self.counterfactual = counterfactual
 
@@ -53,9 +68,8 @@ class ColoredMNIST(Dataset):
         return len(self.indices)
 
     def paint(self, grayscale, color):
-        a = np.asarray(grayscale.convert("L"), dtype=np.uint8)
-        rgb = np.zeros((*a.shape, 3), dtype=np.uint8)
-        rgb[..., int(color)] = a  # red or green channel
+        a = np.asarray(grayscale.convert("L"), dtype=np.float32) / 255
+        rgb = (a[..., None] * MNIST_COLORS[int(color)]).round().astype(np.uint8)
         return self.transform(Image.fromarray(rgb, mode="RGB"))
 
     def __getitem__(self, i):
@@ -64,12 +78,14 @@ class ColoredMNIST(Dataset):
         out = {"pixel_values": self.paint(row["image"], s),
                "labels": y, "spurious": s, "index": int(self.indices[i])}
         if self.counterfactual:
-            out["cf_pixel_values"] = self.paint(row["image"], 1 - s)
+            out["cf_pixel_values"] = self.paint(row["image"], self.cf_spurious[i])
         return out
 
 
 class Waterbirds(Dataset):
     """Hugging Face grodino/waterbirds: label 0/1 and place 0/1."""
+    num_classes = NUM_CLASSES["waterbirds"]
+
     def __init__(self, hf_split, size, train=False, augment=False):
         self.base = hf_split
         self.labels = np.asarray(hf_split["label"], dtype=np.int64)
