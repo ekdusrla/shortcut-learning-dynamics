@@ -22,7 +22,8 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import models
 
-from data import COLOR_MODES, NUM_CLASSES, build_datasets
+from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, build_datasets,
+                  parse_corr)
 
 
 def seed_everything(seed: int):
@@ -231,17 +232,18 @@ def evaluate(model, loader, device, amp=False):
     result = {"loss": ratio(loss_sum, total), "acc": ratio(correct, total),
               "aligned_acc": ratio(aligned_ok, aligned_n),
               "conflicting_acc": ratio(conflicted_ok, conflicted_n)}
+    # Only groups that can occur by construction (e.g. 2 colors per digit) are reported.
     populated = []
-    for yi in range(k):
-        for si in range(k):
-            key = f"g{yi}{si}"
-            v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
-            result[f"{key}_acc"] = v
-            result[f"{key}_n"] = int(group_total[yi, si])
-            if group_total[yi, si] > 0:
-                populated.append(v)
-    # Require all k*k groups; otherwise WGA is undefined rather than inflated.
-    result["wga"] = min(populated) if len(populated) == k * k else float("nan")
+    for yi, si in loader.dataset.groups:
+        key = f"g{yi}{si}"
+        v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
+        result[f"{key}_acc"] = v
+        result[f"{key}_n"] = int(group_total[yi, si])
+        if group_total[yi, si] > 0:
+            populated.append(v)
+    # Require every possible group; otherwise WGA is undefined rather than inflated.
+    result["wga"] = (min(populated) if len(populated) == len(loader.dataset.groups)
+                     else float("nan"))
     result["cf_acc"] = ratio(cf_ok, cf_n)
     result["cf_flip_rate"] = ratio(cf_flips, cf_n)
     result["cf_acc_drop"] = result["acc"] - result["cf_acc"] if cf_n else float("nan")
@@ -325,7 +327,7 @@ def configure_from_args(args):
             "seed": args.seed, "image_size": args.image_size,
             "train_corr": args.train_corr, "val_corr": args.val_corr,
             "test_corr": args.test_corr, "mnist_val_size": args.mnist_val_size,
-            "color_mode": args.color_mode,
+            "color_mode": args.color_mode, "color_pairing": args.color_pairing,
             "pretrained": args.pretrained, "augment": args.augment,
             "lr": args.lr, "weight_decay": args.weight_decay,
             "batch_size": args.batch_size, "num_workers": args.num_workers,
@@ -464,12 +466,15 @@ def main():
     train.add_argument("--seed", type=int, default=42)
     train.add_argument("--image-size", type=int, default=None,
                        help="64 for colored_mnist; 128 for waterbirds by default")
-    train.add_argument("--train-corr", type=float, default=.95)
-    train.add_argument("--val-corr", type=float, default=.50)
-    train.add_argument("--test-corr", type=float, default=.10)
+    corr_help = "colored_mnist: P(main color), a float or one of " + str(list(CORR_PRESETS))
+    train.add_argument("--train-corr", type=parse_corr, default="strong", help=corr_help)
+    train.add_argument("--val-corr", type=parse_corr, default=.50, help=corr_help)
+    train.add_argument("--test-corr", type=parse_corr, default=.50, help=corr_help)
     train.add_argument("--mnist-val-size", type=int, default=5000)
     train.add_argument("--color-mode", choices=COLOR_MODES, default="foreground",
                        help="colored_mnist only: region painted with the shortcut color")
+    train.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next",
+                       help="colored_mnist only: how each digit's alternate color is chosen")
     train.add_argument("--pretrained", action="store_true",
                        help="use ImageNet pretrained weights (recommended for Waterbirds)")
     train.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
