@@ -12,7 +12,8 @@ Datasets:
 dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
 `cf_pixel_values`). Each dataset also exposes `labels` and `spurious` arrays and
 `num_classes`; both `labels` and `spurious` take values in [0, num_classes).
-`groups` lists the (y, s) pairs that can occur by construction.
+`groups` lists the (y, s) pairs that can occur by construction. Setting a
+dataset's `stress` to a Stress corrupts every image it returns (stress test).
 
 Run `python data.py` to save example images of both datasets into images/.
 """
@@ -86,12 +87,71 @@ def alternate_colors(pairing="next", seed=0, k=10):
     raise ValueError(f"color pairing must be one of {COLOR_PAIRINGS}")
 
 
+# Test-time corruptions, severity 1..5 -> parameter (ImageNet-C style).
+# gaussian_noise: std on [0, 1] pixels (ImageNet-C values).
+# gaussian_blur: sigma as a fraction of the image side (ImageNet-C's 1..6 px at 224).
+# crop: kept side fraction of a random square crop, resized back to full size.
+STRESS_SEVERITIES = {
+    "gaussian_noise": (.08, .12, .18, .26, .38),
+    "gaussian_blur": tuple(px / 224 for px in (1, 2, 3, 4, 6)),
+    "crop": (.9, .8, .7, .6, .5),
+}
+STRESS_TYPES = tuple(STRESS_SEVERITIES)
+
+
+class Stress:
+    """Deterministic corruption of a resized PIL image.
+
+    `key` (the item index) seeds the noise and the crop position, so a sample
+    and its counterfactual get exactly the same corruption.
+    """
+
+    def __init__(self, kind, severity, seed=0):
+        if kind not in STRESS_SEVERITIES:
+            raise ValueError(f"stress type must be one of {STRESS_TYPES}")
+        if not 1 <= severity <= len(STRESS_SEVERITIES[kind]):
+            raise ValueError(f"severity must be in 1..{len(STRESS_SEVERITIES[kind])}")
+        self.kind, self.severity, self.seed = kind, int(severity), seed
+        self.param = STRESS_SEVERITIES[kind][self.severity - 1]
+
+    def __call__(self, image, key):
+        rng = np.random.default_rng([self.seed, int(key)])
+        if self.kind == "gaussian_noise":
+            x = np.asarray(image, dtype=np.float32) / 255
+            x = x + rng.normal(0, self.param, x.shape)
+            return Image.fromarray((x.clip(0, 1) * 255).round().astype(np.uint8))
+        if self.kind == "gaussian_blur":
+            return image.filter(ImageFilter.GaussianBlur(self.param * min(image.size)))
+        w, h = image.size
+        cw, ch = max(1, round(self.param * w)), max(1, round(self.param * h))
+        left, top = int(rng.integers(0, w - cw + 1)), int(rng.integers(0, h - ch + 1))
+        return image.crop((left, top, left + cw, top + ch)).resize((w, h), Image.BILINEAR)
+
+    def describe(self, size):
+        if self.kind == "gaussian_noise":
+            return f"std {self.param:g}"
+        if self.kind == "gaussian_blur":
+            return f"sigma {self.param * size:.2g}px"
+        return f"keep {self.param:.0%}"
+
+    def __repr__(self):
+        return f"{self.kind}@{self.severity}"
+
+
 def image_transform(size: int, train: bool = False, augment: bool = False):
     operations = [transforms.Resize((size, size))]
     if train and augment:
         operations.append(transforms.RandomHorizontalFlip())
     operations += [transforms.ToTensor(), transforms.Normalize(IMAGENET_MEAN, IMAGENET_STD)]
     return transforms.Compose(operations)
+
+
+def to_tensor(dataset, image, i):
+    """dataset.transform(image), corrupted by dataset.stress (if set) after resizing."""
+    if dataset.stress is not None:
+        # Resizing an already resized image is a no-op inside the transform.
+        image = dataset.stress(dataset.resize(image), i)
+    return dataset.transform(image)
 
 
 class ColoredMNIST(Dataset):
@@ -125,12 +185,14 @@ class ColoredMNIST(Dataset):
         self.spurious = np.where(aligned, self.labels, alt[self.labels]).astype(np.int64)
         self.cf_spurious = np.where(aligned, alt[self.labels], self.labels).astype(np.int64)
         self.transform = image_transform(size)
+        self.resize = transforms.Resize((size, size))
         self.counterfactual = counterfactual
+        self.stress = None
 
     def __len__(self):
         return len(self.indices)
 
-    def paint(self, grayscale, color):
+    def paint(self, grayscale, color, i):
         gray = grayscale.convert("L")
         a = np.asarray(gray, dtype=np.float32)[..., None] / 255  # digit alpha
         c = MNIST_COLORS[int(color)]
@@ -148,15 +210,15 @@ class ColoredMNIST(Dataset):
             bg = MNIST_COLORS[(int(color) + 5) % self.num_classes]
             rgb = a * c + (1 - a) * BACKGROUND_SCALE * bg
         rgb = rgb.round().clip(0, 255).astype(np.uint8)
-        return self.transform(Image.fromarray(rgb, mode="RGB"))
+        return to_tensor(self, Image.fromarray(rgb, mode="RGB"), i)
 
     def __getitem__(self, i):
         row = self.base[int(self.indices[i])]
         y, s = int(self.labels[i]), int(self.spurious[i])
-        out = {"pixel_values": self.paint(row["image"], s),
+        out = {"pixel_values": self.paint(row["image"], s, i),
                "labels": y, "spurious": s, "index": int(self.indices[i])}
         if self.counterfactual:
-            out["cf_pixel_values"] = self.paint(row["image"], self.cf_spurious[i])
+            out["cf_pixel_values"] = self.paint(row["image"], self.cf_spurious[i], i)
         return out
 
 
@@ -270,7 +332,9 @@ class Waterbirds(Dataset):
         self.labels = meta["y"].to_numpy(dtype=np.int64)
         self.spurious = meta["place"].to_numpy(dtype=np.int64)
         self.transform = image_transform(size, train=train, augment=augment)
+        self.resize = transforms.Resize((size, size))
         self.counterfactual = counterfactual
+        self.stress = None
 
     def __len__(self):
         return len(self.files)
@@ -283,7 +347,7 @@ class Waterbirds(Dataset):
                              .convert("RGB")) / 255
             bird = (seg, Image.fromarray(np.around(img * seg).astype(np.uint8)))
         scene = Image.open(self.places_dir / self.scenes[i, place]).convert("RGB")
-        return self.transform(combine_and_mask(scene, *bird)), bird
+        return to_tensor(self, combine_and_mask(scene, *bird), i), bird
 
     def __getitem__(self, i):
         y, s = int(self.labels[i]), int(self.spurious[i])
@@ -606,6 +670,32 @@ def save_waterbirds_counterfactuals(out_file, split="test", per_group=2, cfg=Non
     _save(fig, out_file)
 
 
+def save_stress_examples(out_file, dataset="colored_mnist", split="test", index=0, cfg=None):
+    """One sample under every stress type (rows) and severity (columns, 0 = clean)."""
+    import matplotlib.pyplot as plt
+
+    cfg = example_cfg(cfg) if dataset == "colored_mnist" else waterbirds_example_cfg(cfg)
+    ds = build_datasets(cfg)[split]
+    levels = len(next(iter(STRESS_SEVERITIES.values())))
+    fig, axes = plt.subplots(len(STRESS_TYPES), levels + 1,
+                             figsize=((levels + 1) * 1.5, len(STRESS_TYPES) * 1.65),
+                             squeeze=False, layout="constrained")
+    for r, kind in enumerate(STRESS_TYPES):
+        for c in range(levels + 1):
+            ds.stress = Stress(kind, c, cfg["seed"]) if c else None
+            ax = axes[r, c]
+            ax.imshow(to_image(ds[index]["pixel_values"]))
+            ax.set_xticks([])
+            ax.set_yticks([])
+            ax.set_title(ds.stress.describe(cfg["image_size"]) if c else "clean", fontsize=8)
+            if c == 0:
+                ax.set_ylabel(kind, fontsize=9)
+    ds.stress = None
+    fig.suptitle(f"{dataset} / {split} sample {index} / stress severities 1-5 "
+                 f"at {cfg['image_size']}px", fontsize=10)
+    _save(fig, out_file)
+
+
 def _save(fig, out_file):
     import matplotlib.pyplot as plt
 
@@ -619,7 +709,8 @@ def _save(fig, out_file):
 def main():
     parser = argparse.ArgumentParser(
         description="Save example images: Colored MNIST (one row per color mode, plus a "
-                    "strong/medium/weak comparison) and Waterbirds (groups, counterfactuals).")
+                    "strong/medium/weak comparison), Waterbirds (groups, counterfactuals, "
+                    "comparison) and stress-test severities for both.")
     parser.add_argument("--dataset", choices=["all", "colored_mnist", "waterbirds"], default="all",
                         help="'all' skips Waterbirds when its raw data is missing")
     parser.add_argument("--output", default="images/colored_mnist_examples.png")
@@ -649,6 +740,8 @@ def main():
                         help="birds per class in each comparison cell")
     parser.add_argument("--waterbirds-samples", type=int, default=6, help="samples per group")
     parser.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT)
+    parser.add_argument("--stress-output", default="images/{dataset}_stress.png",
+                        help="stress-test severity grid per dataset; pass '' to skip")
     args = parser.parse_args()
     if min(args.per_digit, args.corr_samples, args.waterbirds_samples,
            args.waterbirds_corr_samples) <= 0:
@@ -664,6 +757,10 @@ def main():
         if args.corr_output:
             save_corr_comparison(args.corr_output, args.corr_mode, args.corr_samples,
                                  cfg={"seed": args.seed, "color_pairing": args.color_pairing})
+        if args.stress_output:
+            save_stress_examples(args.stress_output.format(dataset="colored_mnist"),
+                                 "colored_mnist", cfg={"seed": args.seed,
+                                                       "color_pairing": args.color_pairing})
     if args.dataset in ("all", "waterbirds"):
         wb_cfg = {**cfg, "waterbirds_root": args.waterbirds_root}
         if not (Path(args.waterbirds_root) / "CUB_200_2011" / "images.txt").exists():
@@ -682,6 +779,9 @@ def main():
                                             args.waterbirds_corr_samples,
                                             cfg={"seed": args.seed,
                                                  "waterbirds_root": args.waterbirds_root})
+        if args.stress_output:
+            save_stress_examples(args.stress_output.format(dataset="waterbirds"), "waterbirds",
+                                 cfg={"seed": args.seed, "waterbirds_root": args.waterbirds_root})
 
 
 if __name__ == "__main__":

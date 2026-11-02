@@ -22,8 +22,8 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import models
 
-from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, WATERBIRDS_ROOT,
-                  build_datasets, parse_corr)
+from data import (COLOR_MODES, COLOR_PAIRINGS, CORR_PRESETS, NUM_CLASSES, STRESS_TYPES,
+                  WATERBIRDS_ROOT, Stress, build_datasets, parse_corr)
 
 
 def seed_everything(seed: int):
@@ -432,6 +432,29 @@ def run_training(args):
     print(f"Run directory: {output}")
 
 
+def run_stress_test(model, dataset, args, device, amp, seed):
+    """Evaluate clean and under every requested (stress type, severity) pair.
+
+    The corruption is applied to both the original and the counterfactual image,
+    so flip-rate still isolates the shortcut feature.
+    """
+    kinds = STRESS_TYPES if "all" in args.stress else tuple(dict.fromkeys(args.stress))
+    settings = [None] + [Stress(k, sev, seed) for k in kinds for sev in args.stress_severity]
+    results = {}
+    for stress in settings:
+        dataset.stress = stress
+        loader = create_loader(dataset, args.batch_size, False, args.num_workers, device=device)
+        name = "clean" if stress is None else repr(stress)
+        metrics = evaluate(model, loader, device, amp)
+        if stress is not None:
+            metrics = {"stress": stress.kind, "severity": stress.severity,
+                       "param": stress.param, **metrics}
+        results[name] = metrics
+        print(f"{name:<18} | " + pretty_metrics(metrics), flush=True)
+    dataset.stress = None
+    return results
+
+
 def run_from_checkpoint(args):
     device = get_device(args.device)
     ckpt = choose_checkpoint(args.run, args.checkpoint)
@@ -442,15 +465,25 @@ def run_from_checkpoint(args):
     model = build_model(cfg).to(device)
     model.load_state_dict(saved["model"])
     print(f"checkpoint={ckpt} epoch={saved['epoch']} {cfg['model']} / {cfg['dataset']}")
-    loader = create_loader(ds[args.split], args.batch_size or cfg["batch_size"],
+    args.batch_size = args.batch_size or cfg["batch_size"]
+    loader = create_loader(ds[args.split], args.batch_size,
                            False, args.num_workers, device=device)
-    if args.command == "eval":
+    if args.command == "eval" and args.stress:
+        results = run_stress_test(model, ds[args.split], args, device,
+                                  is_amp_enabled(device, cfg), cfg["seed"])
+        file = Path(args.stress_output or (Path(args.run) / "stress" /
+                                           f"{args.split}_epoch_{saved['epoch']:03d}.json"))
+        file.parent.mkdir(parents=True, exist_ok=True)
+        file.write_text(json.dumps({"epoch": saved["epoch"], "split": args.split,
+                                    "results": results}, indent=2), encoding="utf-8")
+        print(f"Saved {file}")
+    elif args.command == "eval":
         metrics = evaluate(model, loader, device, is_amp_enabled(device, cfg))
         print(json.dumps(metrics, indent=2, ensure_ascii=False))
     elif args.command == "features":
         file = args.output or (Path(args.run) / "features" / f"{args.split}_epoch_{saved['epoch']:03d}.npz")
         save_feature_snapshot(model, ds[args.split], cfg["model"], device,
-                              args.batch_size or cfg["batch_size"], args.features_per_group,
+                              args.batch_size, args.features_per_group,
                               file, args.num_workers, cfg["seed"])
 
 
@@ -500,6 +533,14 @@ def main():
         p.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
         p.add_argument("--batch-size", type=int, default=None)
         p.add_argument("--num-workers", type=int, default=2)
+        if cmd == "eval":
+            p.add_argument("--stress", nargs="+", choices=STRESS_TYPES + ("all",), default=None,
+                           help="stress test: evaluate clean and under these corruptions")
+            p.add_argument("--stress-severity", nargs="+", type=int, default=[1, 2, 3, 4, 5],
+                           choices=range(1, 6), metavar="{1..5}",
+                           help="severity levels to evaluate for each --stress type")
+            p.add_argument("--stress-output", default=None,
+                           help="JSON path (default: <run>/stress/<split>_epoch_XXX.json)")
         if cmd == "features":
             p.add_argument("--features-per-group", type=int, default=32)
             p.add_argument("--output", default=None)

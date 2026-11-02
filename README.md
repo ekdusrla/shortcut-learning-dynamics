@@ -65,6 +65,25 @@ python shortcut_experiment.py eval --run runs/cm_resnet --checkpoint runs/cm_res
 python shortcut_experiment.py eval --run runs/wb_resnet --checkpoint latest --split test
 ```
 
+### Stress test (noise, blur, crop)
+
+```bash
+# clean + every corruption at severities 1-5 -> runs/cm_resnet/stress/test_epoch_XXX.json
+python shortcut_experiment.py eval --run runs/cm_resnet --checkpoint latest --split test --stress all
+# chosen corruptions and severities only
+python shortcut_experiment.py eval --run runs/wb_resnet --stress gaussian_noise crop --stress-severity 1 3 5
+```
+
+Corruptions are applied at evaluation time only, after resizing and before normalization:
+
+| `--stress` | severity 1-5 | parameter |
+|---|---|---|
+| `gaussian_noise` | .08 / .12 / .18 / .26 / .38 | noise std on [0, 1] pixels (ImageNet-C values) |
+| `gaussian_blur` | 1 / 2 / 3 / 4 / 6 px at 224 | Gaussian sigma, scaled to the image size |
+| `crop` | 90 / 80 / 70 / 60 / 50 % | side of a random square crop, resized back |
+
+Noise and crop position are seeded by the seed and the sample index, so results are reproducible, and a sample and its counterfactual get exactly the same corruption (flip-rate still measures only the shortcut). Every setting reports the usual metrics (acc, WGA, aligned/conflicting, flip-rate). `python data.py` also writes `images/<dataset>_stress.png`, one sample under every corruption and severity (`--stress-output ''` skips it).
+
 ### Hidden-state features
 
 ```bash
@@ -83,6 +102,7 @@ runs/<name>/
   latest.json
   history.csv                # train + validation by epoch, includes 0
   test_metrics.json          # final epoch only
+  stress/test_epoch_XXX.json # created by eval --stress
   checkpoints/epoch_000.pt   # baseline untrained
   checkpoints/epoch_001.pt   # model, optimizer, schedule, RNG states
   ...
