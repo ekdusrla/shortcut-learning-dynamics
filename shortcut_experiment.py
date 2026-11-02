@@ -269,13 +269,16 @@ def train_one_epoch(model, loader, optimizer, scaler, device, amp):
     n_correct = n_total = 0
     loss_sum = 0.
     criterion = nn.CrossEntropyLoss()
-    for batch in loader:
+    for batch_index, batch in enumerate(loader):
         x = batch["pixel_values"].to(device, non_blocking=True)
         y = batch["labels"].to(device, non_blocking=True)
         optimizer.zero_grad(set_to_none=True)
         with autocast_context(device, amp):
             logits = model(x)
             loss = criterion(logits, y)
+        if not torch.isfinite(loss).item():
+            raise FloatingPointError(
+                f"Non-finite training loss at batch {batch_index}: {loss.item()}")
         scaler.scale(loss).backward()
         scaler.step(optimizer)
         scaler.update()
@@ -425,7 +428,9 @@ def configure_from_args(args):
             "train_corr": args.train_corr, "val_corr": args.val_corr,
             "test_corr": args.test_corr, "mnist_val_size": args.mnist_val_size,
             "pretrained": args.pretrained, "augment": args.augment,
-            "lr": args.lr, "weight_decay": args.weight_decay,
+            "lr": args.lr, "momentum": args.momentum,
+            "scheduler": args.scheduler, "optimizer": "sgd",
+            "weight_decay": args.weight_decay,
             "batch_size": args.batch_size, "num_workers": args.num_workers,
             "features_per_group": args.features_per_group, "amp": not args.no_amp,
             "save_features": not args.no_features}
@@ -448,7 +453,11 @@ def run_training(args):
                 raise ValueError(
                     "Do not resume an older checkpoint into a run containing newer "
                     "checkpoints. Copy/fork the run into a fresh directory first.")
-        cfg = saved["config"]
+        cfg = dict(saved["config"])
+        # Older runs used these fixed settings without recording them in config.
+        cfg.setdefault("momentum", 0.9)
+        cfg.setdefault("scheduler", "cosine")
+        cfg.setdefault("optimizer", "sgd")
         # The resume uses checkpoint config to prevent accidental changes in the
         # dataset definition, training schedule, architecture, and optimizer.
         print(f"[resume] Configuration loaded from checkpoint: {resume_path}")
@@ -456,6 +465,7 @@ def run_training(args):
             print("[resume] Ignoring --epochs; using checkpoint's original total epochs")
     else:
         cfg = configure_from_args(args)
+    print("[config] " + json.dumps(cfg, sort_keys=True))
     seed_everything(cfg["seed"])
     (output / "config.json").write_text(json.dumps(cfg, indent=2), encoding="utf-8")
     ds = build_datasets(cfg)
@@ -467,9 +477,15 @@ def run_training(args):
     test_loader = create_loader(ds["test"], cfg["batch_size"], False,
                                 cfg["num_workers"], device=device)
     model = build_model(cfg).to(device)
-    optimizer = torch.optim.SGD(model.parameters(), lr=cfg["lr"], momentum=0.9,
+    optimizer = torch.optim.SGD(model.parameters(), lr=cfg["lr"], momentum=cfg["momentum"],
                                 weight_decay=cfg["weight_decay"])
-    scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg["epochs"])
+    if cfg["scheduler"] == "none":
+        # Keep the existing checkpoint state_dict interface without changing LR.
+        scheduler = torch.optim.lr_scheduler.ConstantLR(optimizer, factor=1.0, total_iters=1)
+    elif cfg["scheduler"] == "cosine":
+        scheduler = torch.optim.lr_scheduler.CosineAnnealingLR(optimizer, T_max=cfg["epochs"])
+    else:
+        raise ValueError(f"Unsupported scheduler: {cfg['scheduler']}")
     scaler = torch.amp.GradScaler("cuda", enabled=is_amp_enabled(device, cfg))
     amp = is_amp_enabled(device, cfg)
     ckpt_dir = output / "checkpoints"
@@ -501,7 +517,10 @@ def run_training(args):
         print("epoch=000 | val " + pretty_metrics(v0))
 
     for epoch in range(start_epoch, cfg["epochs"] + 1):
-        stats = train_one_epoch(model, train_loader, optimizer, scaler, device, amp)
+        try:
+            stats = train_one_epoch(model, train_loader, optimizer, scaler, device, amp)
+        except FloatingPointError as exc:
+            raise FloatingPointError(f"Epoch {epoch}: {exc}") from exc
         val = evaluate(model, val_loader, device, amp)
         current_lr = optimizer.param_groups[0]["lr"]
         scheduler.step()
@@ -570,6 +589,9 @@ def main():
                        help="use ImageNet pretrained weights (recommended for Waterbirds)")
     train.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
     train.add_argument("--lr", type=float, default=.01)
+    train.add_argument("--momentum", type=float, default=.9)
+    train.add_argument("--scheduler", choices=["none", "cosine"], default="cosine",
+                       help="none keeps the learning rate fixed; cosine preserves the original schedule")
     train.add_argument("--weight-decay", type=float, default=1e-4)
     train.add_argument("--batch-size", type=int, default=64)
     train.add_argument("--num-workers", type=int, default=2)
@@ -590,11 +612,25 @@ def main():
             p.add_argument("--features-per-group", type=int, default=32)
             p.add_argument("--output", default=None)
     args = parser.parse_args()
+    if args.num_workers < 0:
+        parser.error("--num-workers must be nonnegative")
+    if args.batch_size is not None and args.batch_size <= 0:
+        parser.error("--batch-size must be positive")
+    if hasattr(args, "features_per_group") and args.features_per_group <= 0:
+        parser.error("--features-per-group must be positive")
     if args.command == "train":
         if args.epochs <= 0:
             parser.error("--epochs must be positive")
-        if args.batch_size <= 0:
-            parser.error("--batch-size must be positive")
+        if not math.isfinite(args.lr) or args.lr <= 0:
+            parser.error("--lr must be finite and positive")
+        if not math.isfinite(args.momentum) or not 0 <= args.momentum <= 1:
+            parser.error("--momentum must be finite and in [0, 1]")
+        if not math.isfinite(args.weight_decay) or args.weight_decay < 0:
+            parser.error("--weight-decay must be finite and nonnegative")
+        if not 0 <= args.seed < 2**32:
+            parser.error("--seed must be in [0, 2**32)")
+        if args.mnist_val_size <= 0:
+            parser.error("--mnist-val-size must be positive")
         if args.image_size is None:
             args.image_size = 64 if args.dataset == "colored_mnist" else 128
         if args.image_size < 32:
