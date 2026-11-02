@@ -22,7 +22,7 @@ from torch import nn
 from torch.utils.data import DataLoader, Subset
 from torchvision import models
 
-from data import NUM_CLASSES, build_datasets
+from data import COLOR_MODES, NUM_CLASSES, build_datasets
 
 
 def seed_everything(seed: int):
@@ -325,6 +325,7 @@ def configure_from_args(args):
             "seed": args.seed, "image_size": args.image_size,
             "train_corr": args.train_corr, "val_corr": args.val_corr,
             "test_corr": args.test_corr, "mnist_val_size": args.mnist_val_size,
+            "color_mode": args.color_mode,
             "pretrained": args.pretrained, "augment": args.augment,
             "lr": args.lr, "weight_decay": args.weight_decay,
             "batch_size": args.batch_size, "num_workers": args.num_workers,
@@ -467,6 +468,8 @@ def main():
     train.add_argument("--val-corr", type=float, default=.50)
     train.add_argument("--test-corr", type=float, default=.10)
     train.add_argument("--mnist-val-size", type=int, default=5000)
+    train.add_argument("--color-mode", choices=COLOR_MODES, default="foreground",
+                       help="colored_mnist only: region painted with the shortcut color")
     train.add_argument("--pretrained", action="store_true",
                        help="use ImageNet pretrained weights (recommended for Waterbirds)")
     train.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
