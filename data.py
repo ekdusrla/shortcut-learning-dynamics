@@ -1,8 +1,9 @@
 """Dataset construction for shortcut-learning experiments.
 
 Datasets:
-- colored_mnist: 10-way digit classification. Each digit has a main and an
-  alternate color (see COLOR_PAIRINGS); the main:alternate ratio is configurable
+- colored_mnist: 10-way digit classification. Each digit has a main color and
+  either one fixed alternate color or any other color (see COLOR_PAIRINGS); the
+  main:alternate ratio is configurable
   (see CORR_PRESETS), as is where the color is painted (see COLOR_MODES).
 - waterbirds: CUB-200-2011 birds composited onto Places365 land/water scenes on the
   fly (group_DRO recipe); configurable bird-background correlation (CORR_PRESETS).
@@ -12,7 +13,9 @@ Datasets:
 dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
 `cf_pixel_values`). Each dataset also exposes `labels` and `spurious` arrays and
 `num_classes`; both `labels` and `spurious` take values in [0, num_classes).
-`groups` lists the (y, s) pairs that can occur by construction. Setting a
+`groups` lists the (y, s) pairs that can occur by construction; a dataset may
+also define `wga_groups` ({name: [(y, s), ...]}), cells of `groups` merged into
+the groups that worst-group accuracy is taken over. Setting a
 dataset's `stress` to a Stress corrupts every image it returns (stress test).
 
 Run `python data.py` to save example images of both datasets into images/.
@@ -49,7 +52,9 @@ CORR_PRESETS = {"strong": .95, "medium": .80, "weak": .65}
 # How digit k's alternate color is chosen:
 #   next: color (k + 1) % 10.
 #   random: a seeded derangement, so no digit's alternate equals its main color.
-COLOR_PAIRINGS = ("next", "random")
+#   all: no fixed alternate; each example without the main color gets one of the
+#     other 9 colors uniformly at random, so corr=0.1 makes color independent of the digit.
+COLOR_PAIRINGS = ("next", "random", "all")
 # Waterbirds raw data (download_waterbirds.sh): <root>/CUB_200_2011 and <root>/places365.
 WATERBIRDS_ROOT = "data/raw"
 WATERBIRDS_VAL_FRAC = 0.2  # share of CUB train images used for validation
@@ -75,7 +80,12 @@ COLOR_MODES = ("foreground", "background", "border", "foreground_background")
 
 
 def alternate_colors(pairing="next", seed=0, k=10):
-    """Return alt[k]: the alternate color index for each digit (never k itself)."""
+    """Return alt[k]: the alternate color index for each digit (never k itself).
+
+    Returns None for "all", which has no fixed alternate (drawn per example).
+    """
+    if pairing == "all":
+        return None
     if pairing == "next":
         return (np.arange(k) + 1) % k
     if pairing == "random":
@@ -158,11 +168,13 @@ class ColoredMNIST(Dataset):
     """Stable colors assigned once, independently for each disjoint split.
 
     y = digit 0..9. s = color index 0..9 into MNIST_COLORS.
-    Each digit y uses only two colors: main color y with probability
-    `correlation`, otherwise alternate color `alt_colors[y]`.
+    Digit y gets main color y with probability `correlation`, otherwise its
+    alternate color: `alt_colors[y]` (two colors per digit), or, if `alt_colors`
+    is None, one of the other 9 colors drawn per example (every color per digit).
     `color_mode` (one of COLOR_MODES) decides which region carries the color.
-    Counterfactual repaints the same digit pixels with the digit's other color
-    (main <-> alternate); no new digit is generated.
+    Counterfactual repaints the same digit pixels with the example's other color
+    (main <-> alternate; with alt_colors=None, main <-> that example's drawn
+    alternate); no new digit is generated.
     """
     num_classes = NUM_CLASSES["colored_mnist"]
 
@@ -178,12 +190,26 @@ class ColoredMNIST(Dataset):
         digit_labels = np.asarray(base["label"], dtype=np.int64)
         self.labels = digit_labels[self.indices]
         k = self.num_classes
-        alt = alternate_colors() if alt_colors is None else np.asarray(alt_colors, dtype=np.int64)
-        self.groups = [(y, int(s)) for y in range(k) for s in (y, alt[y])]
         rng = np.random.default_rng(seed)
         aligned = rng.random(len(self.indices)) < correlation
-        self.spurious = np.where(aligned, self.labels, alt[self.labels]).astype(np.int64)
-        self.cf_spurious = np.where(aligned, alt[self.labels], self.labels).astype(np.int64)
+        if alt_colors is None:
+            # A nonzero offset mod k picks uniformly among the colors other than y.
+            alt = (self.labels + rng.integers(1, k, len(self.indices))) % k
+            self.groups = [(y, s) for y in range(k) for s in range(k)]
+            # 90 conflicting cells are too small for a stable minimum, so WGA uses each
+            # digit with its main color vs with any other color: 20 groups, as for
+            # the fixed pairings.
+            self.wga_groups = {}
+            for y in range(k):
+                self.wga_groups[f"g{y}{y}"] = [(y, y)]
+                self.wga_groups[f"g{y}other"] = [(y, s) for s in range(k) if s != y]
+        else:
+            alt_colors = np.asarray(alt_colors, dtype=np.int64)
+            alt = alt_colors[self.labels]
+            self.groups = [(y, int(s)) for y in range(k) for s in (y, alt_colors[y])]
+            self.wga_groups = None  # WGA over `groups`
+        self.spurious = np.where(aligned, self.labels, alt).astype(np.int64)
+        self.cf_spurious = np.where(aligned, alt, self.labels).astype(np.int64)
         self.transform = image_transform(size)
         self.resize = transforms.Resize((size, size))
         self.counterfactual = counterfactual

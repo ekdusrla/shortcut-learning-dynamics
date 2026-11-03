@@ -236,16 +236,24 @@ def evaluate(model, loader, device, amp=False):
               "aligned_acc": ratio(aligned_ok, aligned_n),
               "conflicting_acc": ratio(conflicted_ok, conflicted_n)}
     # Only groups that can occur by construction (e.g. 2 colors per digit) are reported.
-    populated = []
     for yi, si in loader.dataset.groups:
         key = f"g{yi}{si}"
-        v = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
-        result[f"{key}_acc"] = v
+        result[f"{key}_acc"] = ratio(int(group_correct[yi, si]), int(group_total[yi, si]))
         result[f"{key}_n"] = int(group_total[yi, si])
-        if group_total[yi, si] > 0:
+    # WGA groups: the dataset's merged `wga_groups` if defined, otherwise `groups` itself.
+    wga_groups = (getattr(loader.dataset, "wga_groups", None)
+                  or {f"g{yi}{si}": [(yi, si)] for yi, si in loader.dataset.groups})
+    populated = []
+    for key, cells in wga_groups.items():
+        n = sum(int(group_total[yi, si]) for yi, si in cells)
+        v = ratio(sum(int(group_correct[yi, si]) for yi, si in cells), n)
+        if len(cells) > 1:
+            result[f"{key}_acc"] = v
+            result[f"{key}_n"] = n
+        if n > 0:
             populated.append(v)
     # Require every possible group; otherwise WGA is undefined rather than inflated.
-    result["wga"] = (min(populated) if len(populated) == len(loader.dataset.groups)
+    result["wga"] = (min(populated) if len(populated) == len(wga_groups)
                      else float("nan"))
     result["cf_acc"] = ratio(cf_ok, cf_n)
     result["cf_flip_rate"] = ratio(cf_flips, cf_n)
