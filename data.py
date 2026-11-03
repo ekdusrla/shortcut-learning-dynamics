@@ -11,7 +11,7 @@ Datasets:
 
 `build_datasets(cfg)` returns {"train", "val", "test"} datasets whose items are
 dicts with `pixel_values`, `labels`, `spurious`, `index` (and optionally
-`cf_pixel_values`). Each dataset also exposes `labels` and `spurious` arrays and
+`cf_pixel_values`, plus `cf_all_pixel_values` / `cf_all_spurious` for colored_mnist). Each dataset also exposes `labels` and `spurious` arrays and
 `num_classes`; both `labels` and `spurious` take values in [0, num_classes).
 `groups` lists the (y, s) pairs that can occur by construction; a dataset may
 also define `wga_groups` ({name: [(y, s), ...]}), cells of `groups` merged into
@@ -29,6 +29,7 @@ from pathlib import Path
 
 import numpy as np
 import pandas as pd
+import torch
 from PIL import Image, ImageFilter
 from torch.utils.data import Dataset
 from torchvision import transforms
@@ -174,7 +175,9 @@ class ColoredMNIST(Dataset):
     `color_mode` (one of COLOR_MODES) decides which region carries the color.
     Counterfactual repaints the same digit pixels with the example's other color
     (main <-> alternate; with alt_colors=None, main <-> that example's drawn
-    alternate); no new digit is generated.
+    alternate); no new digit is generated. It also repaints them with each of
+    the 9 colors other than s ("cf_all"), including colors never paired with
+    the digit in training.
     """
     num_classes = NUM_CLASSES["colored_mnist"]
 
@@ -245,6 +248,9 @@ class ColoredMNIST(Dataset):
                "labels": y, "spurious": s, "index": int(self.indices[i])}
         if self.counterfactual:
             out["cf_pixel_values"] = self.paint(row["image"], self.cf_spurious[i], i)
+            others = [c for c in range(self.num_classes) if c != s]
+            out["cf_all_pixel_values"] = torch.stack([self.paint(row["image"], c, i) for c in others])
+            out["cf_all_spurious"] = torch.tensor(others)
         return out
 
 
