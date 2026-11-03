@@ -1,8 +1,6 @@
 """Evaluate a trained model and its core/spurious linear probes.
 
 Requires shortcut_experiment.py with build_model/build_datasets.
-Datasets must provide train, val, test and the selected probe-training split
-(probe by default; --probe-train-split val reuses validation data). Each batch
 must have pixel_values, labels (core), and spurious.
 """
 
@@ -189,9 +187,6 @@ if __name__ == "__main__":
     parser.add_argument("--workers", type=int, default=2)
     parser.add_argument("--target", default="both",
                         choices=["core", "spurious", "both"])
-    parser.add_argument("--probe-train-split", default="probe",
-                        choices=["probe", "val"],
-                        help="Dataset split for linear probe training; val requires no probe dataset")
     parser.add_argument("--probe-epochs", "--max-iter", type=int,
                         dest="probe_epochs", default=100)
     parser.add_argument("--probe-batch-size", type=int, default=256)
@@ -200,14 +195,47 @@ if __name__ == "__main__":
                         default=1e-4)
     parser.add_argument("--core-classes", type=int, default=None)
     parser.add_argument("--spurious-classes", type=int, default=None)
-    parser.add_argument("--seed", type=int, default=42)
     parser.add_argument("--output", type=Path, default=None,
                         help="CSV output path")
     parser.add_argument("--probe-dir", type=Path, default=None,
                         help="Directory for saved linear probes")
     parser.add_argument("--load-probes", action="store_true",
                         help="Reuse saved probes instead of training")
+
+    from shortcut_experiment import parse_corr, CORR_PRESETS, COLOR_MODES, COLOR_PAIRINGS, WATERBIRDS_ROOT
+    data_args = parser.add_argument_group("dataset overrides (default: checkpoint config)")
+    data_args.add_argument("--dataset", choices=["colored_mnist", "waterbirds"], required=True)
+    data_args.add_argument("--seed", type=int, default=42)
+    data_args.add_argument("--image-size", type=int, default=None,
+                       help="64 for colored_mnist; 128 for waterbirds by default")
+    corr_help = ("colored_mnist: P(main color); waterbirds: P(place == label). "
+                 "A float or one of " + str(list(CORR_PRESETS)))
+    data_args.add_argument("--train-corr", type=parse_corr, default="strong", help=corr_help)
+    data_args.add_argument("--val-corr", type=parse_corr, default=.50, help=corr_help)
+    data_args.add_argument("--test-corr", type=parse_corr, default=.50, help=corr_help)
+    data_args.add_argument("--mnist-val-size", type=int, default=5000)
+    data_args.add_argument("--color-mode", choices=COLOR_MODES, default="foreground",
+                       help="colored_mnist only: region painted with the shortcut color")
+    data_args.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next",
+                       help="colored_mnist only: how each digit's alternate color is chosen")
+    data_args.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT,
+                       help="waterbirds only: directory with CUB_200_2011/ and places365/ "
+                            "from download_waterbirds.sh")
+    data_args.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
     args = parser.parse_args()
+    dataset_cfg = {k: getattr(args, k) for k in 
+                   ["dataset", 
+                    "seed", 
+                    "image_size", 
+                    "train_corr", 
+                    "val_corr", 
+                    "test_corr",
+                    "mnist_val_size",
+                    "color_mode",
+                    "color_pairing",
+                    "waterbirds_root",
+                    "augment"
+                    ]}
 
     if args.batch_size < 1 or args.probe_batch_size < 1:
         parser.error("Batch sizes must be positive")
@@ -230,6 +258,8 @@ if __name__ == "__main__":
     else:
         device = torch.device(args.device)
 
+    from os import chdir, getcwd
+    chdir(args.run)
     checkpoint = Path(args.checkpoint)
     if args.checkpoint == "latest":
         if args.run is None:
@@ -238,8 +268,7 @@ if __name__ == "__main__":
             (args.run / "latest.json").read_text()
         )
         epoch = int(pointer["epoch"])
-        checkpoint = (args.run / "checkpoints"
-                      / f"epoch_{epoch:03d}.pt")
+        checkpoint = (f"checkpoints/epoch_{epoch:03d}.pt")
 
     from shortcut_experiment import build_datasets, build_model
 
@@ -264,22 +293,13 @@ if __name__ == "__main__":
     model.load_state_dict(saved["model"], strict=True)
     model.to(device).eval().requires_grad_(False)
 
-    # Only require the selected training split in addition to train/val/test.
-    # With --probe-train-split val, build_datasets() need not return 'probe'.
-    datasets = build_datasets(config)
-    required_splits = list(dict.fromkeys(
-        ("train", "val", "test", args.probe_train_split)
-    ))
-    missing = [name for name in required_splits if name not in datasets]
-    if missing:
-        parser.error(f"build_datasets() is missing required splits: {missing}; "
-                     "use --probe-train-split val to train probes on validation data")
+    datasets = build_datasets(dataset_cfg)
     loaders = {
         name: DataLoader(
             datasets[name], batch_size=args.batch_size,
             shuffle=False, num_workers=args.workers,
         )
-        for name in required_splits
+        for name in ("train", "val", "test")
     }
 
     # Original classifier accuracy on train/val/test.
@@ -297,11 +317,8 @@ if __name__ == "__main__":
                 raise ValueError(f"Empty {name} dataset")
             accuracies[name] = correct / total
 
-    # The frozen classifier is unchanged; only the linear probes learn from
-    # the selected split. Their decoded correlations are still measured on test.
-    print("Linear probe training split:", args.probe_train_split)
     probe_x, probe_y = DecodedCorrelation.encode(
-        model, loaders[args.probe_train_split], device
+        model, loaders["val"], device
     )
     test_x, test_y = DecodedCorrelation.encode(
         model, loaders["test"], device
