@@ -21,7 +21,8 @@ def curves(run: Path):
     for col in ["val_aligned_acc", "val_conflicting_acc"] + (group_cols if len(group_cols) <= 4 else []):
         ax[1].plot(e, df[col], label=col)
     ax[1].set_title("Group accuracy: target y, shortcut s")
-    for col in ("val_cf_flip_rate", "val_cf_acc", "val_cf_acc_drop"):
+    for col in ("val_cf_flip_rate", "val_cf_acc", "val_cf_acc_drop",
+                "val_cf_all_flip_rate", "val_cf_all_acc", "val_cf_all_color_rate"):
         if col in df and df[col].notna().any():
             ax[2].plot(e, df[col], label=col)
     ax[2].set_title("Paired color intervention (Colored MNIST)")

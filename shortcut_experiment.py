@@ -201,6 +201,7 @@ def evaluate(model, loader, device, amp=False):
     group_correct = np.zeros((k, k), dtype=np.int64)
     aligned_n = aligned_ok = conflicted_n = conflicted_ok = 0
     cf_n = cf_ok = cf_flips = 0
+    cf_all_n = cf_all_flips = cf_all_conflict_n = cf_all_ok = cf_all_color = 0
     for batch in loader:
         x = batch["pixel_values"].to(device, non_blocking=True)
         y = batch["labels"].to(device, non_blocking=True)
@@ -228,6 +229,19 @@ def evaluate(model, loader, device, amp=False):
             cf_n += n
             cf_ok += (cf_pred == y).sum().item()
             cf_flips += (cf_pred != pred).sum().item()
+        if "cf_all_pixel_values" in batch:
+            # (n, 9, C, H, W): the same digit in every color other than s.
+            cf_all = batch["cf_all_pixel_values"].to(device, non_blocking=True)
+            colors = batch["cf_all_spurious"].to(device, non_blocking=True)
+            with autocast_context(device, amp):
+                all_pred = model(cf_all.flatten(0, 1)).argmax(1).view(colors.shape)
+            cf_all_n += colors.numel()
+            cf_all_flips += (all_pred != pred[:, None]).sum().item()
+            # Accuracy and color-class picks only over recolors that conflict with y.
+            conflict = colors != y[:, None]
+            cf_all_conflict_n += conflict.sum().item()
+            cf_all_ok += (conflict & (all_pred == y[:, None])).sum().item()
+            cf_all_color += (conflict & (all_pred == colors)).sum().item()
 
     def ratio(a, b):
         return float(a / b) if b else float("nan")
@@ -258,6 +272,9 @@ def evaluate(model, loader, device, amp=False):
     result["cf_acc"] = ratio(cf_ok, cf_n)
     result["cf_flip_rate"] = ratio(cf_flips, cf_n)
     result["cf_acc_drop"] = result["acc"] - result["cf_acc"] if cf_n else float("nan")
+    result["cf_all_flip_rate"] = ratio(cf_all_flips, cf_all_n)
+    result["cf_all_acc"] = ratio(cf_all_ok, cf_all_conflict_n)
+    result["cf_all_color_rate"] = ratio(cf_all_color, cf_all_conflict_n)
     return result
 
 
@@ -265,6 +282,9 @@ def pretty_metrics(m):
     text = f"acc={m['acc']:.4f}, WGA={m['wga']:.4f}, aligned={m['aligned_acc']:.4f}, conflict={m['conflicting_acc']:.4f}"
     if not math.isnan(m["cf_flip_rate"]):
         text += f", flip-rate={m['cf_flip_rate']:.4f}, cf-acc={m['cf_acc']:.4f}"
+    if not math.isnan(m.get("cf_all_flip_rate", float("nan"))):
+        text += (f", flip-all={m['cf_all_flip_rate']:.4f}, cf-all-acc={m['cf_all_acc']:.4f}"
+                 f", cf-all-color={m['cf_all_color_rate']:.4f}")
     return text
 
 
@@ -297,8 +317,23 @@ def append_history(path, epoch, train_stats, val_stats, lr):
             "train_acc": train_stats.get("acc", float("nan"))}
     flat.update({"val_" + k: v for k, v in val_stats.items()})
     exists = path.exists()
+    fields = list(flat)
+    if exists:
+        with path.open("r", encoding="utf-8", newline="") as f:
+            reader = csv.DictReader(f)
+            header, rows = reader.fieldnames or [], list(reader)
+        fields = header + [k for k in flat if k not in header]
+        if fields != header:
+            # New metric columns (e.g. a run resumed after metrics were added): rewrite
+            # with the union so earlier rows get empty cells instead of a shifted CSV.
+            temp = path.with_suffix(".tmp")
+            with temp.open("w", encoding="utf-8", newline="") as f:
+                writer = csv.DictWriter(f, fieldnames=fields)
+                writer.writeheader()
+                writer.writerows(rows)
+            os.replace(temp, path)
     with path.open("a", encoding="utf-8", newline="") as f:
-        writer = csv.DictWriter(f, fieldnames=list(flat))
+        writer = csv.DictWriter(f, fieldnames=fields)
         if not exists:
             writer.writeheader()
         writer.writerow(flat)
