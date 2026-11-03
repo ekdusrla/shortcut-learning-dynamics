@@ -19,6 +19,11 @@ python gradcam.py --run runs/cm_vgg --list-layers
 
 Outputs a three-panel PNG (input / heatmap / overlay), a float32 heatmap
 (.npy), and prediction metadata (.json).
+Colored MNIST uses 10 classes (0..9); Waterbirds uses 2 classes (0..1).
+Run alongside the matching shortcut_experiment.py and data.py from this project.
+Dataset membership and spurious assignments are reconstructed from checkpoint
+config and the same source data. Historical random training flips are not stored;
+train samples use the saved seed to make visualization-time flips repeatable.
 """
 from __future__ import annotations
 
@@ -36,15 +41,8 @@ import torch.nn.functional as F
 from PIL import Image
 from torch import nn
 
-from shortcut_experiment import (
-    IMAGENET_MEAN,
-    IMAGENET_STD,
-    build_datasets,
-    build_model,
-    get_device,
-    image_transform,
-    load_checkpoint,
-)
+# Keep experiment/data imports inside the CLI helpers: importing GradCAM does
+# not load shortcut_experiment.py, data.py, torchvision, or a run config.
 
 
 class GradCAM:
@@ -62,6 +60,7 @@ class GradCAM:
 
     Does not use torch.inference_mode() because gradients are required.
     Does not call optimizer.step() or modify model weights.
+    Import independently: from gradcam import GradCAM
     """
 
     def __init__(self, model: nn.Module, layer_name: str):
@@ -85,7 +84,8 @@ class GradCAM:
             raise ValueError("images must have shape [B, 3, H, W]")
         with torch.enable_grad():
             self.activations = None
-            logits = self.model(images)
+            # An input requiring gradients also supports fully frozen models.
+            logits = self.model(images.detach().requires_grad_(True))
             if self.activations is None:
                 raise RuntimeError("The target layer was not executed during forward")
             if logits.ndim != 2:
@@ -147,13 +147,12 @@ def default_layer(model: nn.Module, arch: str) -> str:
 def load_run(run_dir: Path, checkpoint_arg: str, device: torch.device):
     """Load saved experiment config, its model weights, and checkpoint epoch.
 
+    The checkpoint's config restores the model and dataset (no config.json needed).
     `--checkpoint` accepts 'latest', a full path, a path relative to run_dir,
     or a bare filename like 'epoch_005.pt'.
     """
-    cfg_path = run_dir / "config.json"
-    if not cfg_path.exists():
-        raise FileNotFoundError(f"Missing run config: {cfg_path}")
-    cfg = json.loads(cfg_path.read_text(encoding="utf-8"))
+    from shortcut_experiment import build_model, load_checkpoint
+
     if checkpoint_arg == "latest":
         pointer = json.loads((run_dir / "latest.json").read_text(encoding="utf-8"))
         ckpt = run_dir / "checkpoints" / f"epoch_{int(pointer['epoch']):03d}.pt"
@@ -163,7 +162,10 @@ def load_run(run_dir: Path, checkpoint_arg: str, device: torch.device):
         ckpt = next((p for p in possibilities if p.is_file()), None)
         if ckpt is None:
             raise FileNotFoundError(f"Checkpoint not found: {checkpoint_arg}")
+    # The checkpoint config belongs to these exact weights. config.json may
+    # have been overwritten by another run/resume and must not override it.
     state = load_checkpoint(ckpt, device)
+    cfg = dict(state["config"])
     # All weights are loaded from the checkpoint; do not download pretrained
     # ImageNet weights even when the training run used --pretrained.
     model_cfg = dict(cfg)
@@ -175,25 +177,37 @@ def load_run(run_dir: Path, checkpoint_arg: str, device: torch.device):
 
 
 def load_sample(cfg: dict, image_file: Optional[Path], split: str, index: int):
-    """Return (normalized input [3,H,W], metadata) from image or HF dataset."""
+    """Return (normalized input [3,H,W], metadata) using data.py's contract."""
+    from data import build_datasets, image_transform
+    from shortcut_experiment import seed_everything
+
     if image_file is not None:
         with Image.open(image_file) as im:
             image = im.convert("RGB")
             tensor = image_transform(cfg["image_size"])(image)
         return tensor, {"image": str(image_file), "split": None,
                         "index": None, "label": None, "spurious": None}
+    # Reuse all saved settings: split seed, correlations, color mode/pairing,
+    # image size, Waterbirds root and augmentation. Do not reimplement data.py.
     dataset = build_datasets(cfg)[split]
     if index < 0 or index >= len(dataset):
         raise IndexError(f"sample-index {index} outside 0..{len(dataset) - 1}")
+    # Reproduce this visualization's random train augmentation. Historical
+    # per-access flips during training were not saved in the checkpoint.
+    seed_everything(cfg["seed"])
     row = dataset[index]
     return row["pixel_values"], {
-        "image": None, "split": split, "index": int(row["index"]),
+        "image": None, "split": split, "sample_index": index,
+        # index is the original MNIST index or CUB img_id, not split position.
+        "index": int(row["index"]),
         "label": int(row["labels"]), "spurious": int(row["spurious"]),
     }
 
 
 def unnormalize_image(tensor: torch.Tensor) -> np.ndarray:
     """Reverse the exact experiment's ImageNet normalization for plotting."""
+    from data import IMAGENET_MEAN, IMAGENET_STD
+
     mean = torch.tensor(IMAGENET_MEAN).reshape(3, 1, 1)
     std = torch.tensor(IMAGENET_STD).reshape(3, 1, 1)
     rgb = (tensor.detach().float().cpu() * std + mean).clamp(0, 1)
@@ -221,15 +235,17 @@ def save_visualization(image: np.ndarray, cam: np.ndarray, output: Path,
 
 
 def main():
+    from shortcut_experiment import get_device
+
     parser = argparse.ArgumentParser(description="Grad-CAM for shortcut_learning_experiment")
-    parser.add_argument("--run", required=True, type=Path, help="directory containing config.json")
+    parser.add_argument("--run", required=True, type=Path, help="training run directory (config is loaded from checkpoint)")
     parser.add_argument("--checkpoint", default="latest", help="latest, checkpoint path or epoch_005.pt")
     parser.add_argument("--image", type=Path, default=None, help="external RGB image (avoids HF download)")
     parser.add_argument("--split", choices=["train", "val", "test"], default="val")
     parser.add_argument("--sample-index", type=int, default=0, help="dataset index if --image is omitted")
     parser.add_argument("--layer", default=None, help="model.named_modules() layer name")
-    parser.add_argument("--target-class", type=int, choices=[0, 1], default=None,
-                        help="default: model's predicted class")
+    parser.add_argument("--target-class", type=int, default=None,
+                        help="class index 0..C-1; default: model's predicted class")
     parser.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
     parser.add_argument("--output", type=Path, default=None, help="output PNG path")
     parser.add_argument("--alpha", type=float, default=0.45, help="overlay heatmap opacity [0,1]")
