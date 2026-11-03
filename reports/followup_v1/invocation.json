@@ -1,0 +1,28 @@
+{
+  "arguments": {
+    "runs": [
+      "..\\shortcut_results\\runs\\resnet18_corr095_seed42_e100",
+      "..\\shortcut_results\\runs\\vgg11_corr095_seed42_e100"
+    ],
+    "probe_results": [
+      "..\\shortcut_results\\followup_v1\\probes_v2"
+    ],
+    "gradcam_results": [
+      "..\\shortcut_results\\followup_v1\\gradcam"
+    ],
+    "output": "reports\\followup_v1",
+    "core_threshold": 0.9
+  },
+  "source_sha256": {
+    "data.py": "2ed85ff1bf7589c1c720072b00529c039dea6133e4806805ab276c5771ed4420",
+    "evaluate.py": "e242c4031780580017968eb9105f8046a5d5c4df8e61392ed7f4f39cd79017a5",
+    "followup_common.py": "8ec8554aa67dde87b48c10757341459b114c84619c4a9bd9b75a647206497112",
+    "gradcam.py": "326dcf54297f4c77394729a97462622f70f0107bea3328b90f4c9af3771a5468",
+    "gradcam_dynamics.py": "b52bd26a68aa04a5d2484034089821def0c2b22c067cdc24f4d80892055c7a39",
+    "integrate_dynamics.py": "3b91a9be965a64d6310a368a8c55e46b84ca5251bc40ad176fdbd9d12f224eff",
+    "probe_dynamics.py": "9430facc654ef3aab8efa1fa2e3875525e8e6a4a6be13daaca947b9fef331e06",
+    "shortcut_experiment.py": "52ec01e19781f2207a75c9e16f135f4c51568604cf853387605dda46a7360aa3"
+  },
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6"
+}

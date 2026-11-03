@@ -1,0 +1,93 @@
+{
+  "runs": [
+    {
+      "run": "C:\\Users\\dada0\\Downloads\\shortcut_learning_experiment\\shortcut_results\\runs\\resnet18_corr095_seed42_e100",
+      "config": {
+        "dataset": "colored_mnist",
+        "model": "resnet18",
+        "epochs": 100,
+        "seed": 42,
+        "image_size": 64,
+        "train_corr": 0.95,
+        "val_corr": 0.5,
+        "test_corr": 0.5,
+        "mnist_val_size": 5000,
+        "color_mode": "foreground",
+        "color_pairing": "next",
+        "waterbirds_root": "data/raw",
+        "pretrained": false,
+        "augment": false,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "scheduler": "none",
+        "optimizer": "sgd",
+        "weight_decay": 0.0001,
+        "batch_size": 128,
+        "num_workers": 4,
+        "features_per_group": 32,
+        "amp": true,
+        "save_features": true
+      },
+      "snapshots": [],
+      "checkpoints": {
+        "0": null,
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "30": null,
+        "50": null,
+        "70": null,
+        "100": "C:\\Users\\dada0\\Downloads\\shortcut_learning_experiment\\shortcut_results\\runs\\resnet18_corr095_seed42_e100\\resnet18_epoch_100.pt"
+      },
+      "split_from_training_source": "val",
+      "split_evidence": "shortcut_experiment.run_training passes ds[val] to save_feature_snapshot at epoch 0 and each saved epoch"
+    },
+    {
+      "run": "C:\\Users\\dada0\\Downloads\\shortcut_learning_experiment\\shortcut_results\\runs\\vgg11_corr095_seed42_e100",
+      "config": {
+        "dataset": "colored_mnist",
+        "model": "vgg11_bn",
+        "epochs": 100,
+        "seed": 42,
+        "image_size": 64,
+        "train_corr": 0.95,
+        "val_corr": 0.5,
+        "test_corr": 0.5,
+        "mnist_val_size": 5000,
+        "color_mode": "foreground",
+        "color_pairing": "next",
+        "waterbirds_root": "data/raw",
+        "pretrained": false,
+        "augment": false,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "scheduler": "none",
+        "optimizer": "sgd",
+        "weight_decay": 0.0001,
+        "batch_size": 128,
+        "num_workers": 4,
+        "features_per_group": 32,
+        "amp": true,
+        "save_features": true
+      },
+      "snapshots": [],
+      "checkpoints": {
+        "0": null,
+        "1": null,
+        "3": null,
+        "5": null,
+        "10": null,
+        "20": null,
+        "30": null,
+        "50": null,
+        "70": null,
+        "100": "C:\\Users\\dada0\\Downloads\\shortcut_learning_experiment\\shortcut_results\\runs\\vgg11_corr095_seed42_e100\\vgg11_epoch_100.pt"
+      },
+      "split_from_training_source": "val",
+      "split_evidence": "shortcut_experiment.run_training passes ds[val] to save_feature_snapshot at epoch 0 and each saved epoch"
+    }
+  ],
+  "note": "No historical 640-row NPZ is fabricated when absent. Matching label/color/index metadata supports split identification; NPZ alone does not encode its origin."
+}

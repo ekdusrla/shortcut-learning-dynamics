@@ -1,0 +1,12 @@
+run_id,layer,observed_epochs,threshold,first_observed_core_threshold_epoch
+resnet18_corr095_seed42_e100,avgpool,100,0.9,
+resnet18_corr095_seed42_e100,layer1,100,0.9,
+resnet18_corr095_seed42_e100,layer2,100,0.9,
+resnet18_corr095_seed42_e100,layer3,100,0.9,
+resnet18_corr095_seed42_e100,layer4,100,0.9,
+vgg11_corr095_seed42_e100,avgpool,100,0.9,
+vgg11_corr095_seed42_e100,features.14,100,0.9,
+vgg11_corr095_seed42_e100,features.21,100,0.9,
+vgg11_corr095_seed42_e100,features.28,100,0.9,
+vgg11_corr095_seed42_e100,features.3,100,0.9,
+vgg11_corr095_seed42_e100,features.7,100,0.9,
