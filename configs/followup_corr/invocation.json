@@ -1,0 +1,29 @@
+{
+  "arguments": {
+    "reference_runs": [
+      "..\\shortcut_results\\runs\\resnet18_corr095_seed42_e100",
+      "..\\shortcut_results\\runs\\vgg11_corr095_seed42_e100"
+    ],
+    "output": "configs\\followup_corr",
+    "run_root": "runs\\followup_corr",
+    "seeds": [
+      42
+    ],
+    "correlations": [
+      0.8,
+      0.65
+    ]
+  },
+  "source_sha256": {
+    "data.py": "2ed85ff1bf7589c1c720072b00529c039dea6133e4806805ab276c5771ed4420",
+    "evaluate.py": "e242c4031780580017968eb9105f8046a5d5c4df8e61392ed7f4f39cd79017a5",
+    "followup_common.py": "ea81ed464f0cf8fb647a2d746a521aae5647d5a67b130695d3d99484d4476992",
+    "gradcam.py": "326dcf54297f4c77394729a97462622f70f0107bea3328b90f4c9af3771a5468",
+    "gradcam_dynamics.py": "b52bd26a68aa04a5d2484034089821def0c2b22c067cdc24f4d80892055c7a39",
+    "integrate_dynamics.py": "fabeaae8f8db2c9ae389fbe38f6fc584c75686c9d2aefe38d875a504b94f9510",
+    "probe_dynamics.py": "9430facc654ef3aab8efa1fa2e3875525e8e6a4a6be13daaca947b9fef331e06",
+    "shortcut_experiment.py": "52ec01e19781f2207a75c9e16f135f4c51568604cf853387605dda46a7360aa3"
+  },
+  "torch": "2.15.0+cpu",
+  "numpy": "2.4.6"
+}
