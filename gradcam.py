@@ -250,7 +250,42 @@ def main():
     parser.add_argument("--output", type=Path, default=None, help="output PNG path")
     parser.add_argument("--alpha", type=float, default=0.45, help="overlay heatmap opacity [0,1]")
     parser.add_argument("--list-layers", action="store_true", help="list spatial layers and exit")
+
+    from shortcut_experiment import parse_corr, CORR_PRESETS, COLOR_MODES, COLOR_PAIRINGS, WATERBIRDS_ROOT
+    data_args = parser.add_argument_group("dataset overrides (default: checkpoint config)")
+    data_args.add_argument("--dataset", choices=["colored_mnist", "waterbirds"], required=True)
+    data_args.add_argument("--seed", type=int, default=42)
+    data_args.add_argument("--image-size", type=int, default=None,
+                       help="64 for colored_mnist; 128 for waterbirds by default")
+    corr_help = ("colored_mnist: P(main color); waterbirds: P(place == label). "
+                 "A float or one of " + str(list(CORR_PRESETS)))
+    data_args.add_argument("--train-corr", type=parse_corr, default="strong", help=corr_help)
+    data_args.add_argument("--val-corr", type=parse_corr, default=.50, help=corr_help)
+    data_args.add_argument("--test-corr", type=parse_corr, default=.50, help=corr_help)
+    data_args.add_argument("--mnist-val-size", type=int, default=5000)
+    data_args.add_argument("--color-mode", choices=COLOR_MODES, default="foreground",
+                       help="colored_mnist only: region painted with the shortcut color")
+    data_args.add_argument("--color-pairing", choices=COLOR_PAIRINGS, default="next",
+                       help="colored_mnist only: how each digit's alternate color is chosen")
+    data_args.add_argument("--waterbirds-root", default=WATERBIRDS_ROOT,
+                       help="waterbirds only: directory with CUB_200_2011/ and places365/ "
+                            "from download_waterbirds.sh")
+    data_args.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
     args = parser.parse_args()
+    dataset_cfg = {k: getattr(args, k) for k in 
+                   ["dataset", 
+                    "seed", 
+                    "image_size", 
+                    "train_corr", 
+                    "val_corr", 
+                    "test_corr",
+                    "mnist_val_size",
+                    "color_mode",
+                    "color_pairing",
+                    "waterbirds_root",
+                    "augment"
+                    ]}
+
     if not 0 <= args.alpha <= 1:
         parser.error("--alpha must be between 0 and 1")
     run_dir = args.run.expanduser().resolve()
@@ -267,7 +302,7 @@ def main():
                 print(f"{name}: {module.__class__.__name__}")
         return
 
-    x, meta = load_sample(cfg, args.image, args.split, args.sample_index)
+    x, meta = load_sample(dataset_cfg, args.image, args.split, args.sample_index)
     with GradCAM(model, selected_layer) as gradcam:
         logits, cams = gradcam(x.unsqueeze(0).to(device), args.target_class)
     probabilities = torch.softmax(logits[0], dim=0)
