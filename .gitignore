@@ -4,8 +4,12 @@ __pycache__/
 venv/
 .env
 
+# Downloaded / generated datasets (download_waterbirds.sh writes under data/)
 data/
 datasets/
+*.tar
+*.tgz
+*.tar.gz
 checkpoints/
 *.pt
 *.pth
@@ -15,3 +19,11 @@ outputs/
 runs/
 logs/
 wandb/
+
+# Local Hugging Face cache and ephemeral verification logs (never publish credentials/data).
+/.cache/
+reports/**/*.log
+scripts/**/*.log
+
+# Per-snapshot probe predictions stay on experiment storage; share aggregate CSVs only.
+reports/cmnist_vgg50_probe_followup/batches/

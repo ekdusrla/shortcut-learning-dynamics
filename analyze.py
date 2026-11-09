@@ -16,10 +16,13 @@ def curves(run: Path):
     for col in ("train_acc", "val_acc", "val_wga"):
         ax[0].plot(e, df[col], label=col)
     ax[0].set_title("Accuracy and worst-group accuracy")
-    for col in ("val_aligned_acc", "val_conflicting_acc", "val_g00_acc", "val_g01_acc", "val_g10_acc", "val_g11_acc"):
+    group_cols = [c for c in df if c.startswith("val_g") and c.endswith("_acc")]
+    # Per-group curves are only legible for the 2x2 case (e.g. Waterbirds).
+    for col in ["val_aligned_acc", "val_conflicting_acc"] + (group_cols if len(group_cols) <= 4 else []):
         ax[1].plot(e, df[col], label=col)
     ax[1].set_title("Group accuracy: target y, shortcut s")
-    for col in ("val_cf_flip_rate", "val_cf_acc", "val_cf_acc_drop"):
+    for col in ("val_cf_flip_rate", "val_cf_acc", "val_cf_acc_drop",
+                "val_cf_all_flip_rate", "val_cf_all_acc", "val_cf_all_color_rate"):
         if col in df and df[col].notna().any():
             ax[2].plot(e, df[col], label=col)
     ax[2].set_title("Paired color intervention (Colored MNIST)")
@@ -54,7 +57,7 @@ def pca_snapshot(file: Path, out: Path, layer: str):
     coords = PCA(n_components=2, random_state=0).fit_transform(features)
     fig, axs = plt.subplots(1, 2, figsize=(10, 4.2), layout="constrained")
     for ax, targets, title in zip(axs, (y, s), ("Target label", "Shortcut attribute")):
-        for value in (0, 1):
+        for value in np.unique(targets):
             chosen = targets == value
             ax.scatter(coords[chosen, 0], coords[chosen, 1], s=11, alpha=.60,
                        label=f"{value} (n={chosen.sum()})")

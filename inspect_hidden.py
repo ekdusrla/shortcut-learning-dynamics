@@ -10,9 +10,9 @@ import matplotlib.pyplot as plt
 import numpy as np
 import torch
 
-from shortcut_experiment import (build_datasets, build_model, choose_checkpoint,
-                                  get_device, load_checkpoint, seed_everything,
-                                  feature_layer_names)
+from data import build_datasets
+from shortcut_experiment import (build_model, choose_checkpoint, get_device,
+                                  load_checkpoint, seed_everything, feature_layer_names)
 
 
 def main():
