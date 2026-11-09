@@ -1,0 +1,34 @@
+{
+  "authorized_existing_data_analysis": "complete",
+  "completed": [
+    "기존 review 지표/해석 검증",
+    "결과 전 프로토콜·고정 분할 저장",
+    "원본 index/현재 raw pixel 누수 감사",
+    "306개 snapshot CPU Ridge Probe 및 원본 softmax 민감도 분석",
+    "label permutation 음성 대조",
+    "H1 비단조성·Core/Shortcut 해독성 기준 비교",
+    "e28/e49 그룹 순정답 변화 및 paired Probe 비교",
+    "e25–50 checkpoint head/BN state 비교",
+    "한국어 보고서·CSV·PNG/PDF 7종",
+    "원본 hash 보존 및 zero-fit 재개 검증"
+  ],
+  "not_executed_requires_new_data_or_experiments": [
+    {
+      "item": "독립 공식 Test crossed-color Probe",
+      "reason": "새 인코딩 필요; 현재 snapshot은 Validation subset 단일 색상"
+    },
+    {
+      "item": "e28 BN/head 원인 분리",
+      "reason": "checkpoint hybrid 재추론·개별 logits가 필요"
+    },
+    {
+      "item": "원본 모델 C2I/개별 margin 및 sample-level model/probe 일치",
+      "reason": "원본 개별 예측 미저장"
+    },
+    {
+      "item": "Core 학습의 실제 시작 시점 및 seed 일반화",
+      "reason": "현 지표로 식별 불가; model seed 반복·초기 step 평가/사용 개입 필요"
+    }
+  ],
+  "gpu_or_slurm_executed": false
+}
