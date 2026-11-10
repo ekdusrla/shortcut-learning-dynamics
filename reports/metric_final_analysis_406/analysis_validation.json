@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "source_files_preserved": 2384,
+  "legacy_result_files_preserved": 20,
+  "probe_affine_rows_verified": 5412,
+  "probe_primary_mean_rows_verified": 612,
+  "local_links_checked": 55,
+  "figure_pairs": 13,
+  "project_code_signature_unchanged": {
+    "data.py": "81a6cc408207d42f7e4206b7a08b1af29aa26a5cd17b8a31d09370b4ca0dcc62",
+    "shortcut_experiment.py": "dd2177612aec8d9623ad652d9bd967605998ea8c8769a0a59499ef306e1bf009",
+    "gradcam.py": "2456ce0c2ca961193a1d232ad3df52e8c58b0885ac69e80c0b74a8fe16211ff9",
+    "scripts/metric_final_evaluation/evaluate_final.py": "8c409f81b538f8c63a193304dab755777567d35df32b75aaa751030dc8d28a24",
+    "scripts/metric_final_evaluation/metrics.py": "622cab01d06f404ec42c963807d3ce619797cb34355d09fb08d3b01599302de4",
+    "scripts/metric_final_evaluation/task.sh": "e868fad4f435b43d888e66eb9eed6f94a5d4d8934de5b52056a75e13cb9048f6",
+    "scripts/cmnist_vgg50/validate_gpu.py": "d23aeb1ad6ea31967261359c37e3dd340695afad624b333eb84d1859c2efa7fd",
+    "scripts/metric_final_evaluation/checkpoint_plan.py": "d726c794b6c9d36d497ba5c8d2cb77b60c2bc9f334d56b79d6a0f045e3fbb4f7",
+    "checkpoint_manifest.json": "903a0ad93deac8b0674a7e3a035e854849975cee3c213d6ef2fd3b352efcbecd"
+  },
+  "model_inference": false,
+  "training": false,
+  "gpu_execution": false,
+  "slurm_submission_or_cancellation": false
+}

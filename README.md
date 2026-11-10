@@ -2,6 +2,12 @@
 
 PyTorch experiment (MNIST via Hugging Face Datasets; Waterbirds composited from CUB-200-2011 + Places365). Requirements: Python 3.10+, GPU recommended for Waterbirds.
 
+## 최신 분석 결과: Colored MNIST 후속406 Checkpoint
+
+[회의용 요약](reports/metric_final_analysis_406/meeting_summary.md) · [전체 한국어 보고서](reports/metric_final_analysis_406/analysis_report.md) · [비교 표와 그래프](reports/metric_final_analysis_406/README.md)
+
+10-class Colored MNIST × VGG11_BN의 C2I·Probe·Grad-CAM 분석입니다. Corr .95는Resume100 Epoch, .80/.65는50 Epoch입니다. 아래의 기존2-class 실행 예제와 별개이며, 이번 변경은 학습 코드 업데이트를 포함하지 않습니다. [공유 범위와 재현성](reports/metric_final_analysis_406/PUBLICATION_NOTES.md)을 확인해 주세요.
+
 ## Install
 
 ```bash
