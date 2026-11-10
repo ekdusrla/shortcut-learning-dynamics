@@ -1,0 +1,49 @@
+{
+  "primary_layer": "avgpool",
+  "primary_method": "standardized ridge one-hot argmax",
+  "ridge_alpha": 1.0,
+  "split_seeds": [
+    1701,
+    1702,
+    1703
+  ],
+  "primary_split_seed": 1701,
+  "labels": {
+    "core": "MNIST digit 0..9",
+    "shortcut": "color index 0..9"
+  },
+  "split": "Fixed source-image-disjoint stratification over digit x color; all epochs and conditions share splits",
+  "duplicate_rule": "Remove snapshot images whose grayscale pixels occur in main-model training; retain only one of within-pool duplicates, then downsample every joint cell to common minimum",
+  "train_fraction": 0.75,
+  "scaling": "train-only per-feature mean/std; intercept via centered targets; never fit preprocessing on held-out data",
+  "primary_curve_layers": [
+    "features.3",
+    "avgpool"
+  ],
+  "additional_layer_epochs": [
+    0,
+    1,
+    2,
+    3,
+    5,
+    10,
+    20,
+    27,
+    28,
+    29,
+    46,
+    47,
+    48,
+    49,
+    50
+  ],
+  "sensitivity_alphas": [
+    0.1,
+    10.0
+  ],
+  "sensitivity_epochs": "bg .95: 0,1,28,49,50; other conditions: 0,1,50",
+  "softmax": "Existing evaluate.DecodedCorrelation: 100 epochs, batch256, AdamW lr.001 wd.0001; train-only standardized features; primary split only; same sensitivity epochs",
+  "decodability_criteria": "For each target, earliest observed start of 3 consecutive epochs with held-out accuracy >=90% (secondary95%) on ALL three fixed splits at avgpool. Include epoch0; report left censoring if already decodable, never call this true core-learning onset.",
+  "statistics": "Repeated partitions are not model seeds; no p-values or seed-generalization claims; anomaly paired bootstrap only on primary split, conditional on frozen readouts",
+  "resource": "CPU1, BLAS1; one snapshot/layer at a time, no GPU, no model inference"
+}

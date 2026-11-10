@@ -1,0 +1,164 @@
+[
+  {
+    "task": 0,
+    "mode": "background",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_bg_corr095_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr095_seed42_e50_img224_all/config.json",
+    "bytes": 538,
+    "sha256": "39092744313797078bdf7c87e19636dd86cff805ef401ba46e567993e883d821"
+  },
+  {
+    "task": 0,
+    "mode": "background",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_bg_corr095_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr095_seed42_e50_img224_all/history.csv",
+    "bytes": 111774,
+    "sha256": "9c852153fe3b0d685870570ba589aa121966edf06fedc6cc40d5af915f0a9309"
+  },
+  {
+    "task": 0,
+    "mode": "background",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_bg_corr095_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr095_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5834,
+    "sha256": "8ae05e8d90d944f0a29af2a20cd9c9bee76d2f0eb2540fd96c28132eeab32814"
+  },
+  {
+    "task": 1,
+    "mode": "background",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_bg_corr080_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr080_seed42_e50_img224_all/config.json",
+    "bytes": 537,
+    "sha256": "5bb0bfb912ec1bdefc8b8a8c0ac307512deb6cacf2aeae4dbc3173a6b34875fb"
+  },
+  {
+    "task": 1,
+    "mode": "background",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_bg_corr080_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr080_seed42_e50_img224_all/history.csv",
+    "bytes": 99937,
+    "sha256": "91ef923c016ad3a786ad067926ebac1ce3c04b05d15e9a12d8bcab20a574b93b"
+  },
+  {
+    "task": 1,
+    "mode": "background",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_bg_corr080_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr080_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5630,
+    "sha256": "c8c380d544bff1199861dcf901267d6e6c0e61d0d380bfc34bc031bfc268ba01"
+  },
+  {
+    "task": 2,
+    "mode": "background",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_bg_corr065_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr065_seed42_e50_img224_all/config.json",
+    "bytes": 538,
+    "sha256": "8ac5e7f0800755fb9a6a96ded63057b46acb9df23d9ba24b6d41072eb58927d1"
+  },
+  {
+    "task": 2,
+    "mode": "background",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_bg_corr065_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr065_seed42_e50_img224_all/history.csv",
+    "bytes": 95239,
+    "sha256": "2a9d56c4ec057a99ca5ee98dae4c0b445734a0b89057cb54516232caf0a73cee"
+  },
+  {
+    "task": 2,
+    "mode": "background",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_bg_corr065_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_bg_corr065_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5472,
+    "sha256": "f410cdf190762485003bc413d62c2624c3ea94171a1b7532a3b7286a0b7692e7"
+  },
+  {
+    "task": 3,
+    "mode": "foreground",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_fg_corr095_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr095_seed42_e50_img224_all/config.json",
+    "bytes": 538,
+    "sha256": "f69f9ddb997b5d6776a1da324c4077be9d31ef4d5a2e41ac26d494f2b1091504"
+  },
+  {
+    "task": 3,
+    "mode": "foreground",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_fg_corr095_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr095_seed42_e50_img224_all/history.csv",
+    "bytes": 116484,
+    "sha256": "9a06a57cc2ced84537c8595447e9432d635413834123c7edee883ca82bc75f8f"
+  },
+  {
+    "task": 3,
+    "mode": "foreground",
+    "train_corr": 0.95,
+    "source": "runs/vgg11_fg_corr095_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr095_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5866,
+    "sha256": "ecb34833c44b319a3f1b0021256fb146dd72975ecb42ce07aa6543f35f9cdeb1"
+  },
+  {
+    "task": 4,
+    "mode": "foreground",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_fg_corr080_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr080_seed42_e50_img224_all/config.json",
+    "bytes": 537,
+    "sha256": "e3f915d60eb36b971b9ca67f6cfc7f78d15b0f4347388a23531ddde8c1423363"
+  },
+  {
+    "task": 4,
+    "mode": "foreground",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_fg_corr080_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr080_seed42_e50_img224_all/history.csv",
+    "bytes": 101117,
+    "sha256": "65cef705b7adb38e539f1637a2e73cc3cc639855eabaa70fca04928ca8000fa1"
+  },
+  {
+    "task": 4,
+    "mode": "foreground",
+    "train_corr": 0.8,
+    "source": "runs/vgg11_fg_corr080_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr080_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5694,
+    "sha256": "53f9d7049ded58721abe418eff71c32786934afc98c7fcc61611e275a66920ed"
+  },
+  {
+    "task": 5,
+    "mode": "foreground",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_fg_corr065_seed42_e50_img224_all/config.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr065_seed42_e50_img224_all/config.json",
+    "bytes": 538,
+    "sha256": "162be0be4a300a2e2b148695b4643dad4501c20cf6bedbb85f0a5e11c8c85a3f"
+  },
+  {
+    "task": 5,
+    "mode": "foreground",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_fg_corr065_seed42_e50_img224_all/history.csv",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr065_seed42_e50_img224_all/history.csv",
+    "bytes": 96964,
+    "sha256": "17dfe3c1ac7acd9d4b8193b4fab6793befb145f412cc35358c038ac12fb1e4ea"
+  },
+  {
+    "task": 5,
+    "mode": "foreground",
+    "train_corr": 0.65,
+    "source": "runs/vgg11_fg_corr065_seed42_e50_img224_all/test_metrics.json",
+    "copy": "reports/cmnist_vgg50_shared/source_metrics/vgg11_fg_corr065_seed42_e50_img224_all/test_metrics.json",
+    "bytes": 5516,
+    "sha256": "fd11b3ba43929bbd626cba405ce661eee3daa4da12ebced0a6ea429a1a54f1be"
+  }
+]

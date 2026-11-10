@@ -1,0 +1,20 @@
+{
+  "success": true,
+  "experiments": 6,
+  "snapshots": 306,
+  "probe_rows": 5412,
+  "original_feature_hashes_checked": 306,
+  "original_late_checkpoint_hashes_checked": 26,
+  "previous_report_and_metric_hashes_unchanged": true,
+  "source_image_disjoint": true,
+  "pixel_disjoint": true,
+  "test_joint_balance": true,
+  "train_only_preprocessing": true,
+  "figures_png": 7,
+  "figures_pdf": 7,
+  "resume_zero_fit_check": true,
+  "resume_check_seconds": 2.9887488880194724,
+  "cpu_only": true,
+  "backbone_inference": false,
+  "model_training": false
+}

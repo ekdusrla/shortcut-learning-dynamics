@@ -13,6 +13,8 @@ import json
 import math
 import os
 import random
+import hashlib
+import shutil
 from contextlib import nullcontext
 from pathlib import Path
 
@@ -126,7 +128,7 @@ def save_feature_snapshot(model, dataset, arch, device, batch_size, per_group,
         raise RuntimeError("Cannot extract features from an empty dataset")
     names = feature_layer_names(model, arch)
     loader = DataLoader(Subset(dataset, ids), batch_size=batch_size, shuffle=False,
-                        num_workers=num_workers, pin_memory=(device.type == "cuda"))
+                        num_workers=num_workers, **loader_memory_options(num_workers))
     model.eval()
     collector = FeatureHookCollector(model, names)
     saved = {name: [] for name in names}
@@ -152,10 +154,21 @@ def save_feature_snapshot(model, dataset, arch, device, batch_size, per_group,
     print(f"[features] {out_file} / N={len(payload['labels'])} / layers={names}")
 
 
+def loader_memory_options(workers):
+    """Bound host-side batches; avoid pinned copies and idle persistent worker pools.
+
+    Counterfactual RGB float batches are large even when GPU forwards are chunked.
+    These options change scheduling/storage only, never samples or metrics.
+    """
+    options = dict(pin_memory=False, persistent_workers=False)
+    if workers > 0:
+        options["prefetch_factor"] = 1
+    return options
+
+
 def create_loader(ds, batch_size, shuffle, workers, gen=None, device=None):
     return DataLoader(ds, batch_size=batch_size, shuffle=shuffle,
-                      num_workers=workers, pin_memory=(device is not None and device.type == "cuda"),
-                      persistent_workers=workers > 0, generator=gen)
+                      num_workers=workers, generator=gen, **loader_memory_options(workers))
 
 
 def is_amp_enabled(device, cfg):
@@ -192,7 +205,20 @@ def train_one_epoch(model, loader, optimizer, scaler, device, amp):
 
 
 @torch.inference_mode()
-def evaluate(model, loader, device, amp=False):
+def counterfactual_predictions(model, images, device, amp=False, chunk_size=128):
+    """Preserve flat sample/color order, transferring only one CPU chunk at a time."""
+    if chunk_size < 1:
+        raise ValueError("counterfactual chunk size must be positive")
+    model.eval()
+    predictions = []
+    for chunk in images.split(chunk_size):
+        with autocast_context(device, amp):
+            predictions.append(model(chunk.to(device, non_blocking=True)).argmax(1))
+    return torch.cat(predictions)
+
+
+@torch.inference_mode()
+def evaluate(model, loader, device, amp=False, cf_chunk_size=128):
     model.eval()
     k = loader.dataset.num_classes
     correct = total = 0
@@ -224,17 +250,17 @@ def evaluate(model, loader, device, amp=False):
         conflicted_n += (~aligned).sum().item()
         conflicted_ok += (ok & ~aligned).sum().item()
         if "cf_pixel_values" in batch:
-            with autocast_context(device, amp):
-                cf_pred = model(batch["cf_pixel_values"].to(device, non_blocking=True)).argmax(1)
+            cf_pred = counterfactual_predictions(
+                model, batch["cf_pixel_values"], device, amp, cf_chunk_size)
             cf_n += n
             cf_ok += (cf_pred == y).sum().item()
             cf_flips += (cf_pred != pred).sum().item()
         if "cf_all_pixel_values" in batch:
             # (n, 9, C, H, W): the same digit in every color other than s.
-            cf_all = batch["cf_all_pixel_values"].to(device, non_blocking=True)
+            cf_all = batch["cf_all_pixel_values"]
             colors = batch["cf_all_spurious"].to(device, non_blocking=True)
-            with autocast_context(device, amp):
-                all_pred = model(cf_all.flatten(0, 1)).argmax(1).view(colors.shape)
+            all_pred = counterfactual_predictions(
+                model, cf_all.flatten(0, 1), device, amp, cf_chunk_size).view(colors.shape)
             cf_all_n += colors.numel()
             cf_all_flips += (all_pred != pred[:, None]).sum().item()
             # Accuracy and color-class picks only over recolors that conflict with y.
@@ -295,6 +321,13 @@ def save_checkpoint(path, epoch, model, optimizer, scheduler, scaler, cfg, loade
              "optimizer": optimizer.state_dict(), "scheduler": scheduler.state_dict(),
              "scaler": scaler.state_dict(), "torch_rng": torch.get_rng_state(),
              "loader_rng": loader_gen.get_state(),
+             "python_rng": random.getstate(),
+             "numpy_rng": {"kind": np.random.get_state()[0],
+                           "keys": np.random.get_state()[1].tolist(),
+                           "pos": np.random.get_state()[2],
+                           "has_gauss": np.random.get_state()[3],
+                           "cached_gaussian": np.random.get_state()[4]},
+             "checkpoint_boundary": "before_feature_snapshot",
              "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else []}
     tmp = path.with_suffix(".tmp")
     torch.save(state, tmp)
@@ -384,16 +417,98 @@ def configure_from_args(args):
             "save_features": not args.no_features}
 
 
+def extension_config(saved, target, output, resume_path):
+    """Explicit fixed-LR extension into a fresh directory; never retime cosine."""
+    cfg = dict(saved["config"])
+    if target is None:
+        return cfg
+    if target <= max(int(saved["epoch"]), int(cfg["epochs"])):
+        raise ValueError("--extend-to-epoch must exceed checkpoint epoch and original total")
+    if cfg.get("scheduler") != "none":
+        raise ValueError("Extension only supports scheduler=none; cosine policy must not be changed implicitly")
+    source = Path(resume_path).resolve().parent.parent
+    output = Path(output).resolve()
+    if output == source or source in output.parents or output in source.parents:
+        raise ValueError("Extension output must be separate from the source run")
+    if output.exists() and any(output.iterdir()):
+        raise FileExistsError("Extension requires a new, empty output directory")
+    cfg["epochs"] = target
+    return cfg
+
+
+def prepare_extension(output, resume_path, saved, target):
+    """Copy small parent history only; parent checkpoints/features remain read-only."""
+    source = Path(resume_path).resolve().parent.parent
+    history = source / "history.csv"
+    with history.open(newline="", encoding="utf-8") as f:
+        epochs = [int(r["epoch"]) for r in csv.DictReader(f)]
+    if epochs != list(range(int(saved["epoch"]) + 1)):
+        raise ValueError("Source history must contain exactly epochs 0..checkpoint epoch")
+    disk_cfg = json.loads((source / "config.json").read_text(encoding="utf-8"))
+    if disk_cfg != saved["config"]:
+        raise ValueError("Source config.json differs from checkpoint config")
+    output = Path(output)
+    output.mkdir(parents=True, exist_ok=True)
+    for name in ("history.csv", "parent_history.csv"):
+        shutil.copyfile(history, output / name)
+    provenance = {"source_run": str(source), "source_checkpoint": str(Path(resume_path).resolve()),
+                  "source_epoch": int(saved["epoch"]), "start_epoch": int(saved["epoch"]) + 1,
+                  "target_epoch": target, "source_config": saved["config"],
+                  "checkpoint_sha256": hashlib.sha256(Path(resume_path).read_bytes()).hexdigest(),
+                  "history_sha256": hashlib.sha256(history.read_bytes()).hexdigest(),
+                  "cf_chunk_size": 128,
+                  "prior_checkpoints_and_features": "Remain in source run; not copied"}
+    (output / "resume_provenance.json").write_text(json.dumps(provenance, indent=2), encoding="utf-8")
+
+
+def restore_training_state(saved, model, optimizer, scheduler, scaler, gen, device):
+    model.load_state_dict(saved["model"], strict=True)
+    optimizer.load_state_dict(saved["optimizer"])
+    scheduler.load_state_dict(saved["scheduler"])
+    scaler.load_state_dict(saved["scaler"])
+    torch.set_rng_state(saved["torch_rng"].cpu())
+    gen.set_state(saved["loader_rng"].cpu())
+    if device.type == "cuda" and saved["cuda_rng"]:
+        torch.cuda.set_rng_state_all([x.cpu() for x in saved["cuda_rng"]])
+    missing = []
+    if "python_rng" in saved:
+        random.setstate(saved["python_rng"])
+    else:
+        missing.append("Python")
+    if "numpy_rng" in saved:
+        n = saved["numpy_rng"]
+        np.random.set_state((n["kind"], np.asarray(n["keys"], dtype=np.uint32),
+                             n["pos"], n["has_gauss"], n["cached_gaussian"]))
+    else:
+        missing.append("NumPy")
+    print(f"[resume] Restored model(strict), optimizer/momentum, scheduler, scaler; "
+          f"torch CPU RNG, loader RNG; CUDA RNG restored={device.type == 'cuda' and bool(saved['cuda_rng'])}")
+    if missing:
+        print(f"[resume] WARNING: missing {'/'.join(missing)} RNG in source; using seeded fallback, not exact historical RNG")
+    if saved.get("config", {}).get("save_features", False):
+        print("[resume] WARNING: saved RNG precedes feature snapshot; feature-loader global torch RNG draw is not replayed; train shuffle generator is restored")
+    print(f"[resume] AMP scaler state={scaler.state_dict()}; optimizer state entries={len(optimizer.state)}")
+    print(f"[resume] LR={[g['lr'] for g in optimizer.param_groups]}, scheduler={scheduler.state_dict()}")
+    return int(saved["epoch"]) + 1
+
+
 def run_training(args):
     output = Path(args.output).resolve()
-    output.mkdir(parents=True, exist_ok=True)
+    target = getattr(args, "extend_to_epoch", None)
+    if target is not None and not args.resume:
+        raise ValueError("--extend-to-epoch requires --resume")
     device = get_device(args.device)
     if not args.resume and (output / "history.csv").exists():
         raise FileExistsError(
             f"{output} already has a run. Use --resume latest, or a new --output directory.")
     resume_path = choose_checkpoint(output, args.resume) if args.resume else None
     if resume_path:
-        saved = load_checkpoint(resume_path, device)
+        saved = load_checkpoint(resume_path, "cpu")
+        cfg = extension_config(saved, target, output, resume_path)
+        if target is not None:
+            if args.cf_chunk_size != 128:
+                raise ValueError("This fixed-LR extension requires --cf-chunk-size 128")
+            prepare_extension(output, resume_path, saved, target)
         pointer = output / "latest.json"
         if pointer.exists():
             latest_epoch = int(json.loads(pointer.read_text(encoding="utf-8"))["epoch"])
@@ -401,7 +516,6 @@ def run_training(args):
                 raise ValueError(
                     "Do not resume an older checkpoint into a run containing newer "
                     "checkpoints. Copy/fork the run into a fresh directory first.")
-        cfg = dict(saved["config"])
         # Older runs used these fixed settings without recording them in config.
         cfg.setdefault("momentum", 0.9)
         cfg.setdefault("scheduler", "cosine")
@@ -409,10 +523,13 @@ def run_training(args):
         # The resume uses checkpoint config to prevent accidental changes in the
         # dataset definition, training schedule, architecture, and optimizer.
         print(f"[resume] Configuration loaded from checkpoint: {resume_path}")
-        if args.epochs != cfg["epochs"]:
+        if target is not None:
+            print(f"[resume] Explicit extension: epoch {saved['epoch']} -> {target}; separate output={output}")
+        elif args.epochs != cfg["epochs"]:
             print("[resume] Ignoring --epochs; using checkpoint's original total epochs")
     else:
         cfg = configure_from_args(args)
+    output.mkdir(parents=True, exist_ok=True)
     print("[config] " + json.dumps(cfg, sort_keys=True))
     seed_everything(cfg["seed"])
     (output / "config.json").write_text(json.dumps(cfg, indent=2), encoding="utf-8")
@@ -442,19 +559,12 @@ def run_training(args):
     start_epoch = 1
     if resume_path:
         reconcile_history(history_path, int(saved["epoch"]))
-        model.load_state_dict(saved["model"])
-        optimizer.load_state_dict(saved["optimizer"])
-        scheduler.load_state_dict(saved["scheduler"])
-        scaler.load_state_dict(saved["scaler"])
-        torch.set_rng_state(saved["torch_rng"].cpu())
-        gen.set_state(saved["loader_rng"].cpu())
-        if device.type == "cuda" and saved["cuda_rng"]:
-            torch.cuda.set_rng_state_all([x.cpu() for x in saved["cuda_rng"]])
-        start_epoch = int(saved["epoch"]) + 1
-        print(f"[resume] Continuing from epoch {start_epoch}")
+        start_epoch = restore_training_state(saved, model, optimizer, scheduler, scaler, gen, device)
+        print(f"[resume] Continuing from epoch {start_epoch} through {cfg['epochs']}")
+        del saved  # avoid keeping a second CPU copy throughout extended training
     else:
         # Save the untrained baseline at epoch 0 as well as each learned epoch.
-        v0 = evaluate(model, val_loader, device, amp)
+        v0 = evaluate(model, val_loader, device, amp, args.cf_chunk_size)
         append_history(history_path, 0, {}, v0, optimizer.param_groups[0]["lr"])
         save_checkpoint(ckpt_dir / "epoch_000.pt", 0, model, optimizer, scheduler,
                         scaler, cfg, gen)
@@ -469,7 +579,7 @@ def run_training(args):
             stats = train_one_epoch(model, train_loader, optimizer, scaler, device, amp)
         except FloatingPointError as exc:
             raise FloatingPointError(f"Epoch {epoch}: {exc}") from exc
-        val = evaluate(model, val_loader, device, amp)
+        val = evaluate(model, val_loader, device, amp, args.cf_chunk_size)
         current_lr = optimizer.param_groups[0]["lr"]
         scheduler.step()
         print(f"epoch={epoch:03d} | train acc={stats['acc']:.4f} loss={stats['loss']:.4f} | val "
@@ -486,7 +596,7 @@ def run_training(args):
                                   cfg["num_workers"], cfg["seed"])
 
     if start_epoch <= cfg["epochs"]:
-        test = evaluate(model, test_loader, device, amp)
+        test = evaluate(model, test_loader, device, amp, args.cf_chunk_size)
         (output / "test_metrics.json").write_text(
             json.dumps({"epoch": cfg["epochs"], "metrics": test}, indent=2),
             encoding="utf-8")
@@ -507,7 +617,7 @@ def run_stress_test(model, dataset, args, device, amp, seed):
         dataset.stress = stress
         loader = create_loader(dataset, args.batch_size, False, args.num_workers, device=device)
         name = "clean" if stress is None else repr(stress)
-        metrics = evaluate(model, loader, device, amp)
+        metrics = evaluate(model, loader, device, amp, args.cf_chunk_size)
         if stress is not None:
             metrics = {"stress": stress.kind, "severity": stress.severity,
                        "param": stress.param, **metrics}
@@ -540,7 +650,7 @@ def run_from_checkpoint(args):
                                     "results": results}, indent=2), encoding="utf-8")
         print(f"Saved {file}")
     elif args.command == "eval":
-        metrics = evaluate(model, loader, device, is_amp_enabled(device, cfg))
+        metrics = evaluate(model, loader, device, is_amp_enabled(device, cfg), args.cf_chunk_size)
         print(json.dumps(metrics, indent=2, ensure_ascii=False))
     elif args.command == "features":
         file = args.output or (Path(args.run) / "features" / f"{args.split}_epoch_{saved['epoch']:03d}.npz")
@@ -559,6 +669,8 @@ def main():
     train.add_argument("--output", required=True)
     train.add_argument("--resume", default=None,
                        help="checkpoint path or 'latest' in the output directory")
+    train.add_argument("--extend-to-epoch", type=int, default=None,
+                       help="explicitly extend scheduler=none into a fresh separate output directory")
     train.add_argument("--seed", type=int, default=42)
     train.add_argument("--image-size", type=int, default=None,
                        help="64 for colored_mnist; 128 for waterbirds by default")
@@ -586,6 +698,7 @@ def main():
     train.add_argument("--batch-size", type=int, default=64)
     train.add_argument("--num-workers", type=int, default=2)
     train.add_argument("--device", choices=["auto", "cpu", "cuda", "mps"], default="auto")
+    train.add_argument("--cf-chunk-size", type=int, default=128, help="maximum counterfactual images per forward")
     train.add_argument("--no-amp", action="store_true")
     train.add_argument("--no-features", action="store_true", help="skip per-epoch feature snapshots")
     train.add_argument("--features-per-group", type=int, default=32,
@@ -599,6 +712,7 @@ def main():
         p.add_argument("--batch-size", type=int, default=None)
         p.add_argument("--num-workers", type=int, default=2)
         if cmd == "eval":
+            p.add_argument("--cf-chunk-size", type=int, default=128)
             p.add_argument("--stress", nargs="+", choices=STRESS_TYPES + ("all",), default=None,
                            help="stress test: evaluate clean and under these corruptions")
             p.add_argument("--stress-severity", nargs="+", type=int, default=[1, 2, 3, 4, 5],
@@ -610,6 +724,8 @@ def main():
             p.add_argument("--features-per-group", type=int, default=32)
             p.add_argument("--output", default=None)
     args = parser.parse_args()
+    if getattr(args, "cf_chunk_size", 128) < 1:
+        parser.error("--cf-chunk-size must be positive")
     if args.num_workers < 0:
         parser.error("--num-workers must be nonnegative")
     if args.batch_size is not None and args.batch_size <= 0:
@@ -617,6 +733,8 @@ def main():
     if hasattr(args, "features_per_group") and args.features_per_group <= 0:
         parser.error("--features-per-group must be positive")
     if args.command == "train":
+        if args.extend_to_epoch is not None and (not args.resume or args.extend_to_epoch <= 0):
+            parser.error("--extend-to-epoch requires --resume and a positive target")
         if args.epochs <= 0:
             parser.error("--epochs must be positive")
         if not math.isfinite(args.lr) or args.lr <= 0:

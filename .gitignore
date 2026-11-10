@@ -19,3 +19,11 @@ outputs/
 runs/
 logs/
 wandb/
+
+# Local Hugging Face cache and ephemeral verification logs (never publish credentials/data).
+/.cache/
+reports/**/*.log
+scripts/**/*.log
+
+# Per-snapshot probe predictions stay on experiment storage; share aggregate CSVs only.
+reports/cmnist_vgg50_probe_followup/batches/

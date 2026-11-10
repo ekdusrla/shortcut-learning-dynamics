@@ -1,0 +1,12 @@
+{
+  "stage": "complete",
+  "status": "complete",
+  "updated_unix": 1794232286.5557513,
+  "completed_snapshots": 306,
+  "total_snapshots": 306,
+  "last": "foreground_065 e50",
+  "elapsed_seconds": 233.35481660207734,
+  "probe_rows": 5412,
+  "resume_zero_fit_check_passed": true,
+  "report": "analysis_report.md"
+}
