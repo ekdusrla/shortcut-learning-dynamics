@@ -1,0 +1,3 @@
+run_id,model,epoch,pair_count,cam_mean_absolute_difference,cam_cosine_similarity,pair_flip_rate,aligned_foreground_mass,conflicting_foreground_mass
+resnet18_corr095_seed42_e100,resnet18,100,10,0.06072130802834661,0.9801306937616012,0.0,0.2202850441782373,0.218002475779732
+vgg11_corr095_seed42_e100,vgg11_bn,100,10,0.05373350599295059,0.9900043731504239,0.0,0.3598179333829995,0.3468496004808975

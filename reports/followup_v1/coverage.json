@@ -1,0 +1,64 @@
+[
+  {
+    "run_id": "resnet18_corr095_seed42_e100",
+    "probe_epochs": [
+      100
+    ],
+    "gradcam_epochs": [
+      100
+    ],
+    "missing_probe_epochs": [
+      0,
+      1,
+      3,
+      5,
+      10,
+      20,
+      30,
+      50,
+      70
+    ],
+    "missing_gradcam_epochs": [
+      0,
+      1,
+      3,
+      5,
+      10,
+      20,
+      30,
+      50,
+      70
+    ]
+  },
+  {
+    "run_id": "vgg11_corr095_seed42_e100",
+    "probe_epochs": [
+      100
+    ],
+    "gradcam_epochs": [
+      100
+    ],
+    "missing_probe_epochs": [
+      0,
+      1,
+      3,
+      5,
+      10,
+      20,
+      30,
+      50,
+      70
+    ],
+    "missing_gradcam_epochs": [
+      0,
+      1,
+      3,
+      5,
+      10,
+      20,
+      30,
+      50,
+      70
+    ]
+  }
+]

@@ -1,4 +1,150 @@
-# Shortcut Learning Dynamics
+# Shortcut learning dynamics: VGG/ResNet × Colored MNIST/Waterbirds
+
+PyTorch experiment (MNIST via Hugging Face Datasets; Waterbirds composited from CUB-200-2011 + Places365). Requirements: Python 3.10+, GPU recommended for Waterbirds.
+
+## Install
+
+```bash
+pip install -r requirements.txt
+```
+
+Use a PyTorch+TorchVision version combination appropriate for your system/CUDA. The runner uses `torch.amp.GradScaler` and `torch.load(weights_only=True)`.
+
+## Four experiments
+
+```bash
+# Colored MNIST: 10-way target = digit 0-9
+# shortcut = color index 0-9; each digit has a main color and an alternate color
+# --train-corr strong|medium|weak = main:alternate 95:05 | 80:20 | 65:35 (or any float); val/test 50:50
+# --color-pairing next|random|all = alternate color of digit k is color k+1, a seeded random pairing,
+#   or any of the other 9 colors drawn per example (all + --train-corr 0.1: color independent of digit)
+python shortcut_experiment.py train --dataset colored_mnist --model resnet18 --epochs 20 --output runs/cm_resnet
+python shortcut_experiment.py train --dataset colored_mnist --model vgg11_bn --epochs 20 --output runs/cm_vgg
+# --color-mode chooses where the shortcut color is painted (default: foreground)
+#   foreground | background | border | foreground_background
+python shortcut_experiment.py train --dataset colored_mnist --model resnet18 --color-mode background --output runs/cm_resnet_bg
+python shortcut_experiment.py train --dataset colored_mnist --model resnet18 --train-corr weak --color-pairing random --output runs/cm_resnet_weak
+python shortcut_experiment.py train --dataset colored_mnist --model resnet18 --train-corr 0.975 --color-pairing all --output runs/cm_resnet_all
+# Preview the datasets (writes all example images in images/; Waterbirds needs its raw data)
+python data.py
+python data.py --dataset waterbirds --split test
+python data.py --color-modes border background --split test --per-digit 2 --output images/test_examples.png
+
+# Waterbirds: target=landbird(0)/waterbird(1); shortcut=land(0)/water(1)
+# download raw data once (CUB-200-2011 + 4 Places365 scenes into data/raw/, git-ignored);
+# birds are pasted onto scenes on the fly, and --train-corr strong|medium|weak sets P(place==label)
+bash download_waterbirds.sh
+# pretrained weights are highly recommended for this smaller dataset
+python shortcut_experiment.py train --dataset waterbirds --model resnet18 --pretrained --epochs 20 --batch-size 32 --output runs/wb_resnet
+python shortcut_experiment.py train --dataset waterbirds --model vgg11_bn --pretrained --epochs 20 --batch-size 32 --output runs/wb_vgg
+```
+
+Default image size: 64 for Colored MNIST and 128 for Waterbirds (can override with `--image-size 224` for Waterbirds). Defaults: SGD(momentum=0.9), LR 0.01, cosine scheduler, seed 42, training from scratch unless `--pretrained`. ImageNet normalization is used for both datasets. VGG uses **VGG-11 with BatchNorm + global average pooling + a linear head** (not the original 4096-unit classifier); ResNet uses ResNet-18 with a linear head. The head is 10-way for Colored MNIST and 2-way for Waterbirds. Run multiple seeds for scientific conclusions. For close architecture comparison, fix the same dataset split, preprocessing, seed list, training budget, and pretrained condition.
+
+### Colored MNIST color modes
+
+![Colored MNIST examples for each color mode](images/colored_mnist_examples.png)
+
+One row per `--color-mode`; columns are digits 0-9 and the same samples appear in every row, so only the colored region differs. Titles show target `y` and shortcut color `s`; red titles mark conflicting samples (`s != y`). Regenerate with `python data.py`.
+
+![Main vs alternate color share for strong/medium/weak](images/colored_mnist_corr_comparison.png)
+
+`--train-corr` presets on the train split (`foreground` mode, `--color-pairing next`). Each cell shows the first 20 training images of one digit; `alt n/20` counts those painted with the alternate color, and the row label gives the preset ratio and the actual split-wide share of main colors. The same images appear in every row, and an image that gets the alternate color under a stronger preset keeps it under weaker ones. `python data.py` writes both images; `--corr-mode`, `--corr-samples` and `--corr-output ''` (skip) control this one.
+
+### Resume from any epoch (optimizer + scheduler + AMP state included)
+
+```bash
+python shortcut_experiment.py train --dataset colored_mnist --model resnet18 --output runs/cm_resnet --resume latest
+# or --resume runs/cm_resnet/checkpoints/epoch_005.pt
+```
+
+**Important:** Resume restores the saved configuration, including total epochs. Keep the same `--output` run directory and avoid starting a fresh run into a directory containing old history. For an *earlier* checkpoint when newer checkpoints exist, first copy/fork the run into a clean directory and remove newer state there; the runner intentionally blocks overwriting newer saved epochs. It also rejects starting a fresh run into an existing history directory. Checkpoints are saved at the *end* of each epoch and at epoch 0 (untrained). On resume, latest.json points to the last committed checkpoint. A history row left by an interrupted checkpoint write is automatically discarded on resume.
+
+### Evaluate a checkpoint on test
+
+```bash
+python shortcut_experiment.py eval --run runs/cm_resnet --checkpoint runs/cm_resnet/checkpoints/epoch_005.pt --split test
+python shortcut_experiment.py eval --run runs/wb_resnet --checkpoint latest --split test
+```
+
+### Stress test (noise, blur, crop)
+
+```bash
+# clean + every corruption at severities 1-5 -> runs/cm_resnet/stress/test_epoch_XXX.json
+python shortcut_experiment.py eval --run runs/cm_resnet --checkpoint latest --split test --stress all
+# chosen corruptions and severities only
+python shortcut_experiment.py eval --run runs/wb_resnet --stress gaussian_noise crop --stress-severity 1 3 5
+```
+
+Corruptions are applied at evaluation time only, after resizing and before normalization:
+
+| `--stress` | severity 1-5 | parameter |
+|---|---|---|
+| `gaussian_noise` | .08 / .12 / .18 / .26 / .38 | noise std on [0, 1] pixels (ImageNet-C values) |
+| `gaussian_blur` | 1 / 2 / 3 / 4 / 6 px at 224 | Gaussian sigma, scaled to the image size |
+| `crop` | 90 / 80 / 70 / 60 / 50 % | side of a random square crop, resized back |
+
+Noise and crop position are seeded by the seed and the sample index, so results are reproducible, and a sample and its counterfactual get exactly the same corruption (flip-rate still measures only the shortcut). Every setting reports the usual metrics (acc, WGA, aligned/conflicting, flip-rate). `python data.py` also writes `images/<dataset>_stress.png`, one sample under every corruption and severity (`--stress-output ''` skips it).
+
+### Hidden-state features
+
+```bash
+python shortcut_experiment.py features --run runs/cm_resnet --checkpoint latest --split test --features-per-group 64 --output runs/cm_resnet/test_features.npz
+python analyze.py --run runs/cm_resnet --epoch 5 --layer layer3
+python analyze.py --run runs/cm_vgg --epoch 5 --layer features.14
+```
+
+Model hooks collect an average-pooled vector for each stage, with shape `[N, channels]` rather than storing huge spatial activation maps. `np.load('...npz')` keys: `layers` (module names), `labels`, `spurious`, `indices`, and `f0`, `f1`, ..., each with shape `[N, channels]`. Stage names for ResNet: `layer1, layer2, layer3, layer4, avgpool`; VGG names are generated from `MaxPool2d` stage indices + `avgpool`. To collect unpooled `[N,C,H,W]` maps, edit `FeatureHookCollector.hook` to omit `x.mean(dim=(2,3))`, and ensure adequate RAM/storage.
+
+## Artifacts
+
+```
+runs/<name>/
+  config.json
+  latest.json
+  history.csv                # train + validation by epoch, includes 0
+  test_metrics.json          # final epoch only
+  stress/test_epoch_XXX.json # created by eval --stress
+  checkpoints/epoch_000.pt   # baseline untrained
+  checkpoints/epoch_001.pt   # model, optimizer, schedule, RNG states
+  ...
+  features/epoch_000.npz     # fixed balanced val subset for hidden-state trends
+  features/epoch_001.npz
+  ...
+  learning_curves.png        # created by analyze.py
+  hidden_pca_epoch_005.png   # created by analyze.py --epoch 5
+```
+
+## Metrics and interpretation
+
+* `val_acc`: standard classification accuracy.
+* `val_g{y}{s}_acc`: accuracy conditioned on target **y** and spurious attribute **s** (4 groups for Waterbirds; 20 for Colored MNIST, i.e. each digit with its main and alternate color, or 100 with `--color-pairing all`). `val_g{y}{s}_n`: counts. With `all`, `val_g{y}other_acc` / `_n` also merge digit **y** with every non-main color.
+* `val_wga`: minimum accuracy across **all possible (y, s) groups**; NaN if any of them has zero examples. With `--color-pairing all` the 90 conflicting groups are too small for a stable minimum (about 28 validation images each), so WGA is taken over 20 groups instead: each digit with its main color and with any other color (`g{y}{y}`, `g{y}other`), the same groups as under `next`/`random`.
+* `val_aligned_acc`, `val_conflicting_acc`: accuracy when `y==s` vs `y!=s`. A growing gap suggests shortcut dependence, not definitive proof by itself.
+* `val_cf_flip_rate` is fraction of samples for which the prediction changes when **the same digit** is repainted with its digit's other color (main ↔ alternate; with `--color-pairing all`, the alternate is the one drawn for that example, so a main-color example is repainted with a random other color). `val_cf_acc` accuracy after the recolor; `val_cf_acc_drop` original accuracy minus recolored accuracy (the drop may be negative). **Flip rate is the most direct intervention-based reliance metric here.** Waterbirds: the same bird (same pixels and mask) pasted onto its scene of the other place (land ↔ water).
+* Colored MNIST only: `val_cf_all_flip_rate` is the same, but the digit is repainted with **each of the 9 colors other than its own**, so with `next`/`random` it includes colors never paired with that digit in training (the paired flip-rate only uses the one alternate color). `val_cf_all_acc` is the accuracy on those recolors that conflict with the digit, `val_cf_all_color_rate` the share of them predicted as the color's class (0 for a model that ignores color).
+* Feature snapshot and PCA: visualization of what features are *represented*. Decodability/separation is **not evidence** by itself that the classifier uses a feature causally.
+
+## Dataset protocol and caution
+
+* `ylecun/mnist`: split the official train into 55,000 train and 5,000 validation via a fixed seed; use the official 10,000 test images. The color assignment is *fixed per example* across epochs, not resampled per access. The palette is fixed: red, orange, yellow, green, blue, indigo, violet, pink, cyan, brown (`MNIST_COLORS` in `data.py`); white/gray/black are excluded so every color is visible on the black canvas. Digit k's main color is color k and its alternate color is color k+1 (`--color-pairing next`) or a seeded random derangement (`random`). With probability `corr` an example gets the main color, otherwise the alternate. With `--color-pairing all` there is no fixed alternate: an example without the main color gets one of the other 9 colors uniformly at random (drawn once per example), so every digit appears in every color and `corr=0.10` makes color independent of the digit; with the same seed and `corr`, the same examples get the main color as under `next`/`random`. Presets: `strong` 0.95, `medium` 0.80, `weak` 0.65; val and test default to 0.50, where color alone no longer favors either of the digit's two colors. These are independent Bernoulli assignments, so actual sample proportions may differ slightly. `--color-mode` sets which region carries the color: `foreground` (colored digit on black), `background` (white digit on a dimmed colored background), `border` (white digit with a colored outline on black), or `foreground_background` (colored digit on a dimmed background of a second color `MNIST_COLORS[(s+5)%10]`). The counterfactual recolor uses the same mode. This is **one 10-class Colored MNIST construction**, not a claim to reproduce every paper's Colored MNIST protocol.
+* Waterbirds follows [group_DRO's `generate_waterbirds.py`](https://github.com/kohpangwei/group_DRO/blob/master/dataset_scripts/generate_waterbirds.py) (MIT-licensed; code adapted in `data.py`), but composites each image on the fly instead of writing a fixed image set. Each [CUB-200-2011](https://www.kaggle.com/datasets/wenewone/cub2002011) bird is cut out with its segmentation mask and pasted onto a [Places365](http://places2.csail.mit.edu/) scene: land = `bamboo_forest`, `forest/broadleaf`; water = `ocean`, `lake/natural`. Label = waterbird if the species is a seabird or waterfowl. Split: CUB test → test; CUB train → 80% train / 20% val. Within each (split, label), exactly `round(corr × n)` images get the matching place; `--train-corr` (default `strong` = 0.95, the original Waterbirds) / `--val-corr` / `--test-corr` (0.50). Every image owns one fixed land scene and one fixed water scene, so the counterfactual uses the other one; splits and scenes depend only on `--seed`, so val/test are identical across train presets.
+  * `bash download_waterbirds.sh` fetches the raw data into `data/raw/` (override with `--waterbirds-root`): CUB from Kaggle when the `kaggle` CLI and credentials are set up, otherwise the official Caltech release (`CUB_SOURCE=auto|kaggle|caltech`); segmentations from Caltech. Places365 uses the 256×256 `train_256` archive (the original used high-resolution `data_large`); only the four categories (5,000 images each) are fetched from the 26 GB tar via HTTP range requests. `data/` and archives (`*.tar`, `*.tgz`) are git-ignored.
+  * Compositing costs ~8 ms per image on the CPU (twice for val/test with the counterfactual); use `--num-workers` to keep the GPU busy.
+* To avoid selecting a model on the test set, validation is evaluated each epoch and the test set **once at the final epoch**. You can separately load earlier checkpoints to evaluate them for a retrospective analysis, but do not tune hyperparameters using those test outcomes.
+* For Waterbirds, foreground/background are composite natural images. Worst-group accuracy can be noisy for small groups. Cross-seed statistics/uncertainty intervals strengthen conclusions.
+* The pipeline does not do exact bitwise determinism across GPU/kernel or data-loader changes. RNG states are stored, but exact restart reproducibility can require matching hardware/library versions and `num_workers`, `--augment`, deterministic kernels.
+* The MNIST download (Hugging Face), `download_waterbirds.sh` and pretrained weight download require internet on first use. Respect third-party dataset and weight licensing for redistribution.
+
+## 최신 실험 결과 및 분석
+
+### 최신 406 Checkpoint 분석
+
+[회의용 요약](reports/metric_final_analysis_406/meeting_summary.md) · [전체 한국어 보고서](reports/metric_final_analysis_406/analysis_report.md) · [비교 표와 그래프](reports/metric_final_analysis_406/README.md)
+
+10-class Colored MNIST × VGG11_BN의 C2I·Probe·Grad-CAM 분석입니다. Corr .95는Resume100 Epoch, .80/.65는50 Epoch입니다. 일반 실행 예제의 기본 설정과 구분되는 완료된 후속 실험 결과입니다. [공유 범위와 재현성](reports/metric_final_analysis_406/PUBLICATION_NOTES.md)을 확인해 주세요.
+
+### Epoch50 실험 6개와 Linear Probe 후속 분석
 
 Colored MNIST × VGG11_BN의 Epoch 50 실험 6개, 학습 Dynamics와 CPU Linear Probe 결과를 공유합니다.
 
@@ -9,7 +155,7 @@ Colored MNIST × VGG11_BN의 Epoch 50 실험 6개, 학습 Dynamics와 CPU Linear
 - [작은 원본 지표 복사본](reports/cmnist_vgg50_shared/source_metrics/)
 - [협업 및 PR 규칙](CONTRIBUTING.md)
 
-## 결과 확인과 그림 재생성 (GPU 불필요)
+#### 결과 확인과 그림 재생성 (GPU 불필요)
 
 Python 3.11 환경:
 
@@ -19,8 +165,20 @@ python reports/cmnist_vgg50_probe_followup/summarize.py --figures-only
 python reports/cmnist_vgg50_probe_followup/write_report.py
 ```
 
-## 실험 실행 코드
+#### 실험 실행 코드와 Resume 안내
 
 모델 실행은 `shortcut_experiment.py`, 데이터 생성은 `data.py`, 별도 평가는 `evaluate.py`가 담당합니다. 전체 실행 의존성은 `requirements.txt`입니다. 실제 실행 인자는 [Epoch50 task](scripts/cmnist_vgg50/task.sh)에, Resume/공식 MNIST cache 준비는 [Resume 안내](scripts/cmnist_vgg100_resume/README.ko.md)에 기록했습니다. 클러스터 경로·자원 정책을 확인한 뒤 별도로 실행해야 합니다.
 
 이 공유 변경에서는 모델 학습·GPU·SLURM을 실행하지 않았습니다. 체크포인트, 원본 Feature, 다운로드 데이터, 대량 중간 산출물·로그·인증정보는 포함하지 않습니다.
+
+## Additional usage
+
+### Raw spatial activation maps (one sample, not pooled)
+
+```bash
+python inspect_hidden.py --run runs/cm_resnet --checkpoint runs/cm_resnet/checkpoints/epoch_005.pt --split val --sample-index 0 --layer layer3 --channels 16
+python inspect_hidden.py --run runs/cm_vgg --checkpoint latest --layer features.14 --channels 16
+python inspect_hidden.py --run runs/cm_vgg --list-layers
+```
+
+This generates a full, **unpooled** activation tensor in `raw_epoch_....npz` (key `hidden`, shape `[C,H,W]`) plus a grid image `raw_epoch_....png`. Use this for the actual middle feature maps; the snapshots in `features/` are spatially pooled to permit compact per-epoch storage.

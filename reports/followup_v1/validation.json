@@ -1,0 +1,11 @@
+{
+  "status": "PASS",
+  "probe_rows": 22,
+  "checkpoint_groups": 2,
+  "paired_gradcam_rows": 20,
+  "exact_joint_balance": true,
+  "disjoint_originals": true,
+  "same_cam_originals_and_targets": true,
+  "independent_numpy_probe_predictions": true,
+  "protocol_sha256": "484d18731c7bbf514ace417acc89f3c4614ab2902324214159a29fc582ee83c2"
+}
