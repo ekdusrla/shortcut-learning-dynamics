@@ -1,0 +1,106 @@
+{
+  "repo": "ylecun/mnist",
+  "revision": "77f3279092a1c1579b2250db8eafed0ad422088c",
+  "requested_revision": "77f3279092a1c1579b2250db8eafed0ad422088c",
+  "prepared_utc": "2026-11-09T04:50:35.085846+00:00",
+  "historical_revision_known": false,
+  "raw_splits": {
+    "train": {
+      "samples": 60000,
+      "fingerprint": "061e2b9748088db0",
+      "label_sha256": "e474323ac02fc156161b0bbb1f8c9cfeb327a74bcd9f9680a8385269a24f566c",
+      "ordered_grayscale_pixels_sha256": "741c988805d008ac6e4c904b69001ba184c24b2c540a4ef403f4c71b676cf757",
+      "class_counts": [
+        5923,
+        6742,
+        5958,
+        6131,
+        5842,
+        5421,
+        5918,
+        6265,
+        5851,
+        5949
+      ],
+      "features": {
+        "image": {
+          "_type": "Image"
+        },
+        "label": {
+          "names": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "_type": "ClassLabel"
+        }
+      }
+    },
+    "test": {
+      "samples": 10000,
+      "fingerprint": "c3819adbdf4fc121",
+      "label_sha256": "2fd8de6bdb8d11780b4b96dc57847bcfe6953f7c32aa48bfcd8237c3b7847243",
+      "ordered_grayscale_pixels_sha256": "6d87418db22cc8025d05968bec9bd5c3932904b23485740db143a061a2c9d161",
+      "class_counts": [
+        980,
+        1135,
+        1032,
+        1010,
+        982,
+        892,
+        958,
+        1028,
+        974,
+        1009
+      ],
+      "features": {
+        "image": {
+          "_type": "Image"
+        },
+        "label": {
+          "names": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "_type": "ClassLabel"
+        }
+      }
+    }
+  },
+  "cache_files": [
+    {
+      "path": "datasets/ylecun___mnist/mnist/0.0.0/77f3279092a1c1579b2250db8eafed0ad422088c/mnist-train.arrow",
+      "bytes": 17667544,
+      "sha256": "49605c87133da5ae12c00bb89d05600632338eeb2d6939dae0ad695a42390e20"
+    },
+    {
+      "path": "datasets/ylecun___mnist/mnist/0.0.0/77f3279092a1c1579b2250db8eafed0ad422088c/mnist-test.arrow",
+      "bytes": 2949616,
+      "sha256": "c1271fa343652fa634d0fb45544b526d89d6a552d18b14a3a05980899a7141fb"
+    }
+  ],
+  "versions": {
+    "datasets": "3.6.0",
+    "huggingface_hub": "2.4.0",
+    "numpy": "1.26.4",
+    "pillow": "11.1.0",
+    "torch": "2.5.1+cu121",
+    "torchvision": "0.20.1+cu121"
+  },
+  "process": "Official pinned repo -> fresh staging cache -> CPU offline validation -> publish; original runs never modified"
+}

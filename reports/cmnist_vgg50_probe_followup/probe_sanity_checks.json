@@ -1,0 +1,9 @@
+{
+  "success": true,
+  "ridge_predictions_match_sklearn_on_reference_snapshot": true,
+  "permutation_control_rows": 24,
+  "permutation_accuracy_min": 0.0825,
+  "permutation_accuracy_max": 0.11125,
+  "permutation_accuracy_mean": 0.09458333333333334,
+  "meaning": "Label-permuted probe fits are near chance; this does not establish causal feature use or historical raw pixel identity."
+}

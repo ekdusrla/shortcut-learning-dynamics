@@ -223,12 +223,12 @@ if __name__ == "__main__":
                             "from download_waterbirds.sh")
     data_args.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
     args = parser.parse_args()
-    dataset_cfg = {k: getattr(args, k) for k in 
-                   ["dataset", 
-                    "seed", 
-                    "image_size", 
-                    "train_corr", 
-                    "val_corr", 
+    dataset_cfg = {k: getattr(args, k) for k in
+                   ["dataset",
+                    "seed",
+                    "image_size",
+                    "train_corr",
+                    "val_corr",
                     "test_corr",
                     "mnist_val_size",
                     "color_mode",
@@ -270,7 +270,7 @@ if __name__ == "__main__":
         epoch = int(pointer["epoch"])
         checkpoint = (f"checkpoints/epoch_{epoch:03d}.pt")
 
-    from shortcut_experiment import build_datasets, build_model
+    from shortcut_experiment import build_datasets, build_model, loader_memory_options
 
     saved = torch.load(
         checkpoint, map_location="cpu", weights_only=True
@@ -298,6 +298,7 @@ if __name__ == "__main__":
         name: DataLoader(
             datasets[name], batch_size=args.batch_size,
             shuffle=False, num_workers=args.workers,
+            **loader_memory_options(args.workers),
         )
         for name in ("train", "val", "test")
     }

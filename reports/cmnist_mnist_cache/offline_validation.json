@@ -1,0 +1,964 @@
+{
+  "success": true,
+  "validated_utc": "2026-11-09T04:52:41.645717+00:00",
+  "cache_root": "/data/dada0228/shortcut-learning-dynamics/.cache/huggingface",
+  "repo": "ylecun/mnist",
+  "revision": "77f3279092a1c1579b2250db8eafed0ad422088c",
+  "offline_raw_splits": {
+    "train": {
+      "samples": 60000,
+      "fingerprint": "061e2b9748088db0",
+      "label_sha256": "e474323ac02fc156161b0bbb1f8c9cfeb327a74bcd9f9680a8385269a24f566c",
+      "ordered_grayscale_pixels_sha256": "741c988805d008ac6e4c904b69001ba184c24b2c540a4ef403f4c71b676cf757",
+      "class_counts": [
+        5923,
+        6742,
+        5958,
+        6131,
+        5842,
+        5421,
+        5918,
+        6265,
+        5851,
+        5949
+      ],
+      "features": {
+        "image": {
+          "_type": "Image"
+        },
+        "label": {
+          "names": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "_type": "ClassLabel"
+        }
+      }
+    },
+    "test": {
+      "samples": 10000,
+      "fingerprint": "c3819adbdf4fc121",
+      "label_sha256": "2fd8de6bdb8d11780b4b96dc57847bcfe6953f7c32aa48bfcd8237c3b7847243",
+      "ordered_grayscale_pixels_sha256": "6d87418db22cc8025d05968bec9bd5c3932904b23485740db143a061a2c9d161",
+      "class_counts": [
+        980,
+        1135,
+        1032,
+        1010,
+        982,
+        892,
+        958,
+        1028,
+        974,
+        1009
+      ],
+      "features": {
+        "image": {
+          "_type": "Image"
+        },
+        "label": {
+          "names": [
+            "0",
+            "1",
+            "2",
+            "3",
+            "4",
+            "5",
+            "6",
+            "7",
+            "8",
+            "9"
+          ],
+          "_type": "ClassLabel"
+        }
+      }
+    }
+  },
+  "network_attempts": 0,
+  "gpu_used": false,
+  "data_py_sha256": "81a6cc408207d42f7e4206b7a08b1af29aa26a5cd17b8a31d09370b4ca0dcc62",
+  "git_head": "5c7de670803994d1bcd853ed0f962dc6ce1ad0bd",
+  "data_py_git_blob": "884f69102139a18c3d6830753f4efe81c93cfc40",
+  "data_py_matches_head": true,
+  "conditions": [
+    {
+      "mode": "background",
+      "config": {
+        "dataset": "colored_mnist",
+        "model": "vgg11_bn",
+        "epochs": 50,
+        "seed": 42,
+        "image_size": 224,
+        "train_corr": 0.95,
+        "val_corr": 0.1,
+        "test_corr": 0.1,
+        "mnist_val_size": 5000,
+        "color_mode": "background",
+        "color_pairing": "all",
+        "waterbirds_root": "data/raw",
+        "pretrained": false,
+        "augment": false,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "scheduler": "none",
+        "optimizer": "sgd",
+        "weight_decay": 0.0001,
+        "batch_size": 128,
+        "num_workers": 4,
+        "features_per_group": 32,
+        "amp": true,
+        "save_features": true
+      },
+      "splits": {
+        "train": {
+          "samples": 55000,
+          "color_seed": 142,
+          "aligned_n": 52240,
+          "realized_aligned_fraction": 0.9498181818181818,
+          "indices_sha256": "077dd8fd4ab8f32e208a4fc53079e560ac46b84330ba3753777b18f45f30c150",
+          "labels_sha256": "693f5f8b469258a9b9ee28103baa6135d0a76e1dbadc4196015d0d11b41cf8c6",
+          "spurious_sha256": "10aa293385241d8522b5a0f65076c085bda1ca9d8191f30d83ba2609d54d572f",
+          "counts": [
+            [
+              5127,
+              29,
+              32,
+              45,
+              35,
+              35,
+              33,
+              36,
+              31,
+              25
+            ],
+            [
+              33,
+              5895,
+              33,
+              40,
+              32,
+              28,
+              27,
+              27,
+              35,
+              34
+            ],
+            [
+              29,
+              31,
+              5177,
+              36,
+              24,
+              38,
+              33,
+              27,
+              33,
+              30
+            ],
+            [
+              31,
+              33,
+              37,
+              5319,
+              20,
+              44,
+              36,
+              26,
+              38,
+              22
+            ],
+            [
+              33,
+              33,
+              24,
+              34,
+              5078,
+              22,
+              29,
+              25,
+              29,
+              35
+            ],
+            [
+              28,
+              35,
+              39,
+              24,
+              24,
+              4723,
+              36,
+              22,
+              29,
+              30
+            ],
+            [
+              33,
+              32,
+              39,
+              37,
+              34,
+              26,
+              5143,
+              25,
+              34,
+              30
+            ],
+            [
+              34,
+              28,
+              26,
+              36,
+              23,
+              36,
+              27,
+              5467,
+              31,
+              34
+            ],
+            [
+              34,
+              28,
+              31,
+              32,
+              13,
+              27,
+              30,
+              34,
+              5096,
+              23
+            ],
+            [
+              26,
+              32,
+              30,
+              26,
+              36,
+              23,
+              20,
+              30,
+              31,
+              5215
+            ]
+          ]
+        },
+        "val": {
+          "samples": 5000,
+          "color_seed": 242,
+          "aligned_n": 505,
+          "realized_aligned_fraction": 0.101,
+          "indices_sha256": "29f05fbb6e0d855c0d902891360691a77d747b1c556f7f5293fb445aeb45b61d",
+          "labels_sha256": "6d22e13d966e6d0dad8b4c7e96188b14b6cfd42b505e514ea6d84322cfd026cd",
+          "spurious_sha256": "12497679df11ae5ae0ab6180df1cd4f0b6042dacba6a0a8f3cf081810b049a0c",
+          "counts": [
+            [
+              56,
+              47,
+              47,
+              43,
+              60,
+              51,
+              48,
+              47,
+              41,
+              55
+            ],
+            [
+              51,
+              55,
+              68,
+              56,
+              66,
+              56,
+              56,
+              60,
+              47,
+              43
+            ],
+            [
+              46,
+              60,
+              50,
+              52,
+              43,
+              53,
+              55,
+              48,
+              54,
+              39
+            ],
+            [
+              51,
+              45,
+              59,
+              62,
+              52,
+              52,
+              51,
+              52,
+              38,
+              63
+            ],
+            [
+              54,
+              52,
+              46,
+              57,
+              49,
+              36,
+              47,
+              48,
+              46,
+              65
+            ],
+            [
+              46,
+              40,
+              42,
+              47,
+              57,
+              37,
+              38,
+              42,
+              49,
+              33
+            ],
+            [
+              45,
+              50,
+              43,
+              55,
+              59,
+              43,
+              44,
+              54,
+              43,
+              49
+            ],
+            [
+              58,
+              49,
+              53,
+              46,
+              55,
+              34,
+              59,
+              48,
+              69,
+              52
+            ],
+            [
+              45,
+              38,
+              53,
+              52,
+              49,
+              49,
+              57,
+              51,
+              58,
+              51
+            ],
+            [
+              41,
+              47,
+              60,
+              52,
+              54,
+              38,
+              41,
+              48,
+              53,
+              46
+            ]
+          ]
+        },
+        "test": {
+          "samples": 10000,
+          "color_seed": 342,
+          "aligned_n": 1019,
+          "realized_aligned_fraction": 0.1019,
+          "indices_sha256": "9e1c19b3fdc185411bd1a987deb6a9fda2531116aac060a84c4d878854d1c099",
+          "labels_sha256": "2fd8de6bdb8d11780b4b96dc57847bcfe6953f7c32aa48bfcd8237c3b7847243",
+          "spurious_sha256": "a048d14dd2f2b19778c4bb9d8dd1d558db0e8223a997fc9f231cd058f7b8b376",
+          "counts": [
+            [
+              108,
+              104,
+              90,
+              82,
+              118,
+              109,
+              117,
+              88,
+              78,
+              86
+            ],
+            [
+              118,
+              115,
+              126,
+              121,
+              110,
+              110,
+              97,
+              108,
+              128,
+              102
+            ],
+            [
+              127,
+              104,
+              85,
+              110,
+              98,
+              94,
+              108,
+              104,
+              90,
+              112
+            ],
+            [
+              89,
+              97,
+              91,
+              91,
+              94,
+              101,
+              104,
+              119,
+              110,
+              114
+            ],
+            [
+              97,
+              104,
+              86,
+              102,
+              98,
+              88,
+              109,
+              93,
+              110,
+              95
+            ],
+            [
+              86,
+              84,
+              78,
+              85,
+              87,
+              104,
+              87,
+              93,
+              90,
+              98
+            ],
+            [
+              105,
+              94,
+              105,
+              94,
+              91,
+              90,
+              95,
+              110,
+              100,
+              74
+            ],
+            [
+              86,
+              127,
+              100,
+              105,
+              100,
+              89,
+              92,
+              124,
+              109,
+              96
+            ],
+            [
+              110,
+              97,
+              95,
+              88,
+              87,
+              93,
+              102,
+              100,
+              113,
+              89
+            ],
+            [
+              93,
+              103,
+              87,
+              120,
+              92,
+              99,
+              114,
+              107,
+              108,
+              86
+            ]
+          ]
+        }
+      },
+      "original_validation_feature_metadata_matches": 3200,
+      "original_validation_and_test_group_counts_match": true,
+      "protected_sha256": {
+        "runs/vgg11_bg_corr095_seed42_e50_img224_all/config.json": "39092744313797078bdf7c87e19636dd86cff805ef401ba46e567993e883d821",
+        "runs/vgg11_bg_corr095_seed42_e50_img224_all/history.csv": "9c852153fe3b0d685870570ba589aa121966edf06fedc6cc40d5af915f0a9309",
+        "runs/vgg11_bg_corr095_seed42_e50_img224_all/test_metrics.json": "8ae05e8d90d944f0a29af2a20cd9c9bee76d2f0eb2540fd96c28132eeab32814",
+        "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt": "5ce8691830e28d9e5ad3830b391ffc349a6ddce280f9e75b156304e61854324b",
+        "runs/vgg11_bg_corr095_seed42_e50_img224_all/features/epoch_050.npz": "18394074c826ea9eea42185b96889d370ef0bcc039d0ed4504fd44c279ca7333"
+      }
+    },
+    {
+      "mode": "foreground",
+      "config": {
+        "dataset": "colored_mnist",
+        "model": "vgg11_bn",
+        "epochs": 50,
+        "seed": 42,
+        "image_size": 224,
+        "train_corr": 0.95,
+        "val_corr": 0.1,
+        "test_corr": 0.1,
+        "mnist_val_size": 5000,
+        "color_mode": "foreground",
+        "color_pairing": "all",
+        "waterbirds_root": "data/raw",
+        "pretrained": false,
+        "augment": false,
+        "lr": 0.01,
+        "momentum": 0.9,
+        "scheduler": "none",
+        "optimizer": "sgd",
+        "weight_decay": 0.0001,
+        "batch_size": 128,
+        "num_workers": 4,
+        "features_per_group": 32,
+        "amp": true,
+        "save_features": true
+      },
+      "splits": {
+        "train": {
+          "samples": 55000,
+          "color_seed": 142,
+          "aligned_n": 52240,
+          "realized_aligned_fraction": 0.9498181818181818,
+          "indices_sha256": "077dd8fd4ab8f32e208a4fc53079e560ac46b84330ba3753777b18f45f30c150",
+          "labels_sha256": "693f5f8b469258a9b9ee28103baa6135d0a76e1dbadc4196015d0d11b41cf8c6",
+          "spurious_sha256": "10aa293385241d8522b5a0f65076c085bda1ca9d8191f30d83ba2609d54d572f",
+          "counts": [
+            [
+              5127,
+              29,
+              32,
+              45,
+              35,
+              35,
+              33,
+              36,
+              31,
+              25
+            ],
+            [
+              33,
+              5895,
+              33,
+              40,
+              32,
+              28,
+              27,
+              27,
+              35,
+              34
+            ],
+            [
+              29,
+              31,
+              5177,
+              36,
+              24,
+              38,
+              33,
+              27,
+              33,
+              30
+            ],
+            [
+              31,
+              33,
+              37,
+              5319,
+              20,
+              44,
+              36,
+              26,
+              38,
+              22
+            ],
+            [
+              33,
+              33,
+              24,
+              34,
+              5078,
+              22,
+              29,
+              25,
+              29,
+              35
+            ],
+            [
+              28,
+              35,
+              39,
+              24,
+              24,
+              4723,
+              36,
+              22,
+              29,
+              30
+            ],
+            [
+              33,
+              32,
+              39,
+              37,
+              34,
+              26,
+              5143,
+              25,
+              34,
+              30
+            ],
+            [
+              34,
+              28,
+              26,
+              36,
+              23,
+              36,
+              27,
+              5467,
+              31,
+              34
+            ],
+            [
+              34,
+              28,
+              31,
+              32,
+              13,
+              27,
+              30,
+              34,
+              5096,
+              23
+            ],
+            [
+              26,
+              32,
+              30,
+              26,
+              36,
+              23,
+              20,
+              30,
+              31,
+              5215
+            ]
+          ]
+        },
+        "val": {
+          "samples": 5000,
+          "color_seed": 242,
+          "aligned_n": 505,
+          "realized_aligned_fraction": 0.101,
+          "indices_sha256": "29f05fbb6e0d855c0d902891360691a77d747b1c556f7f5293fb445aeb45b61d",
+          "labels_sha256": "6d22e13d966e6d0dad8b4c7e96188b14b6cfd42b505e514ea6d84322cfd026cd",
+          "spurious_sha256": "12497679df11ae5ae0ab6180df1cd4f0b6042dacba6a0a8f3cf081810b049a0c",
+          "counts": [
+            [
+              56,
+              47,
+              47,
+              43,
+              60,
+              51,
+              48,
+              47,
+              41,
+              55
+            ],
+            [
+              51,
+              55,
+              68,
+              56,
+              66,
+              56,
+              56,
+              60,
+              47,
+              43
+            ],
+            [
+              46,
+              60,
+              50,
+              52,
+              43,
+              53,
+              55,
+              48,
+              54,
+              39
+            ],
+            [
+              51,
+              45,
+              59,
+              62,
+              52,
+              52,
+              51,
+              52,
+              38,
+              63
+            ],
+            [
+              54,
+              52,
+              46,
+              57,
+              49,
+              36,
+              47,
+              48,
+              46,
+              65
+            ],
+            [
+              46,
+              40,
+              42,
+              47,
+              57,
+              37,
+              38,
+              42,
+              49,
+              33
+            ],
+            [
+              45,
+              50,
+              43,
+              55,
+              59,
+              43,
+              44,
+              54,
+              43,
+              49
+            ],
+            [
+              58,
+              49,
+              53,
+              46,
+              55,
+              34,
+              59,
+              48,
+              69,
+              52
+            ],
+            [
+              45,
+              38,
+              53,
+              52,
+              49,
+              49,
+              57,
+              51,
+              58,
+              51
+            ],
+            [
+              41,
+              47,
+              60,
+              52,
+              54,
+              38,
+              41,
+              48,
+              53,
+              46
+            ]
+          ]
+        },
+        "test": {
+          "samples": 10000,
+          "color_seed": 342,
+          "aligned_n": 1019,
+          "realized_aligned_fraction": 0.1019,
+          "indices_sha256": "9e1c19b3fdc185411bd1a987deb6a9fda2531116aac060a84c4d878854d1c099",
+          "labels_sha256": "2fd8de6bdb8d11780b4b96dc57847bcfe6953f7c32aa48bfcd8237c3b7847243",
+          "spurious_sha256": "a048d14dd2f2b19778c4bb9d8dd1d558db0e8223a997fc9f231cd058f7b8b376",
+          "counts": [
+            [
+              108,
+              104,
+              90,
+              82,
+              118,
+              109,
+              117,
+              88,
+              78,
+              86
+            ],
+            [
+              118,
+              115,
+              126,
+              121,
+              110,
+              110,
+              97,
+              108,
+              128,
+              102
+            ],
+            [
+              127,
+              104,
+              85,
+              110,
+              98,
+              94,
+              108,
+              104,
+              90,
+              112
+            ],
+            [
+              89,
+              97,
+              91,
+              91,
+              94,
+              101,
+              104,
+              119,
+              110,
+              114
+            ],
+            [
+              97,
+              104,
+              86,
+              102,
+              98,
+              88,
+              109,
+              93,
+              110,
+              95
+            ],
+            [
+              86,
+              84,
+              78,
+              85,
+              87,
+              104,
+              87,
+              93,
+              90,
+              98
+            ],
+            [
+              105,
+              94,
+              105,
+              94,
+              91,
+              90,
+              95,
+              110,
+              100,
+              74
+            ],
+            [
+              86,
+              127,
+              100,
+              105,
+              100,
+              89,
+              92,
+              124,
+              109,
+              96
+            ],
+            [
+              110,
+              97,
+              95,
+              88,
+              87,
+              93,
+              102,
+              100,
+              113,
+              89
+            ],
+            [
+              93,
+              103,
+              87,
+              120,
+              92,
+              99,
+              114,
+              107,
+              108,
+              86
+            ]
+          ]
+        }
+      },
+      "original_validation_feature_metadata_matches": 3200,
+      "original_validation_and_test_group_counts_match": true,
+      "protected_sha256": {
+        "runs/vgg11_fg_corr095_seed42_e50_img224_all/config.json": "f69f9ddb997b5d6776a1da324c4077be9d31ef4d5a2e41ac26d494f2b1091504",
+        "runs/vgg11_fg_corr095_seed42_e50_img224_all/history.csv": "9a06a57cc2ced84537c8595447e9432d635413834123c7edee883ca82bc75f8f",
+        "runs/vgg11_fg_corr095_seed42_e50_img224_all/test_metrics.json": "ecb34833c44b319a3f1b0021256fb146dd72975ecb42ce07aa6543f35f9cdeb1",
+        "runs/vgg11_fg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt": "5552ba47cc8dd7bfc27cac40f4e32cc7a6eb1d665e951304194a6c44e639e1e2",
+        "runs/vgg11_fg_corr095_seed42_e50_img224_all/features/epoch_050.npz": "5e7845ba6f7ff0f426585f4ee37d92df866b63ef7b93716fa7b11519a3451dd7"
+      }
+    }
+  ],
+  "limitations": [
+    "Original raw revision/fingerprint/image hashes were not recorded; historical pixel identity cannot be proven.",
+    "Historical validation/test group counts and 3200 saved validation labels/colors per mode match; no model inference performed.",
+    "GPU-node mount/accessibility has not been tested here."
+  ]
+}

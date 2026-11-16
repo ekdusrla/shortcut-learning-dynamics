@@ -1,0 +1,7 @@
+epoch,index,label,side,target_class,target_layer,precision,original_color,cf_color,prediction,correct,confidence,top2_probability_margin,foreground_area,foreground_cam_mass,background_cam_mass,zero_cam,paired_cam_cosine,paired_cam_mad,run_id,mode,train_corr,fg_excess
+0,46044,2,original,2,features.25,fp32,6,2,8,False,0.1150310859084129,0.0016841068863868,0.158023756377551,,,True,,0.0,vgg11_fg_corr095_seed42_e50_img224_all,foreground,0.95,
+0,46044,2,counterfactual,2,features.25,fp32,6,2,8,False,0.11564302444458,0.0030838921666145,0.158023756377551,,,True,,0.0,vgg11_fg_corr095_seed42_e50_img224_all,foreground,0.95,
+0,46044,2,original,2,features.25,fp32,6,2,8,False,0.1150310859084129,0.0016841068863868,0.158023756377551,,,True,,0.0,vgg11_fg_corr080_seed42_e50_img224_all,foreground,0.8,
+0,46044,2,counterfactual,2,features.25,fp32,6,2,8,False,0.11564302444458,0.0030838921666145,0.158023756377551,,,True,,0.0,vgg11_fg_corr080_seed42_e50_img224_all,foreground,0.8,
+0,46044,2,original,2,features.25,fp32,6,2,8,False,0.1150310859084129,0.0016841068863868,0.158023756377551,,,True,,0.0,vgg11_fg_corr065_seed42_e50_img224_all,foreground,0.65,
+0,46044,2,counterfactual,2,features.25,fp32,6,2,8,False,0.11564302444458,0.0030838921666145,0.158023756377551,,,True,,0.0,vgg11_fg_corr065_seed42_e50_img224_all,foreground,0.65,

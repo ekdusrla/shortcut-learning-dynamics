@@ -1,0 +1,14 @@
+{
+  "success": true,
+  "metric_copies": 18,
+  "byte_identical_to_originals": true,
+  "secret_pattern_scan": "passed",
+  "result_only_clone_regeneration": "passed without runs/cache/checkpoints/prediction batches or GPU",
+  "counterfactual_cpu_tests": 2,
+  "loader_cpu_tests": 2,
+  "guide_links": "passed",
+  "base_branch": "dev",
+  "feature_branch": "feat/cmnist-vgg11-results",
+  "large_artifacts_excluded": true,
+  "merge_performed": false
+}

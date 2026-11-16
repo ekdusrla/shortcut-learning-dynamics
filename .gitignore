@@ -31,3 +31,6 @@ scripts/**/*.log
 *.zip
 scripts/waterbirds_vgg50/**/.pytest_cache/
 reports/waterbirds_vgg50/**/.ipynb_checkpoints/
+
+# Per-snapshot probe predictions stay on experiment storage; share aggregate CSVs only.
+reports/cmnist_vgg50_probe_followup/batches/

@@ -1,0 +1,25 @@
+mode,train_corr,target,threshold,consecutive_epochs,first_observed_criterion_epoch,criterion_met_untrained_epoch0,interpretation
+background,0.65,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+background,0.65,core,0.95,3,1,False,criterion crossing only; true learning onset not identified
+background,0.65,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+background,0.65,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified
+background,0.8,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+background,0.8,core,0.95,3,1,False,criterion crossing only; true learning onset not identified
+background,0.8,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+background,0.8,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified
+background,0.95,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+background,0.95,core,0.95,3,2,False,criterion crossing only; true learning onset not identified
+background,0.95,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+background,0.95,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.65,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+foreground,0.65,core,0.95,3,1,False,criterion crossing only; true learning onset not identified
+foreground,0.65,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.65,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.8,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+foreground,0.8,core,0.95,3,1,False,criterion crossing only; true learning onset not identified
+foreground,0.8,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.8,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.95,core,0.9,3,1,False,criterion crossing only; true learning onset not identified
+foreground,0.95,core,0.95,3,3,False,criterion crossing only; true learning onset not identified
+foreground,0.95,shortcut,0.9,3,0,True,criterion crossing only; true learning onset not identified
+foreground,0.95,shortcut,0.95,3,0,True,criterion crossing only; true learning onset not identified

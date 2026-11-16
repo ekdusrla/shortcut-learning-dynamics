@@ -1,0 +1,17 @@
+{
+  "versions": {
+    "numpy": "1.26.4",
+    "scipy": "1.17.1",
+    "scikit-learn": "1.6.1",
+    "torch": "2.5.1+cu121",
+    "torchvision": "0.20.1+cu121"
+  },
+  "source_sha256": {
+    "probe_dynamics.py": "9430facc654ef3aab8efa1fa2e3875525e8e6a4a6be13daaca947b9fef331e06",
+    "followup_common.py": "7773fde34f4c3b93adee757f31bcc5bc21b72ed16bacd779af2039ac99a258e5",
+    "evaluate.py": "4ba32c59dbc4ed32b8ab153627275e5e9bf74ca80dac2b49ed4ec7048b750666",
+    "shortcut_experiment.py": "dd2177612aec8d9623ad652d9bd967605998ea8c8769a0a59499ef306e1bf009",
+    "data.py": "81a6cc408207d42f7e4206b7a08b1af29aa26a5cd17b8a31d09370b4ca0dcc62"
+  },
+  "resource_scope": "1 CPU thread/BLAS; no GPU; peak RSS not instrumented"
+}

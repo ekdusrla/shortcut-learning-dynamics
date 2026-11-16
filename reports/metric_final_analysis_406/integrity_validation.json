@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "checkpoint_count": 406,
+  "metric_rows": 812,
+  "group_rows": 16240,
+  "cam_checkpoint_count": 96,
+  "cam_maps": 1920,
+  "zero_cam_maps": 6,
+  "reference_metric_comparisons": 2436,
+  "reference_max_abs_difference": 0.0,
+  "all_c2i_recomputed": true,
+  "all_group_c2i_recomputed": true,
+  "live_checkpoint_metadata_verified": 406,
+  "full_checkpoint_sha256": "406 GPU-node audit records verified against manifest/epoch identities; tensor files not bulk-rehashed on login node",
+  "missing_epochs": [],
+  "duplicate_epochs": [],
+  "legacy": {
+    "job": "217636_0",
+    "role": "historical_v1_only_not_a_v2_gate",
+    "results_files_verified": 20
+  },
+  "model_inference_executed": false,
+  "project_code_modified": false,
+  "source_evaluation_collection_not_run": "Original preparation validation_results.json is intentionally preserved; analysis completeness is recorded here."
+}

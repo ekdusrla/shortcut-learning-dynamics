@@ -1,0 +1,11 @@
+{
+  "success": true,
+  "original_small_source_hashes_unchanged": true,
+  "experiments": 6,
+  "history_rows": 306,
+  "png_figures": 7,
+  "pdf_figures": 7,
+  "c2i_bounds_exhaustive_toy_prediction_cases": 7380,
+  "distinct_aggregate_cases": 119,
+  "scope": "Only saved metrics and CPU archive/feature inspection; no inference, GPU or new experiments"
+}

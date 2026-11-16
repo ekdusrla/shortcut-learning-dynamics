@@ -1,0 +1,87 @@
+{
+  "success": true,
+  "tests_run": 6,
+  "real_checkpoints": [
+    {
+      "mode": "background",
+      "checkpoint": "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt",
+      "epoch": 50,
+      "start_epoch": 51,
+      "model_tensors": 58,
+      "momentum_buffers": 34,
+      "scheduler": {
+        "factor": 1.0,
+        "total_iters": 1,
+        "base_lrs": [
+          0.01
+        ],
+        "last_epoch": 50,
+        "verbose": false,
+        "_step_count": 51,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          0.01
+        ]
+      },
+      "scaler": {
+        "scale": 2097152.0,
+        "growth_factor": 2.0,
+        "backoff_factor": 0.5,
+        "growth_interval": 2000,
+        "_growth_tracker": 1763
+      },
+      "cuda_rng_present": true,
+      "cuda_rng_restored_on_gpu": false,
+      "python_numpy_rng_present": false,
+      "lr_51_to_100": 0.01,
+      "original_sha256": {
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt": "5ce8691830e28d9e5ad3830b391ffc349a6ddce280f9e75b156304e61854324b",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/config.json": "39092744313797078bdf7c87e19636dd86cff805ef401ba46e567993e883d821",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/history.csv": "9c852153fe3b0d685870570ba589aa121966edf06fedc6cc40d5af915f0a9309",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/test_metrics.json": "8ae05e8d90d944f0a29af2a20cd9c9bee76d2f0eb2540fd96c28132eeab32814",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_bg_corr095_seed42_e50_img224_all/latest.json": "ee89fa649874c993a30a1935f6c3b0f8a38380ad2dea711acee72a8545ea80b9"
+      }
+    },
+    {
+      "mode": "foreground",
+      "checkpoint": "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt",
+      "epoch": 50,
+      "start_epoch": 51,
+      "model_tensors": 58,
+      "momentum_buffers": 34,
+      "scheduler": {
+        "factor": 1.0,
+        "total_iters": 1,
+        "base_lrs": [
+          0.01
+        ],
+        "last_epoch": 50,
+        "verbose": false,
+        "_step_count": 51,
+        "_get_lr_called_within_step": false,
+        "_last_lr": [
+          0.01
+        ]
+      },
+      "scaler": {
+        "scale": 262144.0,
+        "growth_factor": 2.0,
+        "backoff_factor": 0.5,
+        "growth_interval": 2000,
+        "_growth_tracker": 1163
+      },
+      "cuda_rng_present": true,
+      "cuda_rng_restored_on_gpu": false,
+      "python_numpy_rng_present": false,
+      "lr_51_to_100": 0.01,
+      "original_sha256": {
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt": "5552ba47cc8dd7bfc27cac40f4e32cc7a6eb1d665e951304194a6c44e639e1e2",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/config.json": "f69f9ddb997b5d6776a1da324c4077be9d31ef4d5a2e41ac26d494f2b1091504",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/history.csv": "9a06a57cc2ced84537c8595447e9432d635413834123c7edee883ca82bc75f8f",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/test_metrics.json": "ecb34833c44b319a3f1b0021256fb146dd72975ecb42ce07aa6543f35f9cdeb1",
+        "/data/dada0228/shortcut-learning-dynamics/runs/vgg11_fg_corr095_seed42_e50_img224_all/latest.json": "86ab5e50806ea1a977cea8b9f420967f9c4ebb1408e429ba4920d21187ffb0d2"
+      }
+    }
+  ],
+  "scope": "CPU only; no real model inference/training or CUDA restore"
+}

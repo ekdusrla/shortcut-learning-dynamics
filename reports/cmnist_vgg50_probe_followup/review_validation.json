@@ -1,0 +1,153 @@
+{
+  "success": true,
+  "raw_history_matches_previous_derived_table": true,
+  "original_manifest_hashes_match": true,
+  "C2I": "Previous bounds are algebraically valid for common-denominator paired CF; not identifiable in general for 10 classes; all-color accuracy uses different denominator.",
+  "H1": "Long-run descriptive support, not monotone or a seed-generalized law.",
+  "H2": "Existing criterion measures robustness, not the onset of core representation learning; direct formulation remains untested by behavior alone.",
+  "generalization_gap": "Correctly described as online train minus shifted held-out accuracy; not an IID fixed-model gap.",
+  "source_files": [
+    {
+      "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/config.json",
+      "sha256": "39092744313797078bdf7c87e19636dd86cff805ef401ba46e567993e883d821"
+    },
+    {
+      "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/history.csv",
+      "sha256": "9c852153fe3b0d685870570ba589aa121966edf06fedc6cc40d5af915f0a9309"
+    },
+    {
+      "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "8ae05e8d90d944f0a29af2a20cd9c9bee76d2f0eb2540fd96c28132eeab32814"
+    },
+    {
+      "path": "runs/vgg11_bg_corr080_seed42_e50_img224_all/config.json",
+      "sha256": "5bb0bfb912ec1bdefc8b8a8c0ac307512deb6cacf2aeae4dbc3173a6b34875fb"
+    },
+    {
+      "path": "runs/vgg11_bg_corr080_seed42_e50_img224_all/history.csv",
+      "sha256": "91ef923c016ad3a786ad067926ebac1ce3c04b05d15e9a12d8bcab20a574b93b"
+    },
+    {
+      "path": "runs/vgg11_bg_corr080_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "c8c380d544bff1199861dcf901267d6e6c0e61d0d380bfc34bc031bfc268ba01"
+    },
+    {
+      "path": "runs/vgg11_bg_corr065_seed42_e50_img224_all/config.json",
+      "sha256": "8ac5e7f0800755fb9a6a96ded63057b46acb9df23d9ba24b6d41072eb58927d1"
+    },
+    {
+      "path": "runs/vgg11_bg_corr065_seed42_e50_img224_all/history.csv",
+      "sha256": "2a9d56c4ec057a99ca5ee98dae4c0b445734a0b89057cb54516232caf0a73cee"
+    },
+    {
+      "path": "runs/vgg11_bg_corr065_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "f410cdf190762485003bc413d62c2624c3ea94171a1b7532a3b7286a0b7692e7"
+    },
+    {
+      "path": "runs/vgg11_fg_corr095_seed42_e50_img224_all/config.json",
+      "sha256": "f69f9ddb997b5d6776a1da324c4077be9d31ef4d5a2e41ac26d494f2b1091504"
+    },
+    {
+      "path": "runs/vgg11_fg_corr095_seed42_e50_img224_all/history.csv",
+      "sha256": "9a06a57cc2ced84537c8595447e9432d635413834123c7edee883ca82bc75f8f"
+    },
+    {
+      "path": "runs/vgg11_fg_corr095_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "ecb34833c44b319a3f1b0021256fb146dd72975ecb42ce07aa6543f35f9cdeb1"
+    },
+    {
+      "path": "runs/vgg11_fg_corr080_seed42_e50_img224_all/config.json",
+      "sha256": "e3f915d60eb36b971b9ca67f6cfc7f78d15b0f4347388a23531ddde8c1423363"
+    },
+    {
+      "path": "runs/vgg11_fg_corr080_seed42_e50_img224_all/history.csv",
+      "sha256": "65cef705b7adb38e539f1637a2e73cc3cc639855eabaa70fca04928ca8000fa1"
+    },
+    {
+      "path": "runs/vgg11_fg_corr080_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "53f9d7049ded58721abe418eff71c32786934afc98c7fcc61611e275a66920ed"
+    },
+    {
+      "path": "runs/vgg11_fg_corr065_seed42_e50_img224_all/config.json",
+      "sha256": "162be0be4a300a2e2b148695b4643dad4501c20cf6bedbb85f0a5e11c8c85a3f"
+    },
+    {
+      "path": "runs/vgg11_fg_corr065_seed42_e50_img224_all/history.csv",
+      "sha256": "17dfe3c1ac7acd9d4b8193b4fab6793befb145f412cc35358c038ac12fb1e4ea"
+    },
+    {
+      "path": "runs/vgg11_fg_corr065_seed42_e50_img224_all/test_metrics.json",
+      "sha256": "fd11b3ba43929bbd626cba405ce661eee3daa4da12ebced0a6ea429a1a54f1be"
+    }
+  ],
+  "prior_report_sources": [
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/analysis_report.md",
+      "sha256": "899016becfafcadbd156f356a53e592331a0040e0dde196230a4dabb08b99059"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/summary_table.csv",
+      "sha256": "123914328efa181866b77046fa2bb5b79a673cd8c647bb2e733bc51fc0b5825d"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/missing_artifacts.md",
+      "sha256": "2a3333da17dc88960cd72704f0d1ca9d8c1d4040f80c9ba20a7448b5dc2e3452"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/02_groups.png",
+      "sha256": "3b896e4236fc2f3b9812c6fbe5fc08c2a3a792c6e8331b4f7aaf9a0d4fc6261a"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/04_counterfactual.pdf",
+      "sha256": "0436e612d2a47fa76e1698770c5776a5eb3ea1cb1de3081590295307eb9e06da"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/04_counterfactual.png",
+      "sha256": "5e92c9e2d1f7cabf28b6cda9bbbc19850520e54ca7ba364d5cf1d1192b7b8d12"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/05_correlation_dependence.pdf",
+      "sha256": "71410c9c3e16cb2ca7f41f1f62612e862b09e8443031bc34a4c0e400f0863117"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/03_flip_rates.pdf",
+      "sha256": "c9580521f6f5fd2b4186f9859495624f62b330ba987f067f2c4206aa57bc11db"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/01_accuracy.pdf",
+      "sha256": "176aeccb32ec92141254db7141e39a68a8e89a84fce101a9af253d1324e48fb7"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/05_correlation_dependence.png",
+      "sha256": "795a638b5945117dd3b3179dcb86a086cc5383a641758086b8a5e117fda4f15a"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/07_descriptive_gap.png",
+      "sha256": "e87f375b3dfd6b4524348cd4f4dc16fac54d672a955ebcf1852949eb5920b1d1"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/01_accuracy.png",
+      "sha256": "801b4d33ec3ffd0f153ce48b044bbf37c436740dd4140d8f3ae3b1b92604cdd0"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/06_background_vs_foreground.png",
+      "sha256": "e1dfbfe3f3c90b0b35e2d0711d76d13cb23a49b3956f9c124626bb0a16616cf3"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/07_descriptive_gap.pdf",
+      "sha256": "e397a1947ddac95b74889a17b1f4dfa73b224ecd635ec042fc65064516d71ae1"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/03_flip_rates.png",
+      "sha256": "4f4fe6cf8ecd8b8d3035e839560f5ee2404f30b4a523559a68420a76887152a1"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/06_background_vs_foreground.pdf",
+      "sha256": "7a57fc89bb5db3a0967eaddebf40d801e78347cdbe5f881a263b3c6b69042578"
+    },
+    {
+      "path": "reports/cmnist_vgg50_analysis_review/figures/02_groups.pdf",
+      "sha256": "9e28051077abb959702e2d5f3476768483283a78002970afa36e74293394764b"
+    }
+  ]
+}

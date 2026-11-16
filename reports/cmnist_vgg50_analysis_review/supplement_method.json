@@ -1,0 +1,5 @@
+{
+  "c2i_observed": false,
+  "c2i_bounds": "A=original correct count, B=CF correct count, F=all prediction changes, N=samples; lower=max(0,A-B,F+A-N); upper=min(A,N-B,floor((F+A-B)/2)); applies to paired CF with common denominator only",
+  "gap_definition": "online train accuracy minus validation accuracy; test gap only at epoch 50; not an IID generalization estimator"
+}

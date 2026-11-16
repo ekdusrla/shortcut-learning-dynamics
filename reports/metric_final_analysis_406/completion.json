@@ -1,0 +1,15 @@
+{
+  "status": "complete",
+  "checkpoint_evaluations_verified": 406,
+  "reference_comparisons_exact": 2436,
+  "cam_maps_verified": 1920,
+  "planned_cam_checkpoints": 96,
+  "figure_pairs": 13,
+  "source_result_files_unchanged": 2384,
+  "project_code_modified": false,
+  "new_inference": false,
+  "new_training": false,
+  "slurm_submission_or_cancellation": false,
+  "report": "analysis_report.md",
+  "meeting_handout": "meeting_summary.md"
+}

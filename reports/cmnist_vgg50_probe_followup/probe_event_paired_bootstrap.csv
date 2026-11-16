@@ -1,0 +1,9 @@
+from_epoch,to_epoch,target,split_seed,n,gains,losses,observed_difference_pp,conditional_bootstrap_low_pp,conditional_bootstrap_high_pp,scope
+27,28,core,1701,800,3,5,-0.25,-1.0,0.375,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+27,28,shortcut,1701,800,0,0,0.0,0.0,0.0,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+28,29,core,1701,800,3,4,-0.125,-0.75,0.5,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+28,29,shortcut,1701,800,0,0,0.0,0.0,0.0,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+48,49,core,1701,800,4,2,0.25,-0.375,0.8750000000000001,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+48,49,shortcut,1701,800,0,0,0.0,0.0,0.0,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+49,50,core,1701,800,2,4,-0.25,-0.8750000000000001,0.375,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"
+49,50,shortcut,1701,800,0,0,0.0,0.0,0.0,"fixed primary probe split/readouts; image resampling uncertainty only, not seed variance; no multiplicity correction"

@@ -1,0 +1,132 @@
+[
+  {
+    "epoch": 25,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_025.pt",
+    "sha256": "f95ce41e6f68b264200b2508d3b9c602dbc37a52d8c732a38c69521b93b78c5b"
+  },
+  {
+    "epoch": 26,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_026.pt",
+    "sha256": "97d03495d600fb4414484ff637f429409b1f7459ffff3812f3ebed4beaac263c"
+  },
+  {
+    "epoch": 27,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_027.pt",
+    "sha256": "6b66e4e680e682849f56f032c57547b176fa87590893d9a023d3ae113a7c9cf8"
+  },
+  {
+    "epoch": 28,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_028.pt",
+    "sha256": "1f802a1b02f5768595c7cb6b7a80d618b670c7d4cebf6604ee4a2e2c3148d01b"
+  },
+  {
+    "epoch": 29,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_029.pt",
+    "sha256": "148d5ec73f299065b83a70dc30ef900dcdba4cffd43a1c14687da4bb8a67fbf4"
+  },
+  {
+    "epoch": 30,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_030.pt",
+    "sha256": "11815f92e80e38df765a6c29cd7378322b638d65e789414ca9485fddff5484d9"
+  },
+  {
+    "epoch": 31,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_031.pt",
+    "sha256": "3a0fd307165892f096c52e049dbd900c7b22af87b9c0d7a49341c1aa68029a91"
+  },
+  {
+    "epoch": 32,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_032.pt",
+    "sha256": "8b4b1332cca59625ca48fd05ec96020ae991d5aa149eca84a353f4925a079365"
+  },
+  {
+    "epoch": 33,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_033.pt",
+    "sha256": "422dc6195330fa8bf20b5fc399b56a02c712a38e21ac95ee9157bf528948c053"
+  },
+  {
+    "epoch": 34,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_034.pt",
+    "sha256": "4f9e08da8b5875a52af5570172bec855aa0f15974ec739b5ddb7218e5b1b2a29"
+  },
+  {
+    "epoch": 35,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_035.pt",
+    "sha256": "ea93800eacccc2a142d27520a7e2e993c59ce74aa4097517c72dfcfa95d87b58"
+  },
+  {
+    "epoch": 36,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_036.pt",
+    "sha256": "d8f22fbd345aaa265e78bd0c1d2d707d0256c4a7bb7aaf018ba29b0a040a2b1c"
+  },
+  {
+    "epoch": 37,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_037.pt",
+    "sha256": "a7876ae1f2a2fbcd87df5003c61344c2873588eb4c53d5d6c9c2bdfde384e219"
+  },
+  {
+    "epoch": 38,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_038.pt",
+    "sha256": "759cee6c8993fc518c7e54eaf5a8eb04d15b822f1bde0075b37d82637d8c5b3d"
+  },
+  {
+    "epoch": 39,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_039.pt",
+    "sha256": "544e2de9e10864f813a697b4ab5168fb0168d806ed4445feda635e3390b2fbef"
+  },
+  {
+    "epoch": 40,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_040.pt",
+    "sha256": "25abcf885ad3b9817d27393b25934d21739934082ea1de3ef2caa368d8484022"
+  },
+  {
+    "epoch": 41,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_041.pt",
+    "sha256": "dc01daad6acd68efa5f1b8a49b1bf06ee1d36e069b9a620c654d9e262cc4b193"
+  },
+  {
+    "epoch": 42,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_042.pt",
+    "sha256": "0461e873dc77edd501068c0a54181253bb74ffeea3bb73059889bed5e85fd0c9"
+  },
+  {
+    "epoch": 43,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_043.pt",
+    "sha256": "0fd50719b80444d191667ee8a0d028fbde09933736827872bddd4e163966f615"
+  },
+  {
+    "epoch": 44,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_044.pt",
+    "sha256": "01352815640ea2a19179948bbc57f543fe2fe8a312b8902ebbdcaea9ce31df4d"
+  },
+  {
+    "epoch": 45,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_045.pt",
+    "sha256": "5bcc2afd5a08caff912db8f7c6e6b3a385a7186554dd7a4e00d0b96d04a030ed"
+  },
+  {
+    "epoch": 46,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_046.pt",
+    "sha256": "0f7081693ac6393b863ac85fa8634f624720a1dbe1636d9c4085f1a8b9f8fe0c"
+  },
+  {
+    "epoch": 47,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_047.pt",
+    "sha256": "4c300e2068326a40bdf1ed659ee517e65fa8f774661e24e9ca85cd8c18e2fe43"
+  },
+  {
+    "epoch": 48,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_048.pt",
+    "sha256": "46ecadf39a2ba0ab2cb4f6fc0dd37321892e9f28b6f63a5872c0181016825614"
+  },
+  {
+    "epoch": 49,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_049.pt",
+    "sha256": "4388f992aef4deca798ae5ca56e65ec5a97e5b5038631b5e865d5b4f8b2f3fd0"
+  },
+  {
+    "epoch": 50,
+    "path": "runs/vgg11_bg_corr095_seed42_e50_img224_all/checkpoints/epoch_050.pt",
+    "sha256": "5ce8691830e28d9e5ad3830b391ffc349a6ddce280f9e75b156304e61854324b"
+  }
+]

@@ -272,12 +272,12 @@ def main():
                             "from download_waterbirds.sh")
     data_args.add_argument("--augment", action="store_true", help="horizontal flips on Waterbirds train only")
     args = parser.parse_args()
-    dataset_cfg = {k: getattr(args, k) for k in 
-                   ["dataset", 
-                    "seed", 
-                    "image_size", 
-                    "train_corr", 
-                    "val_corr", 
+    dataset_cfg = {k: getattr(args, k) for k in
+                   ["dataset",
+                    "seed",
+                    "image_size",
+                    "train_corr",
+                    "val_corr",
                     "test_corr",
                     "mnist_val_size",
                     "color_mode",
