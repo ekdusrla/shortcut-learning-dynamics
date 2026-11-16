@@ -19,3 +19,15 @@ outputs/
 runs/
 logs/
 wandb/
+
+# Local Hugging Face cache and ephemeral verification logs (never publish credentials/data).
+/.cache/
+reports/**/*.log
+scripts/**/*.log
+
+# Waterbirds sharing: arrays, archives and transient artifacts are never uploaded.
+*.npz
+*.npy
+*.zip
+scripts/waterbirds_vgg50/**/.pytest_cache/
+reports/waterbirds_vgg50/**/.ipynb_checkpoints/

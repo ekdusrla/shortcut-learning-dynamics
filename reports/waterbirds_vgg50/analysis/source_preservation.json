@@ -1,0 +1,6 @@
+{
+  "checked_files": 633,
+  "changed": [],
+  "checkpoint_feature_policy": "Stat size+mtime only; content SHA not reread",
+  "csv_json_policy": "SHA256 before/after"
+}

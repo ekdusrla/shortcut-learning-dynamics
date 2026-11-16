@@ -1,0 +1,5 @@
+condition,epoch,val_acc,val_balanced_acc,val_class0_recall,val_class1_recall,val_cf_flip_rate,val_wga
+A_corr095,0,0.7714762301918265,0.5,1.0,0.0,0.0,0.0
+A_corr080,0,0.7714762301918265,0.5,1.0,0.0,0.0,0.0
+A_corr065,0,0.7714762301918265,0.5,1.0,0.0,0.0,0.0
+A_corr065,31,0.7714762301918265,0.5,1.0,0.0,0.0,0.0

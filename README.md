@@ -2,6 +2,12 @@
 
 PyTorch experiment (MNIST via Hugging Face Datasets; Waterbirds composited from CUB-200-2011 + Places365). Requirements: Python 3.10+, GPU recommended for Waterbirds.
 
+## Waterbirds Condition A 실험 결과
+
+[최종 결과와 H1/H2 분석](reports/waterbirds_vgg50/WATERBIRDS_FINAL_RESULTS_KO.md),
+[코드·데이터 준비·경량 결과 재현 안내](reports/waterbirds_vgg50/SHARING.ko.md)를 제공합니다.
+Train correlation 0.95/0.80/0.65의 50-Epoch 결과이며, Checkpoint·Feature·원본 이미지는 포함하지 않습니다.
+
 ## Install
 
 ```bash

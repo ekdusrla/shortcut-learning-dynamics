@@ -1,0 +1,5 @@
+# Preserve exact history bytes (original pandas CSV uses CRLF).
+/reports/waterbirds_vgg50/shared/source_metrics/*/history.csv -text whitespace=cr-at-eol
+# Matplotlib SVG path data intentionally contains trailing separators.
+# Keep generated figures byte-identical; other whitespace checks remain enabled.
+/reports/waterbirds_vgg50/analysis/figures/*.svg -text whitespace=-blank-at-eol

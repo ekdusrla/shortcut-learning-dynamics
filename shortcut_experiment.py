@@ -126,7 +126,7 @@ def save_feature_snapshot(model, dataset, arch, device, batch_size, per_group,
         raise RuntimeError("Cannot extract features from an empty dataset")
     names = feature_layer_names(model, arch)
     loader = DataLoader(Subset(dataset, ids), batch_size=batch_size, shuffle=False,
-                        num_workers=num_workers, pin_memory=(device.type == "cuda"))
+                        num_workers=num_workers, **loader_memory_options(num_workers))
     model.eval()
     collector = FeatureHookCollector(model, names)
     saved = {name: [] for name in names}
@@ -152,10 +152,21 @@ def save_feature_snapshot(model, dataset, arch, device, batch_size, per_group,
     print(f"[features] {out_file} / N={len(payload['labels'])} / layers={names}")
 
 
+def loader_memory_options(workers):
+    """Bound host-side batches; avoid pinned copies and idle persistent worker pools.
+
+    Counterfactual RGB float batches are large even when GPU forwards are chunked.
+    These options change scheduling/storage only, never samples or metrics.
+    """
+    options = dict(pin_memory=False, persistent_workers=False)
+    if workers > 0:
+        options["prefetch_factor"] = 1
+    return options
+
+
 def create_loader(ds, batch_size, shuffle, workers, gen=None, device=None):
     return DataLoader(ds, batch_size=batch_size, shuffle=shuffle,
-                      num_workers=workers, pin_memory=(device is not None and device.type == "cuda"),
-                      persistent_workers=workers > 0, generator=gen)
+                      num_workers=workers, generator=gen, **loader_memory_options(workers))
 
 
 def is_amp_enabled(device, cfg):
@@ -192,7 +203,20 @@ def train_one_epoch(model, loader, optimizer, scaler, device, amp):
 
 
 @torch.inference_mode()
-def evaluate(model, loader, device, amp=False):
+def counterfactual_predictions(model, images, device, amp=False, chunk_size=128):
+    """Preserve flat sample/color order, transferring only one CPU chunk at a time."""
+    if chunk_size < 1:
+        raise ValueError("counterfactual chunk size must be positive")
+    model.eval()
+    predictions = []
+    for chunk in images.split(chunk_size):
+        with autocast_context(device, amp):
+            predictions.append(model(chunk.to(device, non_blocking=True)).argmax(1))
+    return torch.cat(predictions)
+
+
+@torch.inference_mode()
+def evaluate(model, loader, device, amp=False, cf_chunk_size=128):
     model.eval()
     k = loader.dataset.num_classes
     correct = total = 0
@@ -224,17 +248,17 @@ def evaluate(model, loader, device, amp=False):
         conflicted_n += (~aligned).sum().item()
         conflicted_ok += (ok & ~aligned).sum().item()
         if "cf_pixel_values" in batch:
-            with autocast_context(device, amp):
-                cf_pred = model(batch["cf_pixel_values"].to(device, non_blocking=True)).argmax(1)
+            cf_pred = counterfactual_predictions(
+                model, batch["cf_pixel_values"], device, amp, cf_chunk_size)
             cf_n += n
             cf_ok += (cf_pred == y).sum().item()
             cf_flips += (cf_pred != pred).sum().item()
         if "cf_all_pixel_values" in batch:
             # (n, 9, C, H, W): the same digit in every color other than s.
-            cf_all = batch["cf_all_pixel_values"].to(device, non_blocking=True)
+            cf_all = batch["cf_all_pixel_values"]
             colors = batch["cf_all_spurious"].to(device, non_blocking=True)
-            with autocast_context(device, amp):
-                all_pred = model(cf_all.flatten(0, 1)).argmax(1).view(colors.shape)
+            all_pred = counterfactual_predictions(
+                model, cf_all.flatten(0, 1), device, amp, cf_chunk_size).view(colors.shape)
             cf_all_n += colors.numel()
             cf_all_flips += (all_pred != pred[:, None]).sum().item()
             # Accuracy and color-class picks only over recolors that conflict with y.
@@ -295,6 +319,13 @@ def save_checkpoint(path, epoch, model, optimizer, scheduler, scaler, cfg, loade
              "optimizer": optimizer.state_dict(), "scheduler": scheduler.state_dict(),
              "scaler": scaler.state_dict(), "torch_rng": torch.get_rng_state(),
              "loader_rng": loader_gen.get_state(),
+             "python_rng": random.getstate(),
+             "numpy_rng": {"kind": np.random.get_state()[0],
+                           "keys": np.random.get_state()[1].tolist(),
+                           "pos": np.random.get_state()[2],
+                           "has_gauss": np.random.get_state()[3],
+                           "cached_gaussian": np.random.get_state()[4]},
+             "checkpoint_boundary": "before_feature_snapshot",
              "cuda_rng": torch.cuda.get_rng_state_all() if torch.cuda.is_available() else []}
     tmp = path.with_suffix(".tmp")
     torch.save(state, tmp)
@@ -382,6 +413,37 @@ def configure_from_args(args):
             "batch_size": args.batch_size, "num_workers": args.num_workers,
             "features_per_group": args.features_per_group, "amp": not args.no_amp,
             "save_features": not args.no_features}
+
+
+def restore_training_state(saved, model, optimizer, scheduler, scaler, gen, device):
+    model.load_state_dict(saved["model"], strict=True)
+    optimizer.load_state_dict(saved["optimizer"])
+    scheduler.load_state_dict(saved["scheduler"])
+    scaler.load_state_dict(saved["scaler"])
+    torch.set_rng_state(saved["torch_rng"].cpu())
+    gen.set_state(saved["loader_rng"].cpu())
+    if device.type == "cuda" and saved["cuda_rng"]:
+        torch.cuda.set_rng_state_all([x.cpu() for x in saved["cuda_rng"]])
+    missing = []
+    if "python_rng" in saved:
+        random.setstate(saved["python_rng"])
+    else:
+        missing.append("Python")
+    if "numpy_rng" in saved:
+        n = saved["numpy_rng"]
+        np.random.set_state((n["kind"], np.asarray(n["keys"], dtype=np.uint32),
+                             n["pos"], n["has_gauss"], n["cached_gaussian"]))
+    else:
+        missing.append("NumPy")
+    print(f"[resume] Restored model(strict), optimizer/momentum, scheduler, scaler; "
+          f"torch CPU RNG, loader RNG; CUDA RNG restored={device.type == 'cuda' and bool(saved['cuda_rng'])}")
+    if missing:
+        print(f"[resume] WARNING: missing {'/'.join(missing)} RNG in source; using seeded fallback, not exact historical RNG")
+    if saved.get("config", {}).get("save_features", False):
+        print("[resume] WARNING: saved RNG precedes feature snapshot; feature-loader global torch RNG draw is not replayed; train shuffle generator is restored")
+    print(f"[resume] AMP scaler state={scaler.state_dict()}; optimizer state entries={len(optimizer.state)}")
+    print(f"[resume] LR={[g['lr'] for g in optimizer.param_groups]}, scheduler={scheduler.state_dict()}")
+    return int(saved["epoch"]) + 1
 
 
 def run_training(args):
