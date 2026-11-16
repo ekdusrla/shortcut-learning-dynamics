@@ -1,0 +1,4 @@
+condition,checkpoints,features,history_data_rows,history_lines,epochs,train_success,completion_verified_record,sidecar_linkage,manifest_sha256,checkpoint_verification_scope
+A_corr095,51,51,51,52,0..50,True,True,PASS,d9b21158389c17bf9a7fe17993acd4b32dd9e9323d02fdf4c90b7f57caa40b0d,Names/counts/nonzero sizes/sidecars/completion record; binary SHA and tensors not re-read
+A_corr080,51,51,51,52,0..50,True,True,PASS,d9b21158389c17bf9a7fe17993acd4b32dd9e9323d02fdf4c90b7f57caa40b0d,Names/counts/nonzero sizes/sidecars/completion record; binary SHA and tensors not re-read
+A_corr065,51,51,51,52,0..50,True,True,PASS,d9b21158389c17bf9a7fe17993acd4b32dd9e9323d02fdf4c90b7f57caa40b0d,Names/counts/nonzero sizes/sidecars/completion record; binary SHA and tensors not re-read

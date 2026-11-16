@@ -1,0 +1,1365 @@
+{
+  "note": "Source hashes identify unchanged private originals. Published JSON paths are portable, unavailable numeric values are null. Original config/manifest/checkpoint hashes remain historical identifiers; they do not certify redacted JSON bytes. Dataset export is for audit; regenerate a runtime manifest on the dataset node.",
+  "files": [
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/history.csv",
+      "source_sha256": "86a6a76835f23c4b2ba1b03e9b226404bbb4887b7264806d191d5ff5187afeca",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/history.csv",
+      "published_sha256": "86a6a76835f23c4b2ba1b03e9b226404bbb4887b7264806d191d5ff5187afeca",
+      "bytes": 16588,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/config.json",
+      "source_sha256": "36134abe491302f41983c8558d77ca686fe46093331b9f4ebebd66e6a03ab45d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/config.json",
+      "published_sha256": "c3723482749b97413590b2cfff6b4a0ab0be1491568869e968393310c0e408a9",
+      "bytes": 787,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/completion_integrity.json",
+      "source_sha256": "9bdc2fb1f749864ad4495a6be58ba0b2c67569d79da2505dec513e248056646a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/completion_integrity.json",
+      "published_sha256": "13f9d4515c4b36c5a62302b24ce082f9d8839dd52113c00595cf13a252838641",
+      "bytes": 133,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "source_sha256": "18fd580bea24ad0cda76b691d4336ecbf8df863d247e23cd6ae969987ab00663",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "published_sha256": "e2e3f7fd7ee3ba9300f8cb03b6cf96e6bb8a947c9dfdf95e398897cd39cac4f2",
+      "bytes": 2397,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "source_sha256": "f262ddcbebbdd1f0f4affda565de2d0233c93a08575d08d2483a6052d2a6e529",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "published_sha256": "64ad67f2b3f36fc1aa9665a09307f036012657adca4f20620b3c728fbed105d5",
+      "bytes": 2766,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "source_sha256": "7b8cd98bf16472997c04410820669dce74d39080af5ab984616c9373cc79ba6b",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "published_sha256": "27b730c8e1b8fbf1b4f0a16bcb3e44de711325360e906a8430426fee99510f76",
+      "bytes": 2761,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "source_sha256": "2b490050c7f2b5a37c788253bedbb32bba1ead2230733e15f85cd1d0023921f6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "published_sha256": "67a5ed91bb37e94e6d5d35ab0a80a8e948aad322af3798b6f343d1efbc5d0161",
+      "bytes": 2792,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "source_sha256": "96841e8f4e227116de44b635918e2f21aec9213b1e2e8eecd269492182a60adf",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "published_sha256": "d73845a612f6aeb1099dc3bb8ac76a9f266036dff8b909e55848a2b17fafd452",
+      "bytes": 2780,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "source_sha256": "96536de48a392cf35a671b74e34215d9366cec6bb9030455bf2da66257eda7fb",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "published_sha256": "88be52aedec0ba8b94aec2ae0be9a78270f5388c1e866cf715630ad1987b07e3",
+      "bytes": 2779,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "source_sha256": "718e55b0441705c26967d1c7ffc374463921fa301a95dae0c398f64fd490bbae",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "published_sha256": "8b7d089ee55fef74e9b65dffdfdbf75907ce0c42694f86c1a8ec2e3a5e0f6e07",
+      "bytes": 2793,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "source_sha256": "00a47f1369b3a736d9851ce65571e854f99fdc223bb100f52e5d339eba2dedc2",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "published_sha256": "ad2c9504471f34a3c2b8c8db2c043708e8f652d716272386484a0276dc2050ea",
+      "bytes": 2759,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "source_sha256": "bb1c893b2584c53cb8a32a36e3069bb228f825fce793d78446128f9d5f905bb3",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "published_sha256": "339b12d5ebf7b47a6e2efdfb57ef7053845abfe8fee53f192fb7ffbace7f979f",
+      "bytes": 2790,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "source_sha256": "352303261e143fedd0a623bd5ee5846dfcc3095200b10affe20e4ad91d028150",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "published_sha256": "ecdd2603ca9baf612ad3fc1a75b127f3f702fde1ae70ad187cfc7bf4f635e5ff",
+      "bytes": 2780,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "source_sha256": "f58f59ae50e4b8ccaba4f400ab35bfd3ebbfd1130a865fd0c254d5a08d715099",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "published_sha256": "1ce702d1ea3d965a630ae5398a63aaddb1483e5f663d38f0e1dfe234e449362b",
+      "bytes": 2707,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "source_sha256": "9bc9ed8d74e9fa16babd39ee7134ee3577a46ccc44f81adb12101d82fa6f2570",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "published_sha256": "0581ee375bc53d6d6cc28bb09f80e0d64a99e89dc80eaba34dff58820930f001",
+      "bytes": 2788,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "source_sha256": "18e21b5ef30cf858138d98d08d3dd35b2eefce1cedfa34ccd5fa0047f367bcb4",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "published_sha256": "4c2dc07fd80a47b3f8904b163e87a2b9dc88a69c8ba13df9b94a3c70da27b510",
+      "bytes": 2758,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "source_sha256": "b1d2b6adc422f50ca052bb45350091b4100c7eecc5707485e39503c48f2366cd",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "published_sha256": "263ee7e8665125a7d5545e4921bfa3871006577181f0679d3e1ddadc5eb8ba0f",
+      "bytes": 2765,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "source_sha256": "9e6c398d2d3c859031928317374f2306ccb0980fdef64bb9f7d7c885f5dda9de",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "published_sha256": "d4b67295be2f3fc680055e0484ee4aeca1113964c0bef83da7c8ae467d6abe15",
+      "bytes": 2777,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "source_sha256": "51c68b96587ac641c655daa4cfa78866b9003fe21e0fd3e1b533136457e1ac47",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "published_sha256": "eeb12a1d6ccce46b5a3f0d6e130c828df76ec01b5a053093724c6e61d7f67aea",
+      "bytes": 2741,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "source_sha256": "66a9e7bc10989553b188990d921b695f5d5c66921124aac061ccbb018abc7b33",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "published_sha256": "3a4878933403f6461e2ee69057e4fe8d858770e0943a61b229c125562693cd95",
+      "bytes": 2760,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "source_sha256": "290c8fef3f36a960e7bb21976be53437f1d570e4e37e83dcd547b97975b95e7f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "published_sha256": "47f3a83eb9cb7d8e826c157807f47104871c260156b5614c0b46ce520cfe931f",
+      "bytes": 2777,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "source_sha256": "39e1f81ff725bd68f90f77616c8d0468daeb91c21f6864896e60cf73711cb26c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "published_sha256": "f6a1dbd8b8df815de7d82c8199d523381ff0965c28619ee7f53a2eb91f269e4d",
+      "bytes": 2788,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "source_sha256": "80c2962368f08db353c1f0bbf6f7c963ac9f27e4cc8da478eb6f1fed15be5000",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "published_sha256": "ec484422144c203957fcae51348d3edc832b866e447cc8b8d25a4a7b204add5e",
+      "bytes": 2792,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "source_sha256": "a7d79077a205c975904f118f5fbd50feb16713eb72be724108069e1580691842",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "published_sha256": "ff6a22851c028d4e0689f5dd810ddb1233192cd51e619d0dba356ac4cd441416",
+      "bytes": 2789,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "source_sha256": "94dc92909a5ba2d434ca2e70574ea204b7bdd4176b96fddc3b6a9f49172853f6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "published_sha256": "1d7074644d7e516afe4b4c437823bfe1d47eff08ddcaef47aa5123567c079acf",
+      "bytes": 2779,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "source_sha256": "37fe158454ec104e9a55455304ecea9908fc3c50374ef6c143cf30fcfb7138e2",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "published_sha256": "28749b6e5f8f1926ba039faf8c2b4a9f0f8acd55a6fcc790a036200ef0881bce",
+      "bytes": 2741,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "source_sha256": "abbfe598f983eb1fa767002a1b2ebb966b290a0651f2cd3ca6ba94f469370ebd",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "published_sha256": "f88889a0d81327df63929574533888526dc2add5fdd0e48595f7693ceb2fc352",
+      "bytes": 2793,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "source_sha256": "99ae30b5d579321f93332f2104e13c3f904f38fc114186eb8f619e9ce4f53793",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "published_sha256": "7d97fb6e536c704b3308941ee21b4bcbf50e238bf5c855134aaec6359cf38b86",
+      "bytes": 2713,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "source_sha256": "90cf93308ec536791732bdd26edd75d33ffb21b82a0cf643ccdbdefbef166826",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "published_sha256": "81e9fc5e616bd62f24ec470dea96d3504e9c9230cd2e8547e14792e853e1b85e",
+      "bytes": 2779,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "source_sha256": "1a2c868e0aaf382bae798db45d8f476119d0810fe2bbe47b40bd2c0b63a29b53",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "published_sha256": "83ca3dc7a8b9a1546859a5d515be57f432a299eaca2de9dfb66745bea6ff4f21",
+      "bytes": 2729,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "source_sha256": "e8a26eea387b9f6c6cdff13f699639895041beb75d95f4f8bfb9d04fb6d94751",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "published_sha256": "cf858b9e949360ef2c797d8346895cabf9605fad12f0829a2df7ac5aeabc38ea",
+      "bytes": 2673,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "source_sha256": "0a428eb64e56c57d36caf398af2aab56b2a3beb7ae0dbdee82de8e038e46fd5b",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "published_sha256": "1e8a3f4357b38f3e48d72a2330fa26408ebd1074d04b8dbfe81aef01442cff3f",
+      "bytes": 2655,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "source_sha256": "83731613ccc6adab41e400f961daa47191903f7c936d528c05ec1a615e98a13d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "published_sha256": "3f0fdf20324e95130018a69c6df8cabf23a4e791b55d87cb036d67262feb357b",
+      "bytes": 2654,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "source_sha256": "4eb55c14932efb29f702ceca7c099a92cc8117c90e1b6480cdbffcbe185f3950",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "published_sha256": "64e24fb60dee1fdd47c3a39716fda1da288676e52f305dfa9e3bcedbbeba77d7",
+      "bytes": 2644,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "source_sha256": "97c08fb93ee4043c4b41e7214e079c094eef27a2195218ebb55ef62e0baaaaf4",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "published_sha256": "cf1b2720949f8c948d3cf37f7c7d97c22ed2a50d183a49325a7b2b4f0822138f",
+      "bytes": 2654,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "source_sha256": "ee58c5994424d9704a4ee7c192bed442b53b9e17c02bbc9bfb5954849fb80c91",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "published_sha256": "7b11e328972b054c43509eea6f97b4e8b6427594b30f9bf6034c947a27df2564",
+      "bytes": 2643,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "source_sha256": "22eeafa550b14c2c264c13589a7427a21d45e5ce7a4a95228b3b00aea7c9d41f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "published_sha256": "2f05e5a265b59eec2be8a4210be29d62f4e3f0e4ecb865488143bbbd6834493f",
+      "bytes": 2656,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "source_sha256": "7b43001d2ee258bc266393df76a8215f3b43198cb7832aad9642439cd95521f2",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "published_sha256": "4a9661e0e5fa665849d9d5a87d68bcf59ed9217f665eeae365e57d291c3258a8",
+      "bytes": 2643,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "source_sha256": "b490a3f8ce43331818c60d70f12ee687818f4a2d980b66654bb89423fe77726f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "published_sha256": "b87616cd209f070c1d2efcabece36bfc9da1b693c149f9fad24fa120bbec7dbd",
+      "bytes": 2658,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "source_sha256": "80258bdbad0292886f4efc910df7fde34e82e728320e2acd97fe3f681f57d2cb",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "published_sha256": "8bed687b82796ca3b3ae6f7325e96fb7942d24da7315268b64fe7a5d07b5289a",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "source_sha256": "4185420c55670cc52442081350eabc0ec3e09b58268bff93958b25c26d0c0abd",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "published_sha256": "d24780aa6d1193447def41a812aa80fca7c4a867966a61848453e86b56614902",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "source_sha256": "0b08ebceb65b8884dc58634a0ab0ac69045d1660641eb0614db6caccb01bad3d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "published_sha256": "a5d7cfccd74cdb27dca1369f2a2a652a7fb267d1b2a0929ce57d40b1c3770649",
+      "bytes": 2640,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "source_sha256": "f39896093ba97ac3f19d0b42ca21b3c4598693f5699b0ad810f87ca96877c78d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "published_sha256": "6d49454522304c6fb304413dee72fba20b5b174720f2c414803646b82a26e636",
+      "bytes": 2662,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "source_sha256": "cbfd6d7c62a274994fba39d07dc1dfb0a3419d6ddf0dfa71b289cf4ed523f119",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "published_sha256": "d4061212db5045ccd7c27ca90bed09ee80f4175d0934a5fa3ba9cdf9c83da3c1",
+      "bytes": 2646,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "source_sha256": "9f2a7c1a421a37da82fbda938a28d273726406d9888cf42867870e417f8ea6ee",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "published_sha256": "eb058166a6d6d8af1def1da74e3466cb77bee9a6d5645764aec276590c1380d5",
+      "bytes": 2643,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "source_sha256": "7b59e88a0b9f9782fa13b2af4249b9d14db5c6da6aec4b37401b98224e9a0403",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "published_sha256": "fb915f9eac2d6ffd8ee12be95725bfc01c96dd6a6f7be0f227a7e9d2b0c9efdc",
+      "bytes": 2647,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "source_sha256": "d298976521c68f49a61a4ace6413a97deb6fa72b4112a20c68128e1461ca5b82",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "published_sha256": "73f1358e16881bf83ebea94b42a80e90666b4264feb0179f86225a4f07c32cca",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "source_sha256": "53aa3e345b87c4fa0cf7954cab562f7afceb7365e30b88e1dc02be8602c63d02",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "published_sha256": "adba9265de43e1e926bdad21c4d1f9a59a8b5a4a80bd7d0a26aa4a8a8be3394f",
+      "bytes": 2643,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "source_sha256": "d81506d568c24d38d5604f7e0603fea051e3dc322b8cd2e5c4771027e8311c57",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "published_sha256": "989b39ee2018511d880c9ffbcaed5e4862edcc93022868ab24283291c886c142",
+      "bytes": 2651,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "source_sha256": "e8961b82250d66f5078525e6fe19c357c6a2661487b78da632a84477d292becd",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "published_sha256": "02d78bbd6ee819a0b53675adb277c43b51521222468a1d363cda743aac62a2ed",
+      "bytes": 2660,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "source_sha256": "65e6f1d0ccb6e2d63ff172f34b3a8a6b9293db97b09aee05da44dee57d87f39f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "published_sha256": "80035b589e0fe17988f3229f55bc5d1d2183083c57bfc04d663280c0f883377f",
+      "bytes": 2660,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "source_sha256": "8a0391c7fb73cbe2733c44845b54c34f6e957e20e124e85acf78a07273755c25",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "published_sha256": "bb48c2e786034cf34740ff22f433dee20ee4b5a7ff80d300917933fa634f10d1",
+      "bytes": 2664,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "source_sha256": "f5f20eeaf46ce4cab43f0d8f0f26cdd17eb694988eeb273d20d9c2bd1537b871",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "published_sha256": "2ec8deb50a021c4970e81c2ae14a7029918cdebdc52e052028fca89bd473caa6",
+      "bytes": 2656,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "source_sha256": "c58fe0cb4b201530271d647ecaf08a9e2164176b24a5f16db0a3fff332b4dfc8",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr095_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "published_sha256": "f7b0578f790c9860cf74ecc2b8967eeeadc795eddbc00f1d5713d1fee223d512",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/history.csv",
+      "source_sha256": "f98a2b6abb0af0f21752f4ef731454a53b591f7b246243e398ee0ed601e36fb1",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/history.csv",
+      "published_sha256": "f98a2b6abb0af0f21752f4ef731454a53b591f7b246243e398ee0ed601e36fb1",
+      "bytes": 16603,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/config.json",
+      "source_sha256": "d06081457183c16acdce72ad2d5879b0b86d54bf3aba4aedcae92a28f709e01d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/config.json",
+      "published_sha256": "6c09665808f3337382800ff6746ced793daa7ffe5165f0c4724467d610fb16bc",
+      "bytes": 786,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/completion_integrity.json",
+      "source_sha256": "9bdc2fb1f749864ad4495a6be58ba0b2c67569d79da2505dec513e248056646a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/completion_integrity.json",
+      "published_sha256": "13f9d4515c4b36c5a62302b24ce082f9d8839dd52113c00595cf13a252838641",
+      "bytes": 133,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "source_sha256": "7fbdf30ed7ea6286f54beffd1560fedd35787d3d0141885e256b09280f1afb78",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "published_sha256": "c6cff5decaf36b7409f1d278a1c21908156fa78ab03332baaf240c10c13c972c",
+      "bytes": 2397,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "source_sha256": "a004daf1f05ad994e4d3444e2e2e66b548a9b4d2614e417f84925010e5bae7a6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "published_sha256": "a41c37cf9cc70eb4cf57befd68fad74357f204354604e93fa1f11443d7e86266",
+      "bytes": 2751,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "source_sha256": "f7af0497f297dd6938150575595befec3a589eab5b6e98d7df43a2793893ba42",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "published_sha256": "81be089dd6d8bab8768e8b3f38e54d49bd22e498d7780a1d20517e20aaac99f8",
+      "bytes": 2776,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "source_sha256": "d8b2217d0f06d3770af1d7a2953e0fd5bc1e3a494980454177a3d06bfd1fb837",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "published_sha256": "d59d3afb1999b3523f9d85a43289d6fd9891fa017e86db5c06867a4b94385c02",
+      "bytes": 2720,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "source_sha256": "346d2685698811a3809f8413fc6683d0df8ad052db4558e4357a3b6e7b1aee10",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "published_sha256": "8f10784d8c7541dc3f5cd75c05feed9dfaaf57953d0478573a29b4182c7d597d",
+      "bytes": 2793,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "source_sha256": "6e038571902b4313dc48b76d5c66de9ef1b3a5c94fa31929cab596ba5c1ff324",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "published_sha256": "5d31a0d83ff06e00b047298d7c252dcb11d88e0f01f329cf87349e5eb6f396fc",
+      "bytes": 2787,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "source_sha256": "525cf37c7da37b7c68552ca142a2738a74f9a403b8017b41923a77ef287e7065",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "published_sha256": "e4750c2f7cfe984845fe729847f95ed52326eba1f4367fe28a477350ddc40ef0",
+      "bytes": 2794,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "source_sha256": "dad2b1fcd10b40089aaaae0e4694a03511cd39a5057a3aaab75e7666c5a39ea9",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "published_sha256": "0ca4a40ac97f3ad9b735c5ee79e42351054d516ea89a9029b0da3526605233e9",
+      "bytes": 2779,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "source_sha256": "52cb55cbd94bd0bf1d40932d56d00c013f540bdd95556095451f07436614f5f7",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "published_sha256": "9dec5d60570946cd0ea831ab0c6e166c27cab89e9abe7010afbbbeb394f40a8a",
+      "bytes": 2788,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "source_sha256": "31d173e74d4881115d0203cf3c02727995cad5791ab892adf53ac7ed6058899e",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "published_sha256": "3ed3fd4364e83ec6ff2283e6f24a277030de8dbb3899f7a0fd909a960c16ea92",
+      "bytes": 2799,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "source_sha256": "6f93dd9bc697e02e12653d9b83130caaafa39670ef92b97fb443388499c99ae3",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "published_sha256": "5a08b4334af4b54911411720430eb890faaf102646d09aa5e45599d8a9b694a0",
+      "bytes": 2754,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "source_sha256": "b713c15e1c06bf81d9843b4808f7b697e92f60827bbc242b8d44b89ffefb04a0",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "published_sha256": "1d7d4d6937d8c2951046b9875589d75d972151d2e5ec5d58048d16ebca858ad1",
+      "bytes": 2790,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "source_sha256": "1ae857ce9470c19280c90ee082f4d4b137f2ddf7a6bb8f8875633874d4126520",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "published_sha256": "2da4868c6679158d669b5da849484d5453b2cebae6635b35e692e32fde790162",
+      "bytes": 2773,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "source_sha256": "00737340d9898e29abf00c4ffeafb217ac751a4512f9709b6b7eba17e8bf0497",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "published_sha256": "3ec64b29445a4f04f3116ba920360648e51f753d30bb347e131a7d6c8c67c4c9",
+      "bytes": 2778,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "source_sha256": "c56b70abbd8aa53a11977f152baf5adc72096cfab6568e646d56ccd774ca79a9",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "published_sha256": "4a90864a1d9e8b3e7aaf9ba7e0f5f3923486c3b8da75a197be768e0fe076f15d",
+      "bytes": 2789,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "source_sha256": "bd40c80d1e2e1c5a2eeed121e9217029e344a7f156d4471c6525ad013b0e778f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "published_sha256": "8e41de68d2d5158ed81ebd92f952aced22dd8068ca792a28f59a2ee14f1a5608",
+      "bytes": 2767,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "source_sha256": "7b8321a198841238a254c3df5df37dfac4a85a5a4b8d946326cbcbb14e3a59fe",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "published_sha256": "f8d622674c542e8f222ded9c17625347c9f707ac250ac68a6fd372c75a484e7f",
+      "bytes": 2784,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "source_sha256": "dc81fc7da17bb45544440e6f5d1eb5279591384ea75ff2dc245c7f2adf750e0c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "published_sha256": "4cead39f0d9f0bd44e9de3ac66079b1f7ea977a4245394eca9b6fad383b48096",
+      "bytes": 2795,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "source_sha256": "fccedbad55e9da31ec5d2e9c9740f4fb7413aa2b71e44d42fe46e9638df902f1",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "published_sha256": "3da2690b112a5a0b7f16bca6e25189609652728069f9f7cd260ac655d135ce47",
+      "bytes": 2796,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "source_sha256": "bc1cb06dd9079a94c8609f325df9a04160937225353a966ae10a44bb9bb2db73",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "published_sha256": "2f22f93586e0b6847141c4806226b2fe4c4f7afdf5c5f2daec3e3343d63ef6d4",
+      "bytes": 2782,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "source_sha256": "2013eaef4bc9e544410bdebc6b06ddb3b657fad597fe187fbc4aede84f1057b4",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "published_sha256": "e840b4d0f12dadde19784f95609978a10a0a6cfb49573bf2d8f2d2f7b156d15d",
+      "bytes": 2780,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "source_sha256": "eaac837b159c52b3e061c9896df6f58b5a033c7cc227dabcdc17eb5326188d64",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "published_sha256": "5b6a8c4e854ceb11d01bd6b18f76f035fa01e4050f87469009de766923ef2298",
+      "bytes": 2776,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "source_sha256": "18cc4857a9489c5e0556f1b786ba0c911e025a56e1f2461774ec630f3613ffaf",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "published_sha256": "5f1799b35a4ca3e9d2c489c2b7fbc221d78661bba13207415203e307e9424c8e",
+      "bytes": 2774,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "source_sha256": "42e0b1db1c3209713a63d40f7f7db1db8b245e7cb1bdd23dc53544ece20cdf6f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "published_sha256": "02a1c9c88ad6a451b96165e931f4d78bd027bf5e3d44e42ea1b611d4837c827d",
+      "bytes": 2773,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "source_sha256": "868e3b23cdc2887bee952018ed816e9d55a536f028fdfbe1f3accd18955d5d85",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "published_sha256": "c08623185c54287603199bb25bc71082fa12ed2c917eb12f034cfdd8f4d1b3c2",
+      "bytes": 2755,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "source_sha256": "c8898a4e3bb8a5db6f2ff5ef14b2a10415c39ff1879615388d08354c40e46a3c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "published_sha256": "23c459f2f7376cf94f47ad13fb6366bbb7ec00c3fa59c1ebc28a3fa927c05104",
+      "bytes": 2778,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "source_sha256": "56e7eb2c03aa87aab61ba6e25adc92338cddf1341071565e3263ea4ee8e6cf58",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "published_sha256": "09d0c1371f71ec63b60ba0ced371ea31ae420b642a79e3cee8dcc6ccf69a74d7",
+      "bytes": 2788,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "source_sha256": "616be987768848faf2f3775cb8066dac9d26b4952e2db9fd829549acb3a9d59e",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "published_sha256": "439b0621ec6b5189600bf3cd42e95a287744e9d9801612949c2367573f4bcc64",
+      "bytes": 2739,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "source_sha256": "cb80c51435e754ce7cd0bf622f589dc6ea12653cf4b68c087505980b86fbe8d9",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "published_sha256": "d4394a40e03c93cb8abaf42017921c2dc648e6cd28003c07a59707faa52dd470",
+      "bytes": 2777,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "source_sha256": "6e7d624c44a262b44777d30322788d4fb0d1f74d03c24b854106bba226e021b5",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "published_sha256": "eef93300aade7b722f55a950b53144a6bc2c20728504cad7191fdafc877ec5a2",
+      "bytes": 2673,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "source_sha256": "e8a113e58980a25bc1fbe3b96bf382c3cb1e8ba94712fa3e01f96348e445d398",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "published_sha256": "ecf757db97f26c15d7697a40556d590cd7623c601a0e6832272ec08a60aef76d",
+      "bytes": 2641,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "source_sha256": "8ce45f9a7abdb2571788f42fb91c8ab5700f0b484e97bead7a7a1b658c2b333f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "published_sha256": "71cc3fe78ac3248c542ca8c8ac66fb48bc6925cf98b544fa0e1fc21cb6913410",
+      "bytes": 2657,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "source_sha256": "144472dc2e41b5a094bc4b93ecd12ce7d810a309df770cb8818f37e3c954e5c3",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "published_sha256": "05caaad7f31b8ee02d0c942f305aefad87946af0103b28c7c2c16a7773dd2f81",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "source_sha256": "d1ba6e109a76a6d29d9d9f7442b1972d4c33fdd2c735b4aacab0200eb63d7c85",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "published_sha256": "299f89e2923331fef24b1811eb93a781a0f1b4f9fc7a715439a5c9e20041aeb0",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "source_sha256": "dc41bdde8218257d2bc46ed05ba95b5e81180ef994bee81f56e956e926525a49",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "published_sha256": "c423715c2ef661df63d11dc22fbeb6315c9dc511229b18de37227a23bda03cc7",
+      "bytes": 2658,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "source_sha256": "d768970145a2cfa72b7477af68b5cc03e460fc71991df6539429b55ffd7521f1",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "published_sha256": "9272e5614ed832acad0d71aed9c863f7a9fc7d4b485a58c9776e89f5324c58ac",
+      "bytes": 2641,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "source_sha256": "f50a3a313512354969448ce3cdc5f4a996e98fdae5eb28463244304d9c569df6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "published_sha256": "e4a061ea5e386967b15df13cbf33c37dc9c8b1a4635fef1c32589b72a7b16fa3",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "source_sha256": "b03adf9d88807b167562e7f129f453c7ad0b54feda5583aa4cb0426865f9a108",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "published_sha256": "149b4e99405036bd5236d835cbd97da7aa0ca20b71666574f746e9f5b006d046",
+      "bytes": 2658,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "source_sha256": "8b7d213322bb9f7056b2fcc97510c47d736d024e8bf309f1256c09d333409a75",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "published_sha256": "28768737777558dc71b02ab3bb84e0a5b678d91e3beb3b3f6b36e6c434bd651a",
+      "bytes": 2654,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "source_sha256": "381aff7019aa6d76d2df7dedb8bcb16b44119beb63559068bdb85f315807b275",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "published_sha256": "b3f2350e5e416bdf7c0fc092c6b378737e2a82eee86615a413131e2b1e810940",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "source_sha256": "1664185069ce696bbd8b1d973fa019a69edfabc73410583eafbf4f438ba28e70",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "published_sha256": "56ebf561f1d31e25e8094a94a8e1c7e46b934182140b0bef9e610e5b632e5781",
+      "bytes": 2655,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "source_sha256": "909c2478ef817dfcfac74ba53a681ae79ca75c6358d28580e1cff5f8caa1f5ae",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "published_sha256": "7a600309cc8c8a614bc4bfeb5f675ab8fb5f46b0846cddad5fe5a011a00b2cb6",
+      "bytes": 2650,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "source_sha256": "a1192025b0ed3b0bc0cb8547c521b3443621f850f15baa26f32002fc03097ac1",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "published_sha256": "65267238a2f7c7340b16d580dcc715c3d8dcc7b13a6d616c331341222de0c245",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "source_sha256": "c30a4ea98219dd6347c0c663cd04c1b27c3f69fbfdcaef08239c06ec2d20874e",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "published_sha256": "143246a51f8ea37f01b2e44d373d45032af74175a8535a161cf02c1b52a07434",
+      "bytes": 2662,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "source_sha256": "4bf9cc0fdbd490753be3c169f842e98047cdfaf645a0b12ca0eed21252063bcf",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "published_sha256": "2989fa44ae7ba94a3337ae827e655bfc3dacc5ba9e73ac3c6089c3ea71231557",
+      "bytes": 2662,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "source_sha256": "1ba9d510750a87f042d573dac3d5c618c36ec08777bea7a472efe270f5a9a4f8",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "published_sha256": "0bd35189ab2fd649b0a3ce5e8e9e28c2d018aad91f73036d14786f5c749b8839",
+      "bytes": 2654,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "source_sha256": "dc97d117312bdc0b4eba7d42bcaca175c2ceeb4dec56dbc7ea2ea0055fa0f65a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "published_sha256": "b69f0701c653ffbea0cbbda279b68d2c2a9280aa42b58ff9c3d43f1a8fe112f0",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "source_sha256": "f4c4b66b4b4e7e54a4ab6ee11cd3eed82783cbe426d0d99ea4201b222db23d00",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "published_sha256": "e407696270d925f289db5d424f0e11587a000a432a35a74acaf86b2a369bf065",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "source_sha256": "d9b1e5a422a86d242c872d783f4fe04837e55b281803be3c8f93079b1152a76c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "published_sha256": "d9ea55196adc001b46aeb687b3e34bac2223bbcb7b71f84c16890778514fdf55",
+      "bytes": 2658,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "source_sha256": "a99beb2e313d94a23fcb75e96df07e85e36714d4cf2cb8a5a21ca27c3099852b",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "published_sha256": "ae75f7084486d359fb33b6ab27add09744680c7104806d94123f939970533d46",
+      "bytes": 2660,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "source_sha256": "3b6214790f45402715acaf5e2597f93200ee27e54ac7361e1d323d0f396665b6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr080_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "published_sha256": "4a3ff4abcf85d454de733bf081cabdf81e811d9497c45d3223a3ac210dc67d54",
+      "bytes": 2658,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/history.csv",
+      "source_sha256": "32092fb9b7c6526c2aa6dd4240e2a37dd5087726d5c568e7687abc2a1615a8f4",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/history.csv",
+      "published_sha256": "32092fb9b7c6526c2aa6dd4240e2a37dd5087726d5c568e7687abc2a1615a8f4",
+      "bytes": 16414,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/config.json",
+      "source_sha256": "a5fed1a7caec4988f8728dc825daeff6569ab126ccb32923cb6e674cc4e2dff2",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/config.json",
+      "published_sha256": "77e4f4202e623572b7440370abcd27ef15372fb9f4c4adf1ce7f23cd6f5f3741",
+      "bytes": 787,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/completion_integrity.json",
+      "source_sha256": "9bdc2fb1f749864ad4495a6be58ba0b2c67569d79da2505dec513e248056646a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/completion_integrity.json",
+      "published_sha256": "13f9d4515c4b36c5a62302b24ce082f9d8839dd52113c00595cf13a252838641",
+      "bytes": 133,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "source_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/TRAIN_SUCCESS",
+      "published_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "source_sha256": "91736117e07254811002d47f3d3f7f4f4ff381371638bad0a8fe1e925326cd55",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_000.json",
+      "published_sha256": "5cc8a0e3a4f5de4b9b97a0ccf7cebc387ef948088f48c80fa329eac3ef1be773",
+      "bytes": 2397,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "source_sha256": "f61bb1aa4938aef8388e505b4287b8a54755b70b713fdcd401adb5ddb51c33a9",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_001.json",
+      "published_sha256": "a2855efba985298707a51c6a1d34244e84de2ac1b169d8d57a98ad5d76a185aa",
+      "bytes": 2745,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "source_sha256": "0d98fca19a6f86056fc96a94feaeffe44e851895c2a31b6617c0199269e8e5cc",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_002.json",
+      "published_sha256": "ba07495ea7e55d9b4076c14b0b154210deb66e423e5abad83936981750272eea",
+      "bytes": 2776,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "source_sha256": "9821d7daae3af3d56b47e85dce710ea78e3af5d65c0ff938d0576ac6388d9bda",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_003.json",
+      "published_sha256": "b301e35a50c555248f8af6b3ffec5d3ea82bd61f3d8bd374b9ca85413af60153",
+      "bytes": 2770,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "source_sha256": "fea64994127e5ae56a0142d0c64bafd6ba320613830f747821a709f560d70489",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_004.json",
+      "published_sha256": "e78e2bf6595a9eeda8319b8678bbefb9427051119a4f239c5f14df61d91c11c9",
+      "bytes": 2777,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "source_sha256": "3d4f90c55d27932f00dcf58e1ebe1c449db0944b79773256319a20e88bcce68c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_005.json",
+      "published_sha256": "8eb540930eef657c53b7300c96f8403c8e58c16c4bfa2148ceb6337e2349a7f9",
+      "bytes": 2787,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "source_sha256": "18a7872f96428434efa58875f954a46be2a57b8ed4899c77b1629366d889a1c3",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_006.json",
+      "published_sha256": "92cd9e61df9110bd52b08b6332cb64c2b3ee912959a4b00c173ebf472dc93c65",
+      "bytes": 2780,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "source_sha256": "d3abb4147c0235ce7f23ea9bf2e0fcc049f54c1f9cc51cf00a6c83c7300ff866",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_007.json",
+      "published_sha256": "7677a679538f6a58ab8b842987c2bc8b4406c0025a1457efd6ebedec27457fe4",
+      "bytes": 2730,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "source_sha256": "a0d8bee80ba0ad47d29598fbb1888c658f759f73f12f088c9b164a507182441f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_008.json",
+      "published_sha256": "9f3fd3389add5e6b631f0df23f70ef6efe5d10a43d90bf5475c635f89e35c5e3",
+      "bytes": 2775,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "source_sha256": "6a7a4f1cb84b7e7300b46f1ba2a8bc3fba18b03a60d29b8f1a8216959d55162a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_009.json",
+      "published_sha256": "9f3c32a8e818f024cee7aac69cb8d8c2db86963eb5b916de5c0986bab29dd2a6",
+      "bytes": 2792,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "source_sha256": "f2e937505b79a4bdd4ecbb6bd50ba0f2c38d7cc5b0fc659bd286de3877c3ddcd",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_010.json",
+      "published_sha256": "034b6fd468c6ab54fd51fe1afae84d336e01b1a623c2d046e39a9735b10cfe82",
+      "bytes": 2789,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "source_sha256": "592d335a70667e422bee02210549448864d856f7d6d090e3ef4e99e724190471",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_011.json",
+      "published_sha256": "c5f04dd63afc0426a986fe5278c0d1f43f506e883f10e46cbf180d1393863605",
+      "bytes": 2789,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "source_sha256": "d163452c4a90ec91cb1937c795c625f7b9b4b495cd9a4fbcfa041eda52ba638a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_012.json",
+      "published_sha256": "5fbfe2c68cc7c1e48038459cbf6a37ca3f409234aee3caeb78dae9f440b847f2",
+      "bytes": 2735,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "source_sha256": "397b6f75ce2d46b4908c4fc41cda4f3d828779dabc038de9fde10ed0b72cb8fa",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_013.json",
+      "published_sha256": "995da802b95f844803b2f20987c8d356e17ac7b357e64e9f20d36a366f65f6aa",
+      "bytes": 2773,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "source_sha256": "5dd43dbd0b25c0fa47dea586f3f2e74c92c4da4d086c3b676d5f3eaf63fff2ec",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_014.json",
+      "published_sha256": "3203978ba2679ffd6f8c62758012a935c1cdfae0a496b1131bb0bc8ec999ce3e",
+      "bytes": 2788,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "source_sha256": "b01ab52583ba784ae50272bbf4d1d2a95cc9ade6dacdefb1945b783cb76754fc",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_015.json",
+      "published_sha256": "1e13df401b9cd622a195686a7b6f08c8ac82d0734241d27a9031c7bcc3219aee",
+      "bytes": 2791,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "source_sha256": "08ac7eb9868d9546324e26d3d809016c0340789f2b1310dfa25dfc7d506ba49b",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_016.json",
+      "published_sha256": "ea2828dba5dcc7b11b6063f3735dd6090d84c3ca21a1f6106caf10ac3108a941",
+      "bytes": 2793,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "source_sha256": "23bda1441b8e8f36afa985d02c77fe32fa7c07f83db04a7e551e4db35e3e4e02",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_017.json",
+      "published_sha256": "d39fdf13b36e87c9bd3cfc0ba8c6ecf15542d8615eb0f0ee6cc2c93b0f125815",
+      "bytes": 2778,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "source_sha256": "1d530832758e98fee15401dd678791b509cd4284e7895a0417aeb48c23a5178a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_018.json",
+      "published_sha256": "733f782b45efff4f6c2a679b5b06c1f509cbbf56740657ce39704d430cbd94f8",
+      "bytes": 2758,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "source_sha256": "6fe52284f41bac4ab5c5b415035c1560b29c111051120a8c08f057517e7e1ea3",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_019.json",
+      "published_sha256": "f73055a081e8e59688788d0499fe30a3d9c3930b22e9e4877b210b467cc4dd9e",
+      "bytes": 2755,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "source_sha256": "c79e71ec208e95c9eec71c59b4f4814471e01f8cf2dc18209e4b414a0381eae0",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_020.json",
+      "published_sha256": "6ad0e6915f6d7b3a7a12dc50bdf95d246091d4d55034b45eeb7a60bbf46a37e0",
+      "bytes": 2777,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "source_sha256": "35cdc57ff0461a8bcff42d253ed837e11ff7717974dda10c14a772fcb87c2a16",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_021.json",
+      "published_sha256": "1ed1b3193ced3c3dd886fdb045b161e26b87398e2ad253bcf2e6812e407c1c70",
+      "bytes": 2792,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "source_sha256": "dc05204fad3494755ad7761c04d8bef479f719a0afc023199cda08af1adafe36",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_022.json",
+      "published_sha256": "6ed3695083c1e8eb24ee6ef0c464615ee7ebe59536223966d40158f31986e2ac",
+      "bytes": 2784,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "source_sha256": "26a195aa63aebbfe810f0d9903488984c7a209795ddd158ffb9d6ebaa2ad13f2",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_023.json",
+      "published_sha256": "484db929b049578bf3a3975d6f024e8c3f9d09ea7fe3218a8eeeb77dd698e564",
+      "bytes": 2755,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "source_sha256": "e498fb405d210671c520116a91e3d9a759668e0243589f0e5f2ec3426e686057",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_024.json",
+      "published_sha256": "80a78515c35de71a1998a3290ba80700661591a02df574bdfbccefc7f8bfe355",
+      "bytes": 2744,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "source_sha256": "cd4c8a4c0639b99e4e00325614faf4a866a39deecc8ea464536ff4b8deba96a8",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_025.json",
+      "published_sha256": "930056c94f7ac5dd6511f99f9f394dd1a902cdc00291f4042391a20be8f35cb1",
+      "bytes": 2797,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "source_sha256": "ff7aef750d9ef8e62808c60488c108e7943d1acea157d3b7ca27bff2ad5ee877",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_026.json",
+      "published_sha256": "8427ed0c9f8649a677df3f3a0221edbce9eb866a818694eb7eed5a439e2ae6b4",
+      "bytes": 2763,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "source_sha256": "aa99349e41abd13937a4b2620990c00ac7ddc4ad7820eb234275b3e09b071b36",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_027.json",
+      "published_sha256": "c249bf01d3de55dd5a4ed1a5302f50c8730080cfa80587b82dfab19f169ccd92",
+      "bytes": 2775,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "source_sha256": "3e15b1770e8cdf15b0834a467b1fede95ee7cd3dffef480a5b83cbb2262dbba6",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_028.json",
+      "published_sha256": "c5a491fb5052e50e0638d7cea6657cb3bdb658bad80ebb1075124cf9e04a6cc6",
+      "bytes": 2748,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "source_sha256": "a6a9a5cf6a3cb74c9233e653f3162f315bc2db4a7ead01612e96a99245e1be0a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_029.json",
+      "published_sha256": "f17c15ec76d94c28fbd3acd977bd0f61c76cfb65a63cd8397624b48b1f264cf1",
+      "bytes": 2767,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "source_sha256": "e1b14a7a6bfc5ea462e7fa67dcfef6698901d6d52b3e1588227212a6a60c1b39",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_030.json",
+      "published_sha256": "b1314930cb2df4e1c8b7f14dae60e0f178864aada19be71289f9913438028ebe",
+      "bytes": 2762,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "source_sha256": "84e4565ea7b3880f6054d92d77cf924a2c9f8e8879f5a223974eb661fe851ca8",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_031.json",
+      "published_sha256": "b4b0b6afc1f8bd942bcfaa63735248e0e305308dc9c246175233adef0a1b496e",
+      "bytes": 2618,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "source_sha256": "cee7d38c12b1f37fdf112104b1609b05e2a54d8ba4a39dd8fc50698263adc210",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_032.json",
+      "published_sha256": "c446ad3155d5b9787bad82801d6d04fb9421b1cd9f9aee868df6a385c502d5df",
+      "bytes": 2775,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "source_sha256": "bcbab6f4883e67f4256a5d73cfb23b3e292b3e689d3f341fee63e201ed60a06f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_033.json",
+      "published_sha256": "54c3930aff7e1b76ef358ef517a9e4b1dbeac47ffb9ca11e548ddb0de2516d22",
+      "bytes": 2763,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "source_sha256": "d12d157d7c4019e77ed26a829586bf7659a645b4c000aed45c0a41c8b183aced",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_034.json",
+      "published_sha256": "b76e2d3ad408908a40479af952b5f35471c829ea73d5cbd191ad8b3ec77b7b36",
+      "bytes": 2765,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "source_sha256": "aa0b81d0f3533881f370d401d1f3ec8d987731acb10049d04ef46c2f5e663586",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_035.json",
+      "published_sha256": "009dda169f327b02862b5b2d1617e5b07506e50d32f76bbdcd4694aa067e4876",
+      "bytes": 2767,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "source_sha256": "090f5e0dbca6757791cfe6bb81fcd7fd225b60e47f4c492afae1c1fe78bc0e90",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_036.json",
+      "published_sha256": "9427d5aa4e7955b2abcd94ac1ab1c0d57027ae26ff4ee96e81fc653b3a99db87",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "source_sha256": "a6f7bde301fae1f38ee49d6910f47829b3c8ba8218a8865f4383a896ead1cd0a",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_037.json",
+      "published_sha256": "86050beaac72cb249ca5580fc6c7af40d7dc302e7b44e0419b33299dbe5b883d",
+      "bytes": 2646,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "source_sha256": "f7ddca3a34c941a63555cb93f6da1f55f0dd57cd53ba5b45804f51d096e70a96",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_038.json",
+      "published_sha256": "1c2afdb4507ea7859352985f566f85745df7b29cb319ac9f1b50ba8ec8770bde",
+      "bytes": 2647,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "source_sha256": "eb789851bff7bda8845372d633825de1c38201620d8b0bdcda3a2ad9b376578f",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_039.json",
+      "published_sha256": "e470c857d1c7260639e7e98e2f95c7301408e324b49ebfde4fc0b7f9926dd843",
+      "bytes": 2648,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "source_sha256": "ec10f043258450b2a064f51f45fd8d4944ce9539760d2fd30aaa2f5ec3820885",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_040.json",
+      "published_sha256": "bd497ecf52b2724bbbf93aaa8c7f770f8b2d5f6314044525cd1da1bcb16278b8",
+      "bytes": 2665,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "source_sha256": "a485c5baf968b402eb1c92850578b87f24ef68fe73d1e9dd4fbb2519ed05bbbe",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_041.json",
+      "published_sha256": "9057c876b9ab8813f1f25d2444bf5bace95f7d221fe42492091abb4ee2e8e789",
+      "bytes": 2661,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "source_sha256": "e5d7e6cd3ef4e69fa9b7c8c2163436b0571c671e825127ce9cba57c13965337b",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_042.json",
+      "published_sha256": "1304fcb4c867adeb4cf7b5e1728c5e716e56c73c172fcc141cbef2d3f0124cb8",
+      "bytes": 2647,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "source_sha256": "dde544fbef4a55b7a52c6f9ac4e4549240d08688a7245323660f7a4c0eccc15e",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_043.json",
+      "published_sha256": "23c1a1a288b09550781fd428457853e465977f02b2a60cdaa7dea32e406f766f",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "source_sha256": "9df5e7ccf1ed37f86fb496eaa4cc2397bc91a1d56d6b0f18930d1635a4166708",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_044.json",
+      "published_sha256": "32a38a796367f091a67d5c228cbe722fad88939b8ae1a41fcacae6ed2bd39838",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "source_sha256": "005a098e7aab6ca424018b907f1670ec2dea807563a2a671807b49b5582a793d",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_045.json",
+      "published_sha256": "8809f4403308939fdf2a5e607d192c9367fc90d710d50a22d9e2ba5b4e370029",
+      "bytes": 2659,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "source_sha256": "6d90730d62362e85cb25cf64c4703de587401e7c2ce0d2f8dfa4ceffe752a13c",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_046.json",
+      "published_sha256": "b816d53ca98cdd1efcc0688e70b154431f469b3ed2c6864109fd2134fa94e9f7",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "source_sha256": "76328468070ac0635ee6f15697705aabec4eaffc979aa75f365f52ea7ce231ff",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_047.json",
+      "published_sha256": "e068b3118a72e9aa3c0e91d4a94f0af213b089f2a303b103dec02c07f3d58788",
+      "bytes": 2662,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "source_sha256": "44d8eda3799345747ba3828bb45e944112e6ac2f5d516dd71c1f804cf0798ec0",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_048.json",
+      "published_sha256": "9be2d6bc79940e9d6a10f4adfd9c4d4e9d0e6aa58d5bc3baeaa8b9a79a8ee2c1",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "source_sha256": "8125ffd34a3845be7af194eb1df06f5f81704ff2c5633dbda8687dcd8dc711b4",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_049.json",
+      "published_sha256": "ab03097f6b6baa0e6ee976932a953e1800dbcfe601c834e1984d12bf0e4a34c5",
+      "bytes": 2663,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "runs/waterbirds_vgg50/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "source_sha256": "46f0a0089755f1e5e9856a73eeeb346af16e0a47b84e02f98f14ac5ce4829fee",
+      "published": "reports/waterbirds_vgg50/shared/source_metrics/A_corr065_seed42_e50_contentv3/epoch_metrics/epoch_050.json",
+      "published_sha256": "5bd748addbc24e895ca2902a6f913f3df1cd39f57fde386099d7da50e24fbe73",
+      "bytes": 2646,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "reports/waterbirds_vgg50/dataset_moana_u2_content_v3/A_corr065.csv",
+      "source_sha256": "0df4856ae83c3352c00bc4d89717218570d6608052e86492bacf7a7a0bf52b78",
+      "published": "reports/waterbirds_vgg50/shared/dataset/A_corr065.csv",
+      "published_sha256": "0df4856ae83c3352c00bc4d89717218570d6608052e86492bacf7a7a0bf52b78",
+      "bytes": 1502724,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "reports/waterbirds_vgg50/dataset_moana_u2_content_v3/A_corr080.csv",
+      "source_sha256": "3c72cab9b9c2cca2a55af5bd3e7cf19d6ebeb8c403f9bbf25befb19a65fca289",
+      "published": "reports/waterbirds_vgg50/shared/dataset/A_corr080.csv",
+      "published_sha256": "3c72cab9b9c2cca2a55af5bd3e7cf19d6ebeb8c403f9bbf25befb19a65fca289",
+      "bytes": 1502724,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "reports/waterbirds_vgg50/dataset_moana_u2_content_v3/A_corr095.csv",
+      "source_sha256": "482aa5b380bd0a4e58a20505e7ccaaf18ce3814b3ef4042cea16d3d919b95719",
+      "published": "reports/waterbirds_vgg50/shared/dataset/A_corr095.csv",
+      "published_sha256": "482aa5b380bd0a4e58a20505e7ccaaf18ce3814b3ef4042cea16d3d919b95719",
+      "bytes": 1502724,
+      "transformation": "byte-identical"
+    },
+    {
+      "source": "reports/waterbirds_vgg50/dataset_moana_u2_content_v3/protocol.json",
+      "source_sha256": "d9b21158389c17bf9a7fe17993acd4b32dd9e9323d02fdf4c90b7f57caa40b0d",
+      "published": "reports/waterbirds_vgg50/shared/dataset/protocol.json",
+      "published_sha256": "f80c22997bd6fd6d361e592cb81758e89e76a8e28fd734d12ce4b03c08c19bcf",
+      "bytes": 6004496,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    },
+    {
+      "source": "reports/waterbirds_vgg50/dataset_moana_u2_content_v3/split_audit.json",
+      "source_sha256": "978c4f8e89cc1d0086209b0d4e47899bd4dbc1f2034b1619111610e6c949830e",
+      "published": "reports/waterbirds_vgg50/shared/dataset/split_audit.json",
+      "published_sha256": "8a5bdce42512cefd1b325b219a8ee366ca3c508b3501b3dfa2fbe2a963c1f367",
+      "bytes": 1625238,
+      "transformation": "portable paths; nonfinite JSON -> null; manifest data_node omitted"
+    }
+  ]
+}
