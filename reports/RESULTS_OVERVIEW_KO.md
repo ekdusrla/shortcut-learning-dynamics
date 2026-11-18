@@ -5,14 +5,13 @@
 > - **H1:** epoch가 늘수록 shortcut 의존도가 감소한다.
 > - **H2:** shortcut과 정답의 상관(correlation)이 강할수록 core feature를 배우는 데 더 많은 epoch가 걸린다.
 
-이 문서는 GitHub `main`에 올라온 팀 결과(PR #11–#19)를 한 곳에 모아 정리한 것이다. 새 실험은 포함하지 않았다. 수치와 그림은 모두 아래 원본 폴더에서 가져왔다.
-
-> Colored MNIST 6개 실험을 같은 명령으로 재실행해 재현을 확인하고, 체크포인트 기반 그림·stress test·proposal 대비 정리를 추가한 결과는 [`cmnist_rerun50/README.md`](cmnist_rerun50/README.md)에 있다.
+이 문서는 GitHub `main`에 올라온 팀 결과(PR #11–#19)와, 같은 명령으로 다시 학습한 재실행 결과를 한 곳에 모아 정리한 것이다. 별도 표시가 없는 수치·그림은 팀 결과이고, 재실행 결과는 **A9절**에 모았다.
 
 | 파트 | 원본 폴더 | 주 보고서 |
 |---|---|---|
-| Part A. Colored MNIST | [`metric_final_analysis_406/`](metric_final_analysis_406/) | [analysis_report.md](metric_final_analysis_406/analysis_report.md) |
-| Part B. Waterbirds | [`waterbirds_vgg50/`](waterbirds_vgg50/) | [WATERBIRDS_FINAL_RESULTS_KO.md](waterbirds_vgg50/WATERBIRDS_FINAL_RESULTS_KO.md), [독립 검토](waterbirds_vgg50/WATERBIRDS_INDEPENDENT_REVIEW_KO.md) |
+| Part A. Colored MNIST (팀) | [`metric_final_analysis_406/`](metric_final_analysis_406/) | [analysis_report.md](metric_final_analysis_406/analysis_report.md) |
+| Part A. Colored MNIST (재실행) | [`cmnist_rerun50/`](cmnist_rerun50/) | [README.md](cmnist_rerun50/README.md) |
+| Part B. Waterbirds (팀) | [`waterbirds_vgg50/`](waterbirds_vgg50/) | [WATERBIRDS_FINAL_RESULTS_KO.md](waterbirds_vgg50/WATERBIRDS_FINAL_RESULTS_KO.md), [독립 검토](waterbirds_vgg50/WATERBIRDS_INDEPENDENT_REVIEW_KO.md) |
 
 ## 한눈에 보기
 
@@ -22,7 +21,9 @@
 | Epoch 50 성능 | 정확도 95.6–98.9%, WGA 92–97% | 정확도 60–81%, WGA 6–30% |
 | Shortcut 민감도(Epoch 50) | 9색 flip 0.9–5.8% | 배경 교체 flip 17–66% |
 | H1 | **부분 지지**: 1→50에서 크게 감소, 하지만 단조 감소 아님 | **대체로 불지지**: 0.65에서만 일부 개선, 0.95는 후반에 재상승 |
-| H2 | **행동 기준으로는 지지**(강건 행동 도달 .65=2, .80=3, .95=46/미도달), core 학습 시작 지연은 미확정 | **방향만 일치**(낮은 corr이 최종 성능 우수), 시점 비교는 불가 |
+| H2 | **행동 기준으로는 지지**(강건 행동 95% 도달 .65=2, .80=3, .95=46/미도달. 98% 기준 .65=16–18, .80=25–30, .95=미도달), core 학습 시작 지연은 미확정 | **방향만 일치**(낮은 corr이 최종 성능 우수), 시점 비교는 불가 |
+| 재현성 | 재실행 6개가 팀 곡선과 거의 겹침(평균 차이 0.07–0.29pp) | 재실행 예정 |
+| Stress test | noise·crop을 가하면 다시 색에 의존(9색 flip 최대 60%), blur는 영향 작음 | 미실시 |
 | 공통 교훈 | 정보가 표현에 있다(probe) ≠ 모델이 그것을 쓴다 | 낮은 flip ≠ 강건함(한 클래스만 예측해도 flip=0) |
 
 두 데이터셋 모두 **correlation이 높을수록 shortcut 의존이 크게 남는다**는 점은 같다. 다만 Colored MNIST는 결국 거의 다 극복하고, Waterbirds는 50 epoch 안에 극복하지 못한다.
@@ -157,14 +158,78 @@ Validation, 단위 %.
 - 같은 시점의 숫자 probe는 97.8%로 정상이다. 정보는 그대로인데 행동만 일시적으로 무너진 사례다. 원인은 미확정이다.
 - **같은 명령으로 재실행했을 때 epoch 28 급락은 재현되지 않았다**(WGA 92.4%). 대신 epoch 14에 80.9%로 떨어졌다. 특정 epoch에 고정된 현상이 아니라 실행마다 달라지는 흔들림으로 보인다([cmnist_rerun50 §2](cmnist_rerun50/README.md#2-재현-확인)).
 
-## A9. Colored MNIST 결론
+## A9. 재실행으로 확인한 것
+
+팀의 6개 실험을 **같은 명령·같은 설정**(lr 0.01 고정, seed 42, 50 epoch)으로 RTX 5070 Ti에서 다시 학습했다. 저장된 체크포인트로 팀 결과에 없던 그림과 stress test를 추가했다. 자세한 내용은 [`cmnist_rerun50/README.md`](cmnist_rerun50/README.md)에 있다.
+
+### 재현 확인
+
+| 조건 | Val 정확도 평균 차이 | 9색 flip 평균 차이 | 강건 행동 95% 도달 (팀 / 재실행) |
+|---|---:|---:|---|
+| BG .95 | 0.24pp | 0.29pp | 46 / 46 |
+| BG .80 | 0.14pp | 0.11pp | 3 / 3 |
+| BG .65 | 0.16pp | 0.14pp | 2 / 2 |
+| FG .95 | 0.21pp | 0.27pp | 미도달 / 미도달 |
+| FG .80 | 0.12pp | 0.11pp | 3 / 3 |
+| FG .65 | 0.08pp | 0.07pp | 2 / 2 |
+
+*Epoch 1–50의 팀 run 대비 절대 차이 평균. 그림: [팀 vs 재실행 곡선](cmnist_rerun50/figures/04_reproduction.png)*
+
+- 6개 모두 팀 결과가 재현된다. 차이는 GPU가 달라 생기는 부동소수점 비결정성 수준이다.
+- 단, **A8의 epoch 28 급락은 재현되지 않았다**(재실행 WGA 92.4%). 대신 재실행은 epoch 14에 80.9%로 떨어진다. 이런 일시적 급락은 실행마다 위치가 달라지므로, 결론에는 장기 추세만 쓴다.
+
+### H2: 기준을 높여도 순서가 유지된다
+
+![강건 행동 도달 epoch](cmnist_rerun50/figures/03_robust_epoch.png)
+
+*conflicting 정확도·재색칠 정확도 ≥ t, 9색 flip ≤ 1−t를 3 epoch 연속 만족한 첫 epoch. 빗금 = 50 epoch 내 미도달.*
+
+팀 보고서의 95% 기준에서는 .65(2)와 .80(3)의 차이가 거의 없다. **98% 기준으로 올리면 .65=16–18, .80=25–30, .95=미도달**로 세 조건의 순서가 분명히 드러난다.
+
+### 첫 epoch에는 색으로 답한다
+
+재색칠한 test 숫자를 **칠한 색의 클래스로 예측한 비율**(%):
+
+| 조건 | epoch 1 | epoch 2 | epoch 10 | epoch 50 |
+|---|---:|---:|---:|---:|
+| BG .95 | **81.5** | 34.2 | 7.2 | 3.3 |
+| FG .95 | **64.2** | 25.0 | 8.7 | 3.8 |
+| BG / FG .80 | 7.7 / 8.7 | 3.4 / 3.2 | 1.2 / 1.7 | 0.7 / 0.8 |
+| BG / FG .65 | 4.1 / 3.5 | 1.7 / 1.6 | 0.6 / 0.9 | 0.4 / 0.5 |
+
+같은 epoch 1에 마지막 층에서 숫자를 읽어내는 probe 정확도는 이미 92% 이상이다. **숫자 정보는 있는데 모델은 색으로 답하고 있다**(A5와 같은 결론). 예시 그림: [BG .95 숫자 3·7을 10색으로 칠했을 때의 epoch별 예측](cmnist_rerun50/figures/10_recolor_grid_bg095.png)
+
+### Stress test (proposal 6.1)
+
+![Stress test](cmnist_rerun50/figures/11_stress_epoch50.png)
+
+*Epoch 50 모델, test 숫자 1,000개를 10색으로 칠한 뒤 손상. 위: 정확도, 아래: 9색 flip. 실선 BG, 점선 FG.*
+
+![BG .95 손상 예시](cmnist_rerun50/figures/14_stress_examples_bg095.png)
+
+*BG .95, 숫자 7을 10색으로 칠하고 손상을 가했을 때의 예측. 초록=정답, 빨강=칠한 색의 클래스, 회색=다른 숫자.*
+
+| 손상 (강도) | BG .95 | BG .65 | FG .95 | FG .65 |
+|---|---|---|---|---|
+| 없음 | 96.5 / 5.2 | 99.2 / 0.7 | 95.5 / 6.8 | 98.9 / 0.9 |
+| Gaussian noise (3) | 69.2 / 48.0 | 59.3 / 52.7 | 8.9 / 0.0 † | 8.9 / 0.5 † |
+| Gaussian blur (5) | 91.2 / 12.2 | 97.9 / 1.9 | 84.0 / 21.2 | 93.6 / 8.2 |
+| Crop (3, 70% 남김) | 64.1 / 25.2 | 73.6 / 10.7 | 57.7 / 38.8 | 71.8 / 17.8 |
+
+*정확도 / 9색 flip(%). † 한 클래스만 예측하는 붕괴 상태라 flip이 낮다(강건함이 아님). .80 포함 전체 수치: [stress_epoch50.csv](cmnist_rerun50/stress_epoch50.csv)*
+
+- **Noise:** BG에서는 correlation과 상관없이 9색 flip이 50% 안팎으로 오른다. 모양이 가려지면 .65 모델도 다시 색으로 판단한다. 색 정보는 학습 내내 feature에 ~100% 남아 있기 때문이다(A5).
+- **Blur·crop:** correlation이 높을수록 색 판단으로 더 많이 돌아간다. 예시 그림의 crop 3에서 BG .95는 10색 중 6색을 틀리고, [BG .65](cmnist_rerun50/figures/14_stress_examples_bg065.png)는 모두 맞힌다.
+- Crop 강도 5(50% 남김)는 숫자 자체가 잘려 나가는 경우가 많아, 정확도 하락을 색 의존으로 해석하면 안 된다.
+
+## A10. Colored MNIST 결론
 
 | 가설 | 맞는 부분 | 안 맞는 부분 | 판정 |
 |---|---|---|---|
-| **H1** | 6개 조건 모두 epoch 1→50에서 9색 flip·C2I가 크게 감소 | ① epoch 0→1에서 오히려 급증 ② 이후 49번 중 18–23번 재상승 ③ epoch 28 급락 ④ .95는 50→100에서 악화 | **"초기에 색을 배운 뒤 점차 벗어난다"는 지지, "계속 단조 감소"는 불지지** |
-| **H2** | 강건 행동 도달: .65=2, .80=3, .95=46(BG)/미도달(FG) | 숫자 probe는 모든 조건에서 epoch 1에 90% 이상. core 정보는 처음부터 있음 | **"core 사용 시점 지연"은 지지, "core 학습 시작 지연"은 미확정** |
+| **H1** | 6개 조건 모두 epoch 1→50에서 9색 flip·C2I가 크게 감소. .95는 epoch 1에 재색칠 숫자의 64–82%를 색으로 답하다가 epoch 50에 3–4%로 감소(재실행) | ① epoch 0→1에서 오히려 급증 ② 이후 49번 중 18–24번 재상승(팀·재실행) ③ 일시적 WGA 급락(팀 e28, 재실행 e14) ④ .95는 50→100에서 악화 ⑤ noise·crop을 가하면 epoch 50 모델도 다시 색에 의존(재실행 stress test) | **"초기에 색을 배운 뒤 점차 벗어난다"는 지지, "계속 단조 감소"·"완전히 벗어난다"는 불지지** |
+| **H2** | 강건 행동 도달: 95% 기준 .65=2, .80=3, .95=46(BG)/미도달(FG). 98% 기준 .65=16–18, .80=25–30, .95=미도달(재실행). 팀·재실행에서 같은 순서 | 숫자 probe는 모든 조건에서 epoch 1에 90% 이상. core 정보는 처음부터 있음 | **"core 사용 시점 지연"은 지지, "core 학습 시작 지연"은 미확정** |
 
-한 줄 요약: **색 shortcut은 첫 epoch에 바로 학습되고 이후 빠르게 줄지만, correlation이 높으면 잔류 의존이 남고 오래 학습해도 사라지지 않는다.**
+한 줄 요약: **색 shortcut은 첫 epoch에 바로 학습되고 이후 빠르게 줄지만, correlation이 높으면 잔류 의존이 남고 오래 학습해도 사라지지 않는다. 입력이 손상되면 모델은 다시 색에 기댄다.**
 
 ---
 
@@ -265,15 +330,16 @@ Test(Epoch 50)도 같은 순서다. 정확도 62.08 / 76.56 / 82.21%, WGA 9.50 /
 | Proposal 항목 | Colored MNIST | Waterbirds |
 |---|---|---|
 | H1 (epoch↑ → 의존↓) | 대체로 맞음. 단조 아님, 후반 정체·악화 | 대체로 안 맞음 |
-| H2 (corr↑ → core 학습 늦음) | 행동 기준으로 맞음. probe상 core 정보는 처음부터 있음 | 방향만 맞음 |
+| H2 (corr↑ → core 학습 늦음) | 행동 기준으로 맞음(95%·98% 기준 모두 같은 순서). probe상 core 정보는 처음부터 있음 | 방향만 맞음 |
 | Decoded core correlation (probe) | 실시. 정보는 있으나 사용과 다름 | 미실시 |
 | Flip rate | 실시. 대체색 하나가 아니라 나머지 9색 전부로 측정(9색 flip) | 실시 (배경 교체) |
 | Grad-CAM | BG만 해석 가능, FG는 색·모양 위치가 겹쳐 불가 | 미실시 |
-| Stress test 6.1 (noise/blur/crop) | 팀 결과에는 없음. 재실행 체크포인트로 수행: [cmnist_rerun50 §7](cmnist_rerun50/README.md#7-stress-test-proposal-61) | 미실시 |
+| Stress test 6.1 (noise/blur/crop) | 재실행 체크포인트로 수행(A9). noise·crop에서 다시 색 의존, correlation 높을수록 심함 | 미실시 |
+| 재현성 | 재실행 6개로 확인. 평균 차이 0.07–0.29pp, 강건 도달 epoch 동일 | 재실행 예정 |
 | Stress test 6.2 (correlation 조작) | 실시 (.95/.80/.65) | 실시 (.95/.80/.65) |
 | 모델 | VGG11_BN만 | VGG11_BN만 |
 
 **공통 한계**
-- seed 42 하나뿐이다. epoch나 probe split을 독립 반복으로 볼 수 없고, 통계적 유의성은 주장하지 않는다.
+- seed 42 하나뿐이다. epoch나 probe split을 독립 반복으로 볼 수 없고, 통계적 유의성은 주장하지 않는다. Colored MNIST 재실행도 같은 seed라 GPU 비결정성만 반영한다.
 - Train 정확도는 학습 중 online 측정이고, Val은 epoch 끝 고정 모델 평가다. 둘은 직접 비교할 수 없다.
 - ResNet은 이번 결과에 없다.
