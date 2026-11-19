@@ -1,0 +1,15 @@
+{
+  "probe": "reused evaluate.DecodedCorrelation Linear(D,2), AdamW,100epochs,batch256,lr.001,wd.0001,seed42,no feature scaling",
+  "primary_layer": "avgpool",
+  "secondary_layers": [
+    "features.3",
+    "features.7",
+    "features.14",
+    "features.21",
+    "features.28",
+    "avgpool"
+  ],
+  "split": "Validation internally split by connected original bird/land/water encoded-content hashes; then each half downsampled to equal4groups",
+  "difference": "Not original run.py analyze val-fit/test-score. No Test feature exists. Cannot compare as same protocol.",
+  "thresholds": "post-hoc Acc .55/.60/.70/.80; durations1/3/5/10; baseline0 included and reported explicitly"
+}

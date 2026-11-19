@@ -1,0 +1,9 @@
+test_censoring_and_baseline (scripts.waterbirds_followup.test_followup.Tests.test_censoring_and_baseline) ... ok
+test_content_split (scripts.waterbirds_followup.test_followup.Tests.test_content_split) ... ok
+test_decoded_definition (scripts.waterbirds_followup.test_followup.Tests.test_decoded_definition) ... ok
+test_regions (scripts.waterbirds_followup.test_followup.Tests.test_regions) ... ok
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.053s
+
+OK
