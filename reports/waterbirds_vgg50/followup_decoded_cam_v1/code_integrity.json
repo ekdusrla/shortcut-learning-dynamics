@@ -1,0 +1,10 @@
+{
+  "scripts/waterbirds_followup/cam.slurm": "7537e372300cc814b727ef4fc5ee313ecb375d54d56cf3597581a85657f8dc59",
+  "scripts/waterbirds_followup/report.py": "2c9fae0caea0c24d26e8ded4e3bcf5a3f6a854c87bfe2aeac54a0fbf0670ad84",
+  "scripts/waterbirds_followup/extract.py": "481048bffaecf4f1e2206ea17c49e826cb284e5f682a80a74bcd0cdb1305ee02",
+  "scripts/waterbirds_followup/independent_probe.py": "4968201baf6859e052ff2cef8d1742f3b6220a7721a6c85bef7550f0147eba74",
+  "scripts/waterbirds_followup/collect_cam.py": "f29c78dfb621cb567e17fdf3a21ed5c2c5be4ab48d7ee717b007efc8a5b38882",
+  "scripts/waterbirds_followup/probes.py": "7eef8687fadfd4f0d94ca1e91c6c5b963439b114bfa955938e44e132af4f55bc",
+  "scripts/waterbirds_followup/test_followup.py": "75cedfaf3d8a84918517be74da2854d1a27ffebc413ae8d14f4792ed61a3b7ac",
+  "scripts/waterbirds_followup/cam.py": "b13427f73493bd9ae29380b2e434e85d25886656a80a798163e1ccebcc119233"
+}

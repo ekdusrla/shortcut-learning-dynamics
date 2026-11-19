@@ -1,0 +1,38 @@
+{
+  "epochs": {
+    "A_corr095": [
+      0,
+      1,
+      10,
+      25,
+      50
+    ],
+    "A_corr080": [
+      0,
+      1,
+      10,
+      25,
+      50
+    ],
+    "A_corr065": [
+      0,
+      1,
+      10,
+      25,
+      29,
+      32,
+      50
+    ]
+  },
+  "selection": "fixed 0/1/10/25/50 plus post-hoc avgpool Acc>=.70 sustained3 start-1/confirmation; candidate only, not confirmed Core learning",
+  "sample_ids": [
+    84,
+    104,
+    256,
+    280,
+    1027,
+    1032,
+    1039,
+    1464
+  ]
+}

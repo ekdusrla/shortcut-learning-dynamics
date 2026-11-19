@@ -1,0 +1,48 @@
+{
+  "success": true,
+  "host": "moana-r5",
+  "features": 153,
+  "checkpoints": 153,
+  "probe_rows": 1836,
+  "layers": [
+    "features.3",
+    "features.7",
+    "features.14",
+    "features.21",
+    "features.28",
+    "avgpool"
+  ],
+  "fit_n": 56,
+  "score_n": 56,
+  "component_disjoint": true,
+  "balanced_four_groups": true,
+  "identity_fixed_across_epochs_conditions": true,
+  "feature_sha_preserved": true,
+  "epochs_test_metrics_present": 153,
+  "gradcam_status": "PENDING: source images absent on current node",
+  "independent_review_status": "WATERBIRDS_INDEPENDENT_REVIEW_KO.md not found in current workspace",
+  "seconds": 384.61978101730347,
+  "peak_rss_scope": "use /usr/bin/time -v for process RSS",
+  "cpu_unit_tests": {
+    "passed": 4,
+    "scope": "region metrics and censored/baseline transitions"
+  },
+  "probe_equals_balanced_accuracy": true,
+  "decoded_formula_valid": true,
+  "expected_rows": 1836,
+  "report_scope": "CPU validation content holdout completed; CAM and independent Test pending",
+  "probe_wall_seconds_observed": 392.56,
+  "probe_parent_peak_rss_KiB": 655828,
+  "environment": {
+    "torch": "2.5.1+cu121",
+    "numpy": "1.26.4",
+    "pandas": "2.2.3",
+    "matplotlib": "3.10.1"
+  },
+  "new_pipeline_syntax_valid": true,
+  "GPU_jobs_executed": false,
+  "SLURM_submitted": false,
+  "git_commit_push_pull_executed": false,
+  "historical_source_metadata_sha_verified": 170,
+  "preservation_scope": "153 Feature SHA before/after; 170 original metadata hashes match historical export registry; checkpoints read-only size/sidecar audit, no full binary SHA reread; no global pre/post stat baseline available."
+}
