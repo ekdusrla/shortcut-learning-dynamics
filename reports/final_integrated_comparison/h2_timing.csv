@@ -1,0 +1,1369 @@
+condition,architecture,metric,threshold,first_epoch,sustained_start,confirmation_epoch,maintained_to_end,available,duration,dataset,comparison_scope,layer,direction,at_E0,last_epoch,scope_x,scope_y
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,wga,0.988744991459266,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,conflicting_acc,1.0285984427141268,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,flip_rate,-0.0344866666666666,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,c2i_all,-0.0434911111111111,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,c2i_given_correct,-0.0432980684470306,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,wga,0.9544203507131724,12.0,17.0,19.0,False,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,conflicting_acc,1.0112680756395995,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,flip_rate,-0.0223222222222222,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,c2i_all,-0.0382088888888889,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,-0.0375407361054561,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr065_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,wga,0.9930197378228852,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,conflicting_acc,1.0205450500556172,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,flip_rate,-0.0227866666666666,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,c2i_all,-0.0383911111111111,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,c2i_given_correct,-0.0379679382544629,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,2.0,4.0,6.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,wga,0.944068007628065,11.0,16.0,18.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,conflicting_acc,1.0052836484983314,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,flip_rate,-0.0087488888888889,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,c2i_all,-0.0328866666666667,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,-0.0317950721917694,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr080_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,3.0,3.0,5.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,core_digit,0.95,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,wga,0.8173040887166227,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,conflicting_acc,0.91238042269188,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,flip_rate,0.1182622222222222,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,c2i_all,0.0100622222222222,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,c2i_given_correct,0.0336036643694353,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,joint_behavior,1.0,11.0,11.0,13.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,wga,0.7078645354795553,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,conflicting_acc,0.8389432703003338,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,flip_rate,0.2002933333333333,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,c2i_all,0.0271066666666666,17.0,20.0,22.0,False,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,0.0964798156908599,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,11.0,11.0,13.0,True,,3,colored_mnist,common,,,,,,
+vgg11_bg_corr095_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,27.0,46.0,48.0,False,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,wga,0.9982525641215516,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,conflicting_acc,1.028754171301446,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,flip_rate,-0.0328844444444444,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,c2i_all,-0.0424977777777777,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,c2i_given_correct,-0.0422980138825537,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,wga,0.9558949040197432,12.0,18.0,20.0,False,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,conflicting_acc,1.0139377085650725,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,flip_rate,-0.0229222222222222,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,c2i_all,-0.0385888888888889,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,-0.0381085201363624,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr065_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,wga,0.9779053922697406,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,conflicting_acc,1.0173414905450502,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,flip_rate,-0.0169555555555555,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,c2i_all,-0.0353088888888888,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,c2i_given_correct,-0.0346379772425919,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,2.0,2.0,4.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,wga,0.9478851935832932,12.0,15.0,17.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,conflicting_acc,0.99972191323693,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,flip_rate,-0.0014155555555556,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,c2i_all,-0.0296022222222222,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,-0.0279759986510517,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr080_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,3.0,3.0,5.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,core_digit,0.95,3.0,3.0,5.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,wga,0.8211852561103768,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,conflicting_acc,0.9142491657397108,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,flip_rate,0.1196777777777777,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,c2i_all,0.0163577777777777,,,,,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,c2i_given_correct,0.0385062498597766,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,joint_behavior,1.0,11.0,11.0,13.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,resnet18,historical_behavior95,1.0,,,,,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.55,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.6,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.65,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_binary,0.7,0.0,0.0,2.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_digit,0.9,1.0,1.0,3.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,core_digit,0.95,3.0,3.0,5.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,wga,0.7102150629988784,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,conflicting_acc,0.847686318131257,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,flip_rate,0.1921333333333333,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,c2i_all,0.0318244444444444,15.0,15.0,17.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,c2i_given_correct,0.0825318719487125,11.0,11.0,13.0,True,True,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,joint_behavior,1.0,11.0,11.0,13.0,True,,3,colored_mnist,common,,,,,,
+vgg11_fg_corr095_seed42_e50_img224_all,vgg11_bn,historical_behavior95,1.0,,,,,,3,colored_mnist,common,,,,,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,8.0,8.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,16.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,18.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,23.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,8.0,8.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,17.0,17.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,8.0,8.0,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,16.0,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,18.0,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,8.0,14.0,23.0,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,8.0,8.0,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.6,8.0,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,17.0,17.0,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.65,17.0,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,5.0,5.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,14.0,14.0,14.0,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,14.0,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,14.0,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,14.0,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,5.0,5.0,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.55,5.0,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,1.0,1.0,1.0,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,1.0,1.0,3.0,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,1.0,17.0,21.0,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,1.0,17.0,26.0,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,9.0,9.0,9.0,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,9.0,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,9.0,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,9.0,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer1,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer2,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer3,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,layer4,>=,False,50.0,,
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,layer4,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,3.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,5.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,7.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,12.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,4.0,4.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,7.0,9.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,14.0,18.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,14.0,23.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,9.0,9.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,19.0,21.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,19.0,23.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,27.0,36.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,9.0,9.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,30.0,32.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,35.0,39.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,35.0,44.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,5.0,5.0,5.0,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,5.0,5.0,7.0,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,5.0,5.0,9.0,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,5.0,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,5.0,5.0,5.0,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,5.0,29.0,31.0,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,5.0,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,5.0,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,3.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,5.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,7.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,3.0,3.0,12.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,4.0,4.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,7.0,9.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,14.0,18.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,4.0,14.0,23.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,9.0,9.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,19.0,21.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,19.0,23.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,9.0,27.0,36.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,9.0,9.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,30.0,32.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,35.0,39.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,9.0,35.0,44.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,6.0,6.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,15.0,17.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,15.0,19.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,24.0,33.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,16.0,16.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,20.0,22.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,29.0,33.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,29.0,38.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,21.0,21.0,21.0,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,21.0,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,21.0,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,21.0,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,6.0,6.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,15.0,17.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,15.0,19.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,6.0,24.0,33.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,16.0,16.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,20.0,22.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,29.0,33.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,16.0,29.0,38.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr080,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,28.0,28.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,32.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,34.0,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,39.0,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,32.0,32.0,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,46.0,48.0,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,avgpool,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.14,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.21,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,28.0,28.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,32.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,34.0,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,28.0,30.0,39.0,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,32.0,32.0,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,46.0,48.0,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,32.0,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.28,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.3,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.55,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.6,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.65,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.7,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,1,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,3,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,5,waterbirds,common,features.7,>=,False,50.0,,
+A_corr095,vgg11_bn,core_probe_accuracy,0.8,,,,,,10,waterbirds,common,features.7,>=,False,50.0,,
+A_corr065,resnet18,wga,0.2434669952918128,13.0,13.0,13.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,wga,0.2434669952918128,13.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,wga,0.2434669952918128,13.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,wga,0.2434669952918128,13.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,14.0,14.0,14.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,14.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,14.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,14.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,12.0,14.0,16.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,12.0,14.0,18.0,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,12.0,14.0,23.0,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,15.0,15.0,15.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,15.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,15.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,15.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,11.0,14.0,16.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,11.0,14.0,18.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,11.0,14.0,23.0,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,11.0,11.0,11.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,11.0,14.0,16.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,11.0,14.0,18.0,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,11.0,14.0,23.0,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,resnet18,joint_behavior,,8.0,8.0,8.0,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,resnet18,joint_behavior,,8.0,,,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,resnet18,joint_behavior,,8.0,,,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,resnet18,joint_behavior,,8.0,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,resnet18,wga,0.1503017663601605,21.0,21.0,21.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,wga,0.1503017663601605,21.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,wga,0.1503017663601605,21.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,wga,0.1503017663601605,21.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,12.0,12.0,12.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,12.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,12.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,12.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,12.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,12.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,12.0,12.0,12.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,12.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,12.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,12.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,11.0,11.0,11.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,11.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,11.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,11.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,resnet18,joint_behavior,,7.0,7.0,7.0,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,resnet18,joint_behavior,,7.0,,,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,resnet18,joint_behavior,,7.0,,,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,resnet18,joint_behavior,,7.0,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,resnet18,wga,0.1065551237084083,17.0,17.0,17.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,wga,0.1065551237084083,17.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,wga,0.1065551237084083,17.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,wga,0.1065551237084083,17.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,11.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,11.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,11.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,11.0,11.0,11.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,11.0,11.0,13.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,11.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,11.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,11.0,11.0,11.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,11.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,11.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,11.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,11.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,11.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,11.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,11.0,11.0,11.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,11.0,,,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,11.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,11.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,resnet18,joint_behavior,,,,,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,resnet18,joint_behavior,,,,,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,resnet18,joint_behavior,,,,,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,resnet18,joint_behavior,,,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,vgg11_bn,wga,0.168978102189781,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,wga,0.168978102189781,11.0,16.0,18.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,wga,0.168978102189781,11.0,36.0,40.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,wga,0.168978102189781,11.0,36.0,45.0,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,balanced_conflicting_acc,0.4920648086706481,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,balanced_conflicting_acc,0.4920648086706481,11.0,11.0,13.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,balanced_conflicting_acc,0.4920648086706481,11.0,11.0,15.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,balanced_conflicting_acc,0.4920648086706481,11.0,11.0,20.0,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,cf_flip_rate,0.198623853211009,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_flip_rate,0.198623853211009,12.0,14.0,16.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_flip_rate,0.198623853211009,12.0,34.0,38.0,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_flip_rate,0.198623853211009,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,c2i_unconditional,0.0685154295246038,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,c2i_unconditional,0.0685154295246038,12.0,24.0,26.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,c2i_unconditional,0.0685154295246038,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,c2i_unconditional,0.0685154295246038,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,conflicting_acc,0.6673622704507512,12.0,12.0,12.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,conflicting_acc,0.6673622704507512,12.0,14.0,16.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,conflicting_acc,0.6673622704507512,12.0,14.0,18.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,conflicting_acc,0.6673622704507512,12.0,35.0,44.0,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr065,vgg11_bn,cf_correct_to_incorrect_rate,0.1254927598099237,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_correct_to_incorrect_rate,0.1254927598099237,12.0,14.0,16.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_correct_to_incorrect_rate,0.1254927598099237,12.0,35.0,39.0,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,cf_correct_to_incorrect_rate,0.1254927598099237,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr065,vgg11_bn,joint_behavior,,11.0,11.0,11.0,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,vgg11_bn,joint_behavior,,11.0,16.0,18.0,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,vgg11_bn,joint_behavior,,11.0,36.0,40.0,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,vgg11_bn,joint_behavior,,11.0,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,vgg11_bn,wga,0.0886861313868613,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,wga,0.0886861313868613,11.0,26.0,28.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,wga,0.0886861313868613,11.0,26.0,30.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,wga,0.0886861313868613,11.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,balanced_conflicting_acc,0.4096028059531709,12.0,12.0,12.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,balanced_conflicting_acc,0.4096028059531709,12.0,17.0,19.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,balanced_conflicting_acc,0.4096028059531709,12.0,17.0,21.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,balanced_conflicting_acc,0.4096028059531709,12.0,17.0,26.0,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,cf_flip_rate,0.2769391159299416,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_flip_rate,0.2769391159299416,12.0,23.0,25.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_flip_rate,0.2769391159299416,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_flip_rate,0.2769391159299416,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,c2i_unconditional,0.1108006672226855,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,c2i_unconditional,0.1108006672226855,12.0,23.0,25.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,c2i_unconditional,0.1108006672226855,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,c2i_unconditional,0.1108006672226855,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,conflicting_acc,0.5837228714524207,12.0,12.0,12.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,conflicting_acc,0.5837228714524207,12.0,23.0,25.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,conflicting_acc,0.5837228714524207,12.0,41.0,45.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,conflicting_acc,0.5837228714524207,12.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr080,vgg11_bn,cf_correct_to_incorrect_rate,0.1980356974129979,12.0,12.0,12.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_correct_to_incorrect_rate,0.1980356974129979,12.0,23.0,25.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_correct_to_incorrect_rate,0.1980356974129979,12.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,cf_correct_to_incorrect_rate,0.1980356974129979,12.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr080,vgg11_bn,joint_behavior,,,,,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,vgg11_bn,joint_behavior,,,,,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,vgg11_bn,joint_behavior,,,,,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr080,vgg11_bn,joint_behavior,,,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,vgg11_bn,wga,0.0999415426422725,11.0,11.0,11.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,wga,0.0999415426422725,11.0,,,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,wga,0.0999415426422725,11.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,wga,0.0999415426422725,11.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,balanced_conflicting_acc,0.2131521155243783,13.0,13.0,13.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,balanced_conflicting_acc,0.2131521155243783,13.0,15.0,17.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,balanced_conflicting_acc,0.2131521155243783,13.0,21.0,25.0,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,balanced_conflicting_acc,0.2131521155243783,13.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,cf_flip_rate,0.6302335279399499,13.0,13.0,13.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_flip_rate,0.6302335279399499,13.0,15.0,17.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_flip_rate,0.6302335279399499,13.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_flip_rate,0.6302335279399499,13.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,c2i_unconditional,0.2811926605504587,13.0,13.0,13.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,c2i_unconditional,0.2811926605504587,13.0,21.0,23.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,c2i_unconditional,0.2811926605504587,13.0,,,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,c2i_unconditional,0.2811926605504587,13.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,conflicting_acc,0.2691986644407345,13.0,13.0,13.0,,,1,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,conflicting_acc,0.2691986644407345,13.0,15.0,17.0,,,3,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,conflicting_acc,0.2691986644407345,13.0,,,,,5,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,conflicting_acc,0.2691986644407345,13.0,,,,,10,waterbirds,common,,>=,False,50.0,,
+A_corr095,vgg11_bn,cf_correct_to_incorrect_rate,0.5627070818722884,13.0,13.0,13.0,,,1,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_correct_to_incorrect_rate,0.5627070818722884,13.0,15.0,17.0,,,3,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_correct_to_incorrect_rate,0.5627070818722884,13.0,24.0,28.0,,,5,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,cf_correct_to_incorrect_rate,0.5627070818722884,13.0,,,,,10,waterbirds,common,,<=,False,50.0,,
+A_corr095,vgg11_bn,joint_behavior,,,,,,,1,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,vgg11_bn,joint_behavior,,,,,,,3,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,vgg11_bn,joint_behavior,,,,,,,5,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr095,vgg11_bn,joint_behavior,,,,,,,10,waterbirds,common,,WGA>=.20 & balanced conflict>=.50,False,50.0,,
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,51.0,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,53.0,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,55.0,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,60.0,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,51.0,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,53.0,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,55.0,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.55,51.0,51.0,60.0,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,wga,0.2434669952918128,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,wga,0.2434669952918128,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,wga,0.2434669952918128,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,wga,0.2434669952918128,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,balanced_conflicting_acc,0.5042531677568174,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,51.0,51.0,51.0,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,51.0,51.0,53.0,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,51.0,51.0,55.0,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_flip_rate,0.2362385321100918,51.0,51.0,60.0,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,c2i_unconditional,0.0903669724770642,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,51.0,51.0,51.0,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,51.0,51.0,53.0,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,51.0,51.0,55.0,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,conflicting_acc,0.5950751252086812,51.0,51.0,60.0,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,51.0,51.0,51.0,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,51.0,51.0,53.0,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,51.0,51.0,55.0,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,cf_correct_to_incorrect_rate,0.1970219924996026,51.0,51.0,60.0,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,joint_behavior,,,,,,,1,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,joint_behavior,,,,,,,3,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,joint_behavior,,,,,,,5,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr065,resnet18,joint_behavior,,,,,,,10,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,wga,0.1503017663601605,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,wga,0.1503017663601605,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,wga,0.1503017663601605,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,wga,0.1503017663601605,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,balanced_conflicting_acc,0.4536125067146965,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_flip_rate,0.2399082568807339,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,c2i_unconditional,0.0916180150125104,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,conflicting_acc,0.6009181969949917,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,cf_correct_to_incorrect_rate,0.1992845973534406,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,joint_behavior,,,,,,,1,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,joint_behavior,,,,,,,3,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,joint_behavior,,,,,,,5,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr080,resnet18,joint_behavior,,,,,,,10,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,avgpool,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,51.0,51.0,51.0,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,51.0,51.0,53.0,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,51.0,51.0,55.0,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,51.0,51.0,60.0,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer1,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer2,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer3,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.55,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.6,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.65,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.7,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,1,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,3,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,5,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,core_probe_accuracy,0.8,,,,,,10,waterbirds,resnet_late,layer4,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,wga,0.1065551237084083,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,wga,0.1065551237084083,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,wga,0.1065551237084083,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,wga,0.1065551237084083,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,balanced_conflicting_acc,0.2567652542105096,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_flip_rate,0.5583402835696414,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,c2i_unconditional,0.2465804837364471,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,,,,,,1,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,,,,,,3,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,,,,,,5,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,conflicting_acc,0.3162771285475792,,,,,,10,waterbirds,resnet_late,,>=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,,,,,,1,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,,,,,,3,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,,,,,,5,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,cf_correct_to_incorrect_rate,0.4954820765389953,,,,,,10,waterbirds,resnet_late,,<=,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,joint_behavior,,,,,,,1,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,joint_behavior,,,,,,,3,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,joint_behavior,,,,,,,5,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족
+A_corr095,resnet18,joint_behavior,,,,,,,10,waterbirds,resnet_late,,WGA>=.20 & balanced conflict>=.50,False,100.0,E51–E100 내부 최초 충족,E51–E100 내부 최초 충족

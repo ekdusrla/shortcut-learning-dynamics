@@ -1,0 +1,61 @@
+{
+  "status": "PASS",
+  "rows": {
+    "accuracy": 3648,
+    "counterfactual": 2748,
+    "probes": 24846,
+    "cam_integrated": 480,
+    "timing": 1368
+  },
+  "configs": 18,
+  "common_epochs": [
+    0,
+    50
+  ],
+  "waterbirds_resnet_only": [
+    51,
+    100
+  ],
+  "source_sha256": {
+    "runs/resnet18_comparison/colored_mnist/analysis_comparison_e000_e050/accuracy.csv": "b0b1993f81b460624ef2f4047b1d12ac0d7ac2dd1918701d26b6c3b0396d0f3c",
+    "runs/resnet18_comparison/colored_mnist/analysis_comparison_e000_e050/counterfactual.csv": "f0f4443ed28ede2ea90b9293dbad1dbea08f92a496154f8578b85faabb674159",
+    "runs/resnet18_comparison/colored_mnist/analysis_comparison_e000_e050/probes.csv": "068b44a8962c8e3f56be671dbe19d0e4e5d36993bb4458eecc9e093afccc195c",
+    "runs/resnet18_comparison/colored_mnist/analysis_comparison_e000_e050/cam_integrated.csv": "d26d2dca88d86c43911864d1516cc62400fab1b621edc98d168564446e39de1b",
+    "runs/resnet18_comparison/colored_mnist/analysis_comparison_e000_e050/transition_candidates.csv": "472ad3b9053d6b655c7b30f60916ec6a68b435fd7d598830414b6b8743e236e6",
+    "runs/resnet18_comparison/waterbirds/analysis_comparison_e000_e050/accuracy.csv": "f4ed6f9fc2d52aaacd644554a8683b16dceb88aa68c5cb4de5ff6eb780412618",
+    "runs/resnet18_comparison/waterbirds/analysis_comparison_e000_e050/counterfactual.csv": "128045701db070aa96d4e06a3c5bd842a8ee8f514c9ba34cc3e864a3e3dffe56",
+    "runs/resnet18_comparison/waterbirds/analysis_comparison_e000_e050/probes.csv": "10285190864e40dca6c490c57791563737c93cf12d946d9389049006f870c39b",
+    "runs/resnet18_comparison/waterbirds/analysis_comparison_e000_e050/cam_integrated.csv": "f0988877aac44e2db393148d196905ac98ca2746b533e9cbd09e9f0f62a4351a",
+    "runs/resnet18_comparison/waterbirds/analysis_comparison_e000_e050/core_timing.csv": "4854776db9d0633ba1159302b25d4dd8c61c2c12a1e1fca8cd0389fe559397ed",
+    "runs/resnet18_comparison/waterbirds/A_corr065_seed42_e50_contentv3/full/resnet18_e051_e100/accuracy.csv": "139b23eaa0f8d5444eac13a17941c1fab0b5f0da66e1425644e377d71177d75b",
+    "runs/resnet18_comparison/waterbirds/A_corr065_seed42_e50_contentv3/full/resnet18_e051_e100/counterfactual.csv": "6c05994c89758abb96d79393441cebf88cc6370da72ead908049f100965a3fee",
+    "runs/resnet18_comparison/waterbirds/A_corr065_seed42_e50_contentv3/full/resnet18_e051_e100/probes.csv": "3c6c95a69c07e93d42e959eb65bc224251077e1bf491d2c2f79b1bb1da8d6405",
+    "runs/resnet18_comparison/waterbirds/A_corr065_seed42_e50_contentv3/full/resnet18_e051_e100/cam_integrated.csv": "f0120d823b76b94e6b6ad84972ae47d1f4e1c6498c881cacfc9484536795ee53",
+    "runs/resnet18_comparison/waterbirds/A_corr065_seed42_e50_contentv3/full/resnet18_e051_e100/core_timing.csv": "a10e1fea044e03b033cbd690ac5599a4fc1eef635e23b4861d38ba5e3907e423",
+    "runs/resnet18_comparison/waterbirds/A_corr080_seed42_e50_contentv3/full/resnet18_e051_e100/accuracy.csv": "3eda749df2975da9f441ea83999b14327ad749f6ceb16a1e2bca9625fb4909a3",
+    "runs/resnet18_comparison/waterbirds/A_corr080_seed42_e50_contentv3/full/resnet18_e051_e100/counterfactual.csv": "0722f5cda758b286698e1cd57c13bdd2f7e7f75d8ab44aba2295254fd14b635b",
+    "runs/resnet18_comparison/waterbirds/A_corr080_seed42_e50_contentv3/full/resnet18_e051_e100/probes.csv": "81c71230501395246f17b899f9c5e75fa01d6500ed73d8d769fef53a71739858",
+    "runs/resnet18_comparison/waterbirds/A_corr080_seed42_e50_contentv3/full/resnet18_e051_e100/cam_integrated.csv": "fe8112e69c111e7128de4eb1a91964332d5bf256ea76dbeebad39bfc3a1d1995",
+    "runs/resnet18_comparison/waterbirds/A_corr080_seed42_e50_contentv3/full/resnet18_e051_e100/core_timing.csv": "4b34c83906eebfef0e7d71b7202c268d65882cb01e8b17446bd2cee80d0bf492",
+    "runs/resnet18_comparison/waterbirds/A_corr095_seed42_e50_contentv3/full/resnet18_e051_e100/accuracy.csv": "0ab93e20b8a73db74f071166f860381ad74fc181b8304353dada56b86c276f8c",
+    "runs/resnet18_comparison/waterbirds/A_corr095_seed42_e50_contentv3/full/resnet18_e051_e100/counterfactual.csv": "8e267faaba02bed6fcc4907bb31f7bbc8f70ba98147f27243d42bc0ee57c95fc",
+    "runs/resnet18_comparison/waterbirds/A_corr095_seed42_e50_contentv3/full/resnet18_e051_e100/probes.csv": "2532e255296ee3810ab29d159f43f7043a794cfad55f605409aa25cf0708df13",
+    "runs/resnet18_comparison/waterbirds/A_corr095_seed42_e50_contentv3/full/resnet18_e051_e100/cam_integrated.csv": "9a52149f1f3a7c30d08fb1bb09c0db6999142fb835c9fd7681e55079e6333bee",
+    "runs/resnet18_comparison/waterbirds/A_corr095_seed42_e50_contentv3/full/resnet18_e051_e100/core_timing.csv": "31df837f92cc46461ad12f40d204bf1024336ffee5ee672fbd6e788df90ae103"
+  },
+  "verification": [
+    "Unique observation keys",
+    "Matched sample denominators",
+    "CF count and rate identities",
+    "Probe decoded transformation",
+    "Training records, final pointer and manifest consistency",
+    "Frozen/CAM coverage from prior audit JSON"
+  ],
+  "warnings": [
+    "Single training seed",
+    "Missing VGG per-epoch frozen Train/Test and CMNIST Test CF",
+    "Optimizer step counts not independently logged",
+    "Stage matches are approximate",
+    "WB independent Test probe not run"
+  ]
+}
