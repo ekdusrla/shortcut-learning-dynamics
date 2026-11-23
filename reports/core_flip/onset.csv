@@ -1,0 +1,16 @@
+dataset,run,corr,core_gt_spurious_3,core_flip_ge20_3,core_flip_ge30_3,probe_core_ge60_3
+cmnist,CM BG,065,1.0,1.0,1.0,
+cmnist,CM BG,080,1.0,1.0,1.0,
+cmnist,CM BG,095,2.0,1.0,2.0,
+cmnist,CM FG,065,1.0,1.0,1.0,
+cmnist,CM FG,080,1.0,1.0,1.0,
+cmnist,CM FG,095,2.0,1.0,1.0,
+waterbirds,WB seed 42,065,7.0,16.0,20.0,8.0
+waterbirds,WB seed 42,080,35.0,20.0,26.0,25.0
+waterbirds,WB seed 42,095,,,,
+waterbirds,WB seed 43,065,10.0,7.0,7.0,9.0
+waterbirds,WB seed 43,080,23.0,6.0,36.0,28.0
+waterbirds,WB seed 43,095,,,,
+waterbirds,WB seed 44,065,15.0,6.0,26.0,13.0
+waterbirds,WB seed 44,080,,10.0,20.0,26.0
+waterbirds,WB seed 44,095,,,,
