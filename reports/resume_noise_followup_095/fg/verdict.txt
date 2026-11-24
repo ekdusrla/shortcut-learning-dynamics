@@ -1,0 +1,14 @@
+=== val_cf_all_flip_rate ===
+original run delta (late - early): +0.0051
+resume_repeat deltas (n=2): [0.0045, 0.0051] -> std=0.0004, range=(0.004502222222222213, 0.005062222222222218)
+|original delta| / repeat-std = 12.95x
+-> original delta is >=3x the resume-repeat noise std: likely a REAL signal, not resume noise alone.
+continuous (never-resumed) run delta(s): [0.0067]
+-> continuous run(s) agree in direction with the original (resumed) run's delta.
+
+=== val_wga ===
+original run delta (late - early): -0.0086
+resume_repeat deltas (n=2): [-0.0049, -0.0049] -> std=0.0000, range=(-0.004878023522636665, -0.004878023522636665)
+only one repeat available, so no std: original delta falls OUTSIDE the single repeat's value.
+continuous (never-resumed) run delta(s): [-0.0075]
+-> continuous run(s) agree in direction with the original (resumed) run's delta.

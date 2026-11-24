@@ -1,0 +1,15 @@
+=== val_cf_all_flip_rate ===
+original run delta (late - early): +0.0076
+resume_repeat deltas (n=2): [0.0235, 0.0076] -> std=0.0112, range=(0.007626666666666684, 0.023475555555555555)
+|original delta| / repeat-std = 0.68x
+-> original delta is within ~1.5x of resume-repeat noise std: consistent with being mostly NOISE, not a reliable effect.
+continuous (never-resumed) run delta(s): [0.0048]
+-> continuous run(s) agree in direction with the original (resumed) run's delta.
+
+=== val_wga ===
+original run delta (late - early): -0.0012
+resume_repeat deltas (n=2): [-0.0756, -0.0007] -> std=0.0530, range=(-0.07560662065167367, -0.0006974594354721697)
+|original delta| / repeat-std = 0.02x
+-> original delta is within ~1.5x of resume-repeat noise std: consistent with being mostly NOISE, not a reliable effect.
+continuous (never-resumed) run delta(s): [-0.0041]
+-> continuous run(s) agree in direction with the original (resumed) run's delta.
