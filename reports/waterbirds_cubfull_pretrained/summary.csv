@@ -1,0 +1,7 @@
+setting,corr,lr,scheduler,core_use_onset,robust_criterion_onset,first_train_acc_99,late_core_flip,late_spurious_flip,late_val_acc,late_balanced_acc,late_val_wga,late_val_wga_min,late_val_wga_max,late_bird_only_bal,late_scene_place_acc
+pretrained + all CUB + B,0.9500,0.0100,none,2,3,9,0.7962,0.1024,0.9188,0.8858,0.7266,0.5182,0.8248,0.9352,0.9611
+pretrained + all CUB + B,0.8000,0.0100,none,1,2,8,0.8468,0.0460,0.9406,0.9171,0.8378,0.7591,0.9004,0.9340,0.9133
+pretrained + all CUB + B,0.6500,0.0100,none,1,2,8,0.8618,0.0332,0.9427,0.9177,0.8493,0.7445,0.9124,0.9366,0.7454
+original (from scratch),0.9500,0.0100,none,,,23,0.1593,0.6608,0.6055,0.5424,0.0668,0.0219,0.1168,0.5731,0.8196
+original (from scratch),0.8000,0.0100,none,35,,25,0.3234,0.3270,0.7514,0.6324,0.1456,0.0730,0.2190,0.6871,0.6636
+original (from scratch),0.6500,0.0100,none,7,26,28,0.3690,0.1749,0.7957,0.6507,0.2588,0.0876,0.4161,0.8011,0.5729
