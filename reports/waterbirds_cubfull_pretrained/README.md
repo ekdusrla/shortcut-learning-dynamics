@@ -1,9 +1,6 @@
-# Waterbirds: 새를 알아볼 수 있고 train을 금방 외우지 못하면 Colored MNIST처럼 움직인다
+# Waterbirds: ImageNet pretrained + CUB 전체 + 매 epoch 새 배경 (corr .95/.80/.65)
 
-원래 Waterbirds 실험(팀 설정, VGG11_BN 처음부터 학습)은 Colored MNIST와 달랐다. 50 epoch 동안 배경 의존이 줄지 않았고(H1 불지지), corr별 core 사용 시점도 비교할 수 없었다(H2 시점 확인 불가). 원인으로 두 가지를 확인했다.
-
-1. **새를 잘 못 알아본다.** 회색 바탕에 새만 붙여 보여주면 균형 정확도가 .95 57%, .80 69%, .65 80%다(아래 그림 04 점선).
-2. **train을 금방 외운다.** 4,795장이라 epoch 23–28이면 train 정확도가 99%가 되고, 소수 그룹(물 위 landbird, 땅 위 waterbird)까지 외우면 core로 넘어갈 gradient가 사라진다.
+원래 Waterbirds 실험(팀 설정, VGG11_BN 처음부터 학습)은 Colored MNIST와 달랐다. 50 epoch 동안 배경 의존이 줄지 않았고(H1 불지지), corr별 core 사용 시점도 비교할 수 없었다(H2 시점 확인 불가). 원래 모델은 **새를 잘 못 알아본다.** 회색 바탕에 새만 붙여 보여주면 균형 정확도가 .95 57%, .80 69%, .65 80%다(아래 그림 04 점선). 또 train이 4,795장으로 적다.
 
 그래서 아래 세 가지를 바꿔 corr .95/.80/.65를 학습했다(seed 42).
 
@@ -68,8 +65,8 @@
 
 ![정확도](figures/03_accuracy_epochs.png)
 
-- **train 정확도:** 이번 설정은 epoch 8–9에 99%에 도달한다. 원래보다 빨리 외우지만, 그 전에 이미 core로 넘어갔다.
-- **val WGA:** .80·.65는 epoch 3에 74–86%에 도달한다. .95는 epoch 3에 47%, epoch 30 무렵 81%까지 천천히 오른다.
+- **train 정확도:** 이번 설정은 epoch 8–9에 99%에 도달한다(원래 E23–28). 소수 그룹까지 99%가 되는 것도 E11–14로 원래(E23–26)보다 빠르다. 즉 **train을 덜 외워서 좋아진 것이 아니다.** core 사용은 train을 다 맞히기 전(E1–2)에 시작됐고, .95의 spurious flip은 그 뒤에도 계속 줄었다(E6–10 21% → E41–50 10%).
+- **val WGA:** .80·.65는 epoch 3에 74–86%에 도달한다. .95는 epoch 3에 47%이고, E10–30에는 53–81% 사이에서 흔들린다.
 - **.95 WGA는 epoch마다 크게 흔들린다**(E31–50에서 52–82%). lr이 0.01로 고정이라 후반에도 업데이트 폭이 크기 때문으로 보인다. 다음 단계로 cosine scheduler를 적용해 이 흔들림이 줄어드는지 본다.
 
 ### 04. 모델이 쓰는 정보: 새만 vs 배경만
@@ -78,6 +75,68 @@
 
 - **새만(왼쪽):** epoch 1에 77–88%이고, epoch 4부터 세 corr 모두 약 90% 이상이다(E31–50 평균 93–94%). 원래(점선)는 .95 57%, .80 69%, .65 80%였다. ImageNet 특징 덕분에 새 인식 문제가 사라졌다.
 - **배경만(오른쪽):** corr이 강할수록 배경을 장소 클래스로 더 많이 답한다(.95 96%, .80 91%, .65 75%). 새가 있으면 새를 따르지만(core flip 80–86%), 새가 없을 때 남은 배경 단서는 corr에 따라 다르게 배운다.
+
+### 05. 같은 새를 반대 배경에 놓았을 때
+
+05–09는 [waterbirds_rerun50 6–7절](../waterbirds_rerun50/README.md)과 같은 그림이다. 다만 **test 이미지가 다르다.** 팀 test 5,794장 중 4,595장이 cubfull에서는 train이므로, 남은 cubfull test 1,199장만 쓴다. 원래 run도 이번 run도 학습에 쓰지 않은 이미지라 둘을 같은 이미지로 비교한다. 수치는 그룹당 137장(총 548장), 예시는 면적이 보통인 새(이미지의 7.7–16.2%, 가운데 50%)에서 예측을 보지 않고 무작위로 뽑았다. 이미지는 팀 합성과 픽셀까지 같고 새를 확대하지 않았다.
+
+| 이번 설정 .95 | 원래 .95 (같은 새) |
+|---|---|
+| ![이번](figures/05_swap_grid_095.png) | ![원래](figures/05_swap_grid_095_original.png) |
+
+이번 설정은 epoch 1–2에는 네 마리의 예측이 모두 landbird라 waterbird를 틀리다가, epoch 25부터 8장을 모두 맞힌다. 원래 모델은 epoch 50에도 땅 배경의 waterbird 두 장을 포함해 3장을 틀린다. 다른 corr: [.80](figures/05_swap_grid_080.png) / [.65](figures/05_swap_grid_065.png), 원래 [.80](figures/05_swap_grid_080_original.png) / [.65](figures/05_swap_grid_065_original.png). 네 마리 예시이므로 크기는 아래 수치로 본다.
+
+### 06–07. Grad-CAM
+
+| 이번 설정 .95 | 원래 .95 (같은 새) |
+|---|---|
+| ![이번](figures/06_gradcam_grid_095.png) | ![원래](figures/06_gradcam_grid_095_original.png) |
+
+*conflicting test 이미지(땅 위 waterbird 3, 물 위 landbird 3), VGG features.25, 예측 클래스 기준. 제목의 %는 heatmap 중 새 마스크 안에 든 비율. 전부 파란 칸은 양의 기여가 없어 heatmap이 0인 경우이고 평균에서는 뺀다.*
+
+위 두 행은 라벨이 waterbird인 meadowlark와 towhee(위 '라벨' 참고)라, 새를 보고도 landbird로 답해 오답으로 표시된다. 다른 corr: [.80](figures/06_gradcam_grid_080.png) / [.65](figures/06_gradcam_grid_065.png), 원래 [.80](figures/06_gradcam_grid_080_original.png) / [.65](figures/06_gradcam_grid_065_original.png).
+
+![새 위 비율](figures/07_gradcam_bird_share.png)
+
+conflicting 274장 중 heatmap이 새 위에 있는 비율(%), 괄호는 해당 장수:
+
+| corr | 예측 | 이번 E1 | E5 | E50 | 원래 E1 | E5 | E50 |
+|---|---|---|---|---|---|---|---|
+| .95 | 정답 | 82 (77) | 67 (173) | 61 (229) | 14 (45) | 18 (39) | 28 (69) |
+| | 배경 클래스로 오답 | 11 (197) | 33 (101) | 29 (45) | 7 (229) | 9 (235) | 10 (205) |
+| .80 | 정답 | 73 (128) | 64 (223) | 66 (252) | 17 (97) | 18 (85) | 35 (137) |
+| | 배경 클래스로 오답 | 22 (146) | 40 (51) | 42 (22) | 6 (177) | 9 (189) | 16 (137) |
+| .65 | 정답 | 67 (160) | 65 (252) | 66 (255) | 26 (126) | 21 (123) | 22 (165) |
+| | 배경 클래스로 오답 | 33 (114) | 34 (22) | 47 (19) | 9 (148) | 11 (151) | 15 (109) |
+
+새가 이미지에서 차지하는 면적은 약 13%다. 이번 설정은 맞힌 이미지에서 heatmap의 61–82%가 새 위에 있다(원래 14–35%). epoch에 따라 이 비율이 커지기보다, **새를 보고 맞히는 이미지 수가 늘어난다**(.95 77 → 229장). [gradcam_bird_share.csv](gradcam_bird_share.csv), [원래](gradcam_bird_share_original.csv)
+
+### 08–09. Stress test (epoch 50)
+
+![Stress](figures/08_stress_epoch50.png)
+
+| corr | 손상 | 이번: 균형 정확도 / WGA / flip | 원래: 균형 정확도 / WGA / flip |
+|---|---|---|---|
+| .95 | 없음 | 91 / 78 / 13 | 58 / 15 / 70 |
+| | noise 3 | 51 / 3 / 23 | 50 / 0 / 1 |
+| | blur 3 | 56 / 7 / 56 | 50 / 11 / 43 |
+| | crop 3 | 84 / 64 / 22 | 58 / 19 / 62 |
+| .80 | 없음 | 94 / 87 / 5 | 66 / 27 / 38 |
+| | noise 3 | 50 / 0 / 0 | 50 / 2 / 5 |
+| | blur 3 | 64 / 23 / 56 | 53 / 8 / 23 |
+| | crop 3 | 89 / 77 / 9 | 62 / 21 / 33 |
+| .65 | 없음 | 94 / 90 / 4 | 70 / 33 / 29 |
+| | noise 3 | 50 / 1 / 2 | 52 / 2 / 6 |
+| | blur 3 | 66 / 42 / 40 | 59 / 31 / 33 |
+| | crop 3 | 90 / 84 / 5 | 67 / 33 / 22 |
+
+- **깨끗한 이미지와 crop**에서는 이번 설정이 훨씬 낫다.
+- **noise 3 이상**에서는 이번 모델도 무너진다(균형 정확도 50–52%). 강건해진 것이 아니다.
+- **blur 3**에서는 배경 교체 flip이 40–56%로 원래(23–43%)보다 **높다.** 새의 세부가 흐려지면 다시 배경을 따른다.
+
+![Stress 예시](figures/09_stress_examples_095.png)
+
+다른 corr: [.80](figures/09_stress_examples_080.png) / [.65](figures/09_stress_examples_065.png). 원래 run: [그래프](figures/08_stress_epoch50_original.png), 예시 [.95](figures/09_stress_examples_095_original.png) / [.80](figures/09_stress_examples_080_original.png) / [.65](figures/09_stress_examples_065_original.png). [stress_epoch50.csv](stress_epoch50.csv), [원래](stress_epoch50_original.csv)
 
 ## 팀 가설로 보면
 
@@ -88,12 +147,23 @@
 
 ## 주의할 점
 
-- **원래 Waterbirds 결과가 아니다.** 시작 가중치, train 데이터 양, 학습 중 배경 조합 세 가지가 다르다. 그래서 결론은 "Waterbirds도 Colored MNIST처럼 된다"가 아니라 **"새를 알아볼 수 있고 train을 금방 외우지 못하는 조건에서는 Waterbirds도 Colored MNIST처럼 움직인다"**이다.
+- **원래 Waterbirds 결과가 아니다.** 시작 가중치, train 데이터 양, 학습 중 배경 조합 세 가지가 다르다. 결론은 **"이 세 가지를 함께 바꾸면 Waterbirds의 flip 궤적이 Colored MNIST와 비슷해진다"**까지다. 왜 그런지(새 인식, 데이터 양, 배경 조합 중 무엇이 얼마나)는 이 3개 run만으로 가를 수 없다.
 - **새 인식이 ImageNet에서 온다.** 새 특징을 처음부터 갖고 시작하므로, H2의 "core를 배우는 데 걸리는 시간"보다는 "이미 가진 core 정보를 쓰기 시작하는 시점"에 가깝다. Colored MNIST에서도 숫자 정보는 epoch 1에 이미 있었다(RESULTS_OVERVIEW A5).
 - **seed 42 하나다.** H2의 1 epoch 차이를 말하려면 seed를 더 돌려야 한다.
-- **test 세트가 원래와 다르다.** cubfull은 CUB test 새 대부분을 train으로 옮겼으므로 test 1,199장이 원래 test와 다르다. 이 문서의 수치는 모두 원래와 같은 val로 계산했다.
+- **test 세트가 원래와 다르다.** cubfull은 CUB test 새 대부분을 train으로 옮겼으므로 test 1,199장이 원래 test와 다르다. 01–04의 수치는 원래와 같은 val, 05–09는 cubfull test로 계산했다.
 - **Colored MNIST와 아직 차이가 있다.** 후반 core flip이 80–86%로 Colored MNIST(99–100%)보다 낮고, .95 WGA가 크게 흔들린다.
-- **이 설정에 이르기까지 다른 시도도 했다.** 클래스 균형 loss, 증강, cosine, 새 확대(crop), 처음부터 학습 + CUB 전체 + B는 새 인식이나 core 사용을 이만큼 바꾸지 못했거나 입력 이미지를 바꿨다. pretrained lr 0.001은 50 epoch 동안 core 사용 시작이 없었다. 이 시도들은 정리에서 뺐다.
+- **여러 설정을 시도한 뒤 고른 결과다.** 아래는 .95, seed 42의 같은 val에서 본 값이고, 이 val 지표를 보면서 설정을 골랐으므로 위 수치는 낙관적일 수 있다. 시도한 run과 CSV는 정리하면서 지워서 수치만 남긴다(재현하려면 다시 학습해야 한다).
+
+  | .95 설정 (full-size 이미지) | core 사용 시작 | core / spurious flip (E31–50) | WGA |
+  |---|---|---|---|
+  | pretrained, lr 0.001 고정 | 없음 | 39 / 43% | – |
+  | pretrained, lr 0.01 고정 | E7 | 52 / 35% | 40% |
+  | + CUB 전체 | E4 | 60 / 27% | 49% |
+  | + CUB 전체 + B (**이 문서**) | E2 | 80 / 10% | 73% |
+
+  그 밖에 처음부터 학습한 조건으로 클래스 균형 loss, 증강, 증강 + cosine, CUB 전체, CUB 전체 + B + cosine(20 epoch까지), 새 확대(crop)를 시도했다. 새 확대 + CUB 전체는 core 사용 시작이 .80 E3, .65 E2, .95 없음이었고, 여기에 B를 더하면 .95 E28이었다. 새 확대는 입력 이미지를 바꾸는 방식이라 쓰지 않았다.
+- **라벨에 땅새가 섞여 있다.** Western Meadowlark, Western Wood Pewee, Eastern Towhee는 땅에 사는 새인데 waterbird로 라벨되어 있다(val waterbird 274마리 중 18, test 274마리 중 22). train에도 같은 라벨로 140마리가 있다. 팀 manifest의 라벨을 그대로 쓴 것이며, WGA에 영향을 줄 수 있다.
+
 
 ## 재현
 
@@ -105,6 +175,7 @@ DATA=cubfull PRETRAINED=1 LR=0.01 MULTISCENE=1 CACHE=1 bash reports/waterbirds_r
 python3 reports/core_flip/scripts/core_flip.py --dataset waterbirds --suffix _cubfull_pretrained_lr0.01_multiscene --seeds 42
 python3 reports/waterbirds_cubfull_pretrained/scripts/isolate.py
 python3 reports/waterbirds_cubfull_pretrained/scripts/report.py
+python3 reports/waterbirds_cubfull_pretrained/scripts/examples.py
 ```
 
 | 단계 | 시간 (RTX 5070 Ti 1장) | 결과 |
@@ -112,6 +183,7 @@ python3 reports/waterbirds_cubfull_pretrained/scripts/report.py
 | `run_all.sh` | corr당 약 30분 (epoch당 약 33초) | `runs/waterbirds_rerun50/A_corr*_seed42_e50_contentv3_cubfull_pretrained_lr0.01_multiscene/` |
 | `core_flip.py` | corr당 몇 분 | [`../core_flip/core_flip_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv`](../core_flip/core_flip_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv) |
 | `isolate.py` | corr당 몇 분 | [`isolate.csv`](isolate.csv) (원래 run 행은 `--suffix ""`) |
+| `examples.py` | 약 7분 | `figures/05–09`, `gradcam_bird_share*.csv`, `stress_epoch50*.csv` |
 | `report.py` | 몇 초 | [`summary.csv`](summary.csv), `figures/01–04` |
 
 - `CACHE=1`(`--cache-eval`)은 평가 이미지를 한 번만 합성해 재사용하는 속도 옵션이다. 샘플과 지표는 같다.
