@@ -13,6 +13,7 @@
 | Part A. Colored MNIST (재실행) | [`cmnist_rerun50/`](cmnist_rerun50/) | [README.md](cmnist_rerun50/README.md) |
 | Part B. Waterbirds (팀) | [`waterbirds_vgg50/`](waterbirds_vgg50/) | [WATERBIRDS_FINAL_RESULTS_KO.md](waterbirds_vgg50/WATERBIRDS_FINAL_RESULTS_KO.md), [독립 검토](waterbirds_vgg50/WATERBIRDS_INDEPENDENT_REVIEW_KO.md) |
 | Part B. Waterbirds (재실행) | [`waterbirds_rerun50/`](waterbirds_rerun50/) | [README.md](waterbirds_rerun50/README.md) |
+| Part B. Waterbirds (pretrained + CUB 전체 + B) | [`waterbirds_cubfull_pretrained/`](waterbirds_cubfull_pretrained/) | [README.md](waterbirds_cubfull_pretrained/README.md) |
 
 ## 한눈에 보기
 
@@ -28,6 +29,8 @@
 | 공통 교훈 | 정보가 표현에 있다(probe) ≠ 모델이 그것을 쓴다 | 낮은 flip ≠ 강건함(한 클래스만 예측해도 flip=0) |
 
 두 데이터셋 모두 **correlation이 높을수록 shortcut 의존이 크게 남는다**는 점은 같다. 다만 Colored MNIST는 결국 거의 다 극복하고, Waterbirds는 50 epoch 안에 극복하지 못한다.
+
+> **추가(B6):** Waterbirds를 ImageNet pretrained로 시작하고, CUB 새 전체(9,390마리)로 학습하고, 매 epoch 배경을 새로 뽑아 주면(lr 0.01 고정, seed 42) core 사용 시작이 .95 E2, .80 E1, .65 E1로 Colored MNIST(E2/E1/E1)와 같아지고 H1이 지지된다. 원래 Waterbirds가 다르게 움직인 것은 새를 잘 못 알아보고 작은 train을 금방 외우기 때문으로 보인다.
 
 ---
 
@@ -421,6 +424,28 @@ Test(Epoch 50)도 같은 순서다. 정확도 62.08 / 76.56 / 82.21%, WGA 9.50 /
 | **H2** | 낮은 corr일수록 최종 WGA·균형 정확도 높고 flip 낮음(팀·재실행 같음). "균형 conflicting ≥ 50% & WGA ≥ 20%"를 5 epoch 연속 만족: 0.65만 도달(팀 E36, seed 42/43/44 E26/33/36) | 0.80·0.95는 50 epoch 내 미도달이라 지연 순서·크기를 비교할 수 없음. 0.65의 도달 epoch도 실행·seed마다 10–20 epoch 다름. probe상 새 정보가 약함(0.95는 우연 수준) | **방향은 일치, 시점 지연은 확인 불가** |
 
 한 줄 요약: **Waterbirds에서는 50 epoch 동안 배경 shortcut이 해소되지 않았다. correlation이 낮을수록 덜 의존하지만, 오래 학습한다고 저절로 줄지는 않았다. 새를 구분하는 정보가 약하고(0.95는 우연 수준), 언제 무엇이 일어나는지는 실행·seed마다 달라 단일 run으로 시점을 정할 수 없다(seed 3개에서 결론은 같고 시점만 다르다).**
+
+## B6. 새를 알아볼 수 있고 train을 금방 외우지 못하면
+
+B5의 결과에는 원인이 두 가지 있었다. 새를 잘 못 알아보고(회색 바탕에 새만 보여주면 균형 정확도 .95 57%, .80 69%, .65 80%), 4,795장의 train을 epoch 23–28에 다 외운다. 그래서 세 가지를 바꿔 다시 학습했다(seed 42, lr 0.01 고정, scheduler none, 나머지 팀 설정과 같음). 자세한 내용: [waterbirds_cubfull_pretrained/README.md](waterbirds_cubfull_pretrained/README.md)
+
+- **ImageNet pretrained** VGG11_BN에서 시작한다(head만 새로 만들고 전체 layer 학습).
+- **CUB 새 전체** 9,390마리로 학습한다. val은 같고 test는 다른 1,199마리다.
+- **매 epoch 새 배경(B):** 같은 장소 종류의 train 배경 풀에서 새로 뽑는다. corr은 그대로다.
+
+![corr별 flip 평면](waterbirds_cubfull_pretrained/figures/01_flip_plane.png)
+
+| corr | core 사용 시작 | 팀 강건 기준 | core flip | spurious flip | val WGA | 새만 |
+|---|---|---|---|---|---|---|
+| .95 | **E2** (원래 없음) | **E3** (원래 미도달) | 80% (16%) | 10% (66%) | 73% (7%) | 94% (57%) |
+| .80 | **E1** (원래 E35) | **E2** (원래 미도달) | 85% (32%) | 4.6% (33%) | 84% (15%) | 93% (69%) |
+| .65 | **E1** (원래 E7) | **E2** (원래 E26) | 86% (37%) | 3.3% (17%) | 85% (26%) | 94% (80%) |
+
+*괄호 안은 원래 설정(seed 42). flip·WGA·새만은 E31–50 평균. core 사용 시작 = core flip > spurious flip이 3 epoch 연속인 첫 epoch(Colored MNIST BG: E2/E1/E1).*
+
+- **H1:** 지지. 세 corr 모두 spurious flip이 초반에 크게 줄고(.95: E1 54% → E5 21% → E31–50 10%) 후반 재상승이 없다.
+- **H2:** 순서는 지지. core 사용 시작 .95 E2 > .80·.65 E1, 강건 기준 E3 > E2, 도착점도 .95 < .80 < .65. 시점 차이는 1 epoch뿐이고 seed 하나다.
+- **한계:** 원래 Waterbirds 설정이 아니다(시작 가중치·데이터 양·배경 조합이 다름). 새 특징을 ImageNet에서 가져오므로 "core를 배우는 시간"보다 "core를 쓰기 시작하는 시점"에 가깝다. .95의 val WGA가 후반에도 52–82%로 흔들리고, core flip이 Colored MNIST(99%)보다 낮다(80–86%).
 
 ---
 

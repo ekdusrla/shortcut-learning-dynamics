@@ -14,6 +14,8 @@ spurious_flip on the full val set must equal history.csv's val_cf_flip_rate (con
 Usage (from the repo root):
   python3 reports/core_flip/scripts/core_flip.py --dataset waterbirds      # 9 runs (seed 42/43/44 x corr)
   python3 reports/core_flip/scripts/core_flip.py --dataset cmnist          # 6 runs (BG/FG x corr)
+  python3 reports/core_flip/scripts/core_flip.py --dataset waterbirds --suffix _cubfull_pretrained_lr0.01_multiscene --seeds 42
+      # runs in A_corr*_seed42_e50_contentv3<suffix>; output core_flip_waterbirds<suffix>.csv
 """
 import argparse
 import json
@@ -71,8 +73,8 @@ def waterbirds_val(corr):
     return load(WB_DATA / "manifest" / "protocol.json", corr, verify=False)["val"]
 
 
-def waterbirds_jobs():
-    for ctag, corr in CORRS:
+def waterbirds_jobs(seeds=(42, 43, 44), suffix="", corrs=CORRS):
+    for ctag, corr in corrs:
         ds = waterbirds_val(corr); y, s = ds.labels, ds.spurious; j = partners(y)
 
         def make(k, ds=ds, y=y, s=s, j=j):
@@ -83,9 +85,9 @@ def waterbirds_jobs():
             return x, xs, xc
         meta = dict(labels=y, spurious=s, partner=j, partner_label=y[j], aligned=(y == s))
         runs = []
-        for seed in (42, 43, 44):
-            d = WB_RUNS / f"A_corr{ctag}_seed{seed}_e50_contentv3"
-            runs.append((dict(dataset="waterbirds", mode="", corr=ctag, seed=seed), d, None))
+        for seed in seeds:
+            d = WB_RUNS / f"A_corr{ctag}_seed{seed}_e50_contentv3{suffix}"
+            runs.append((dict(dataset="waterbirds", mode=suffix.strip("_"), corr=ctag, seed=seed), d, None))
         yield make, len(y), meta, runs
 
 
@@ -130,17 +132,21 @@ def summarize(P, meta, sel):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--dataset", choices=("waterbirds", "cmnist"), required=True)
+    ap.add_argument("--suffix", default="", help="Waterbirds run-folder suffix, e.g. _cubfull_pretrained_lr0.01_multiscene")
+    ap.add_argument("--seeds", default="42,43,44", help="Waterbirds seeds")
+    ap.add_argument("--corrs", default="095,080,065", help="Waterbirds correlations to evaluate, e.g. 095")
     a = ap.parse_args()
+    corrs = [c for c in CORRS if c[0] in a.corrs.split(",")]
     OUT.mkdir(parents=True, exist_ok=True)
     rows, checks = [], []
-    jobs = waterbirds_jobs() if a.dataset == "waterbirds" else cmnist_jobs()
+    jobs = waterbirds_jobs(tuple(int(x) for x in a.seeds.split(",")), a.suffix, corrs) if a.dataset == "waterbirds" else cmnist_jobs()
     for make, n, meta, runs in jobs:
         t0 = time.time(); X = build(make, n); print(f"built {n} triples in {time.time() - t0:.0f}s", flush=True)
         subsets = {"all": np.ones(n, bool), "aligned": meta["aligned"], "conflicting": ~meta["aligned"]}
         for key, d, cfg in runs:
             hist = pd.read_csv(d / "history.csv").set_index("epoch")
             t0 = time.time()
-            for e in range(51):
+            for e in range(len(hist)):
                 saved = se.load_checkpoint(d / "checkpoints" / f"epoch_{e:03d}.pt", dev)
                 m = se.build_model({**(cfg or saved["config"]), "pretrained": False}).to(dev)
                 m.load_state_dict(saved["model"]); m.eval()
@@ -150,10 +156,11 @@ def main():
                 r = rows[-3]  # "all"
                 checks.append(dict(**key, epoch=e, acc=r["acc"], hist_acc=hist.val_acc[e],
                                    spurious_flip=r["spurious_flip"], hist_flip=hist.val_cf_flip_rate[e]))
-            print(key, f"51 epochs in {time.time() - t0:.0f}s", flush=True)
+            print(key, f"{len(hist)} epochs in {time.time() - t0:.0f}s", flush=True)
         del X; torch.cuda.empty_cache()
-    pd.DataFrame(rows).to_csv(OUT / f"core_flip_{a.dataset}.csv", index=False)
-    c = pd.DataFrame(checks); c.to_csv(OUT / f"check_{a.dataset}.csv", index=False)
+    tag = a.suffix
+    pd.DataFrame(rows).to_csv(OUT / f"core_flip_{a.dataset}{tag}.csv", index=False)
+    c = pd.DataFrame(checks); c.to_csv(OUT / f"check_{a.dataset}{tag}.csv", index=False)
     print("max |acc - history|", (c.acc - c.hist_acc).abs().max(), " max |spurious_flip - history|", (c.spurious_flip - c.hist_flip).abs().max())
 
 
