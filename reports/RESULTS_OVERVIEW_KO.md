@@ -445,7 +445,8 @@ B5의 모델은 새를 잘 못 알아봤다(회색 바탕에 새만 보여주면
 
 - **H1:** 지지. 세 corr 모두 spurious flip이 초반에 크게 줄고(.95: E1 54% → E5 21% → E31–50 10%) 후반 재상승이 없다.
 - **H2:** 순서는 지지. core 사용 시작 .95 E2 > .80·.65 E1, 강건 기준 E3 > E2, 도착점도 .95 < .80 < .65. 시점 차이는 1 epoch뿐이고 seed 하나다.
-- **한계:** 원래 Waterbirds 설정이 아니다(시작 가중치·데이터 양·배경 조합이 다름). 새 특징을 ImageNet에서 가져오므로 "core를 배우는 시간"보다 "core를 쓰기 시작하는 시점"에 가깝다. .95의 val WGA가 후반에도 52–82%로 흔들리고, core flip이 Colored MNIST(99%)보다 낮다(80–86%). train은 오히려 원래보다 빨리 외우므로(E8–9 vs E23–28) 외우기가 줄어서 좋아진 것은 아니다. noise에는 여전히 무너지고, blur에서는 배경 flip이 원래보다 높다. Grad-CAM·배경 교체 예시·stress test는 [README](waterbirds_cubfull_pretrained/README.md) 05–09에 있다.
+- **cosine scheduler(lr 0.01 → 0)로 다시 학습하면** 후반이 완만해진다(.95 WGA E31–50 52–82% → 66–72%). core 사용 시작 epoch와 flip 수준은 같고, .95 WGA 평균은 오르지 않았다(73 → 69%). [README](waterbirds_cubfull_pretrained/README.md) 10–11절.
+- **한계:** 원래 Waterbirds 설정이 아니다(시작 가중치·데이터 양·배경 조합이 다름). 새 특징을 ImageNet에서 가져오므로 "core를 배우는 시간"보다 "core를 쓰기 시작하는 시점"에 가깝다. .95의 val WGA가 고정 lr에서는 후반에도 52–82%로 흔들리고, core flip이 Colored MNIST(99%)보다 낮다(80–86%). train은 오히려 원래보다 빨리 외우므로(E8–9 vs E23–28) 외우기가 줄어서 좋아진 것은 아니다. noise에는 여전히 무너지고, blur에서는 배경 flip이 원래보다 높다. Grad-CAM·배경 교체 예시·stress test는 [README](waterbirds_cubfull_pretrained/README.md) 05–09에 있다.
 
 ---
 
