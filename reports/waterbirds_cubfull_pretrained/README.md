@@ -67,7 +67,7 @@
 
 - **train 정확도:** 이번 설정은 epoch 8–9에 99%에 도달한다(원래 E23–28). 소수 그룹까지 99%가 되는 것도 E11–14로 원래(E23–26)보다 빠르다. 즉 **train을 덜 외워서 좋아진 것이 아니다.** core 사용은 train을 다 맞히기 전(E1–2)에 시작됐고, .95의 spurious flip은 그 뒤에도 계속 줄었다(E6–10 21% → E41–50 10%).
 - **val WGA:** .80·.65는 epoch 3에 74–86%에 도달한다. .95는 epoch 3에 47%이고, E10–30에는 53–81% 사이에서 흔들린다.
-- **.95 WGA는 epoch마다 크게 흔들린다**(E31–50에서 52–82%). lr이 0.01로 고정이라 후반에도 업데이트 폭이 크기 때문으로 보인다. 다음 단계로 cosine scheduler를 적용해 이 흔들림이 줄어드는지 본다.
+- **.95 WGA는 epoch마다 크게 흔들린다**(E31–50에서 52–82%). lr이 0.01로 고정이라 후반에도 업데이트 폭이 크기 때문으로 보인다. cosine scheduler를 적용하면 이 흔들림이 크게 줄어든다(10–11절).
 
 ### 04. 모델이 쓰는 정보: 새만 vs 배경만
 
@@ -138,6 +138,32 @@ conflicting 274장 중 heatmap이 새 위에 있는 비율(%), 괄호는 해당 
 
 다른 corr: [.80](figures/09_stress_examples_080.png) / [.65](figures/09_stress_examples_065.png). 원래 run: [그래프](figures/08_stress_epoch50_original.png), 예시 [.95](figures/09_stress_examples_095_original.png) / [.80](figures/09_stress_examples_080_original.png) / [.65](figures/09_stress_examples_065_original.png). [stress_epoch50.csv](stress_epoch50.csv), [원래](stress_epoch50_original.csv)
 
+### 10–11. cosine scheduler (lr 0.01 → 0)
+
+위 run과 나머지는 모두 같고 **scheduler만 cosine**으로 바꿔 다시 학습했다(seed 42, 50 epoch, CosineAnnealingLR T_max = 50: epoch 25에 lr 0.005, epoch 50에 0). 후반 흔들림이 lr 고정 때문인지 보려는 것이다.
+
+![고정 lr vs cosine](figures/10_constant_vs_cosine.png)
+
+| corr | scheduler | core 사용 시작 | 팀 강건 기준 | core flip | spurious flip | val acc | val WGA 평균 | WGA 범위 | WGA 흔들림 | core flip 흔들림 |
+|---|---|---|---|---|---|---|---|---|---|---|
+| .95 | 고정 | E2 | E3 | 79.6% | 10.2% | 91.9% | **72.7%** | 52–82% | 6.4pp | 3.1pp |
+| | cosine | E2 | E3 | 79.1% | 10.4% | 92.0% | 69.0% | 66–72% | **1.2pp** | **0.7pp** |
+| .80 | 고정 | E1 | E2 | 84.7% | 4.6% | 94.1% | **83.8%** | 76–90% | 4.1pp | 2.8pp |
+| | cosine | E1 | E2 | 84.5% | 4.3% | 94.4% | 82.5% | 80–85% | **1.4pp** | **0.6pp** |
+| .65 | 고정 | E1 | E2 | 86.2% | 3.3% | 94.3% | 84.9% | 74–91% | 4.1pp | 2.6pp |
+| | cosine | E1 | E2 | 87.0% | 2.8% | 95.3% | **85.5%** | 84–88% | **1.3pp** | **0.6pp** |
+
+*E31–50. 흔들림 = 이웃한 epoch 사이 변화량(절댓값)의 평균.*
+
+- **후반이 훨씬 완만해졌다.** WGA 흔들림이 1/3–1/5로, core flip 흔들림이 1/4 정도로 줄었다.
+- **평균 수준은 거의 같다.** core·spurious flip 차이는 1pp 안이고 core 사용 시작과 강건 기준 도달 epoch도 같다. 그래서 H1/H2 판정은 바뀌지 않는다.
+- **.95 WGA는 좋아지지 않았다**(평균 73 → 69%). .80도 1pp 낮고 .65는 1pp 높다. seed 하나라 이 차이가 scheduler 때문인지는 알 수 없다.
+- **초반 흔들림은 남는다.** lr이 아직 높은 epoch 10–30의 WGA는 cosine에서도 흔들린다(.95 epoch 10과 14의 급락은 두 run에 똑같이 나온다. 데이터 순서와 초기값이 같기 때문으로 보인다).
+
+![flip 평면 cosine](figures/11_flip_plane_cosine.png)
+
+cosine run의 배경 교체 예시([.95](figures/05_swap_grid_095_cosine.png) / [.80](figures/05_swap_grid_080_cosine.png) / [.65](figures/05_swap_grid_065_cosine.png)), Grad-CAM([.95](figures/06_gradcam_grid_095_cosine.png) / [.80](figures/06_gradcam_grid_080_cosine.png) / [.65](figures/06_gradcam_grid_065_cosine.png), [새 위 비율](figures/07_gradcam_bird_share_cosine.png)), stress test([그래프](figures/08_stress_epoch50_cosine.png), 예시 [.95](figures/09_stress_examples_095_cosine.png) / [.80](figures/09_stress_examples_080_cosine.png) / [.65](figures/09_stress_examples_065_cosine.png))는 고정 lr run과 거의 같다. conflicting 274장 중 epoch 50 정답은 229 / 247 / 254장(고정 229 / 252 / 255), 정답일 때 새 위 비율은 61 / 65 / 66%(고정 61 / 66 / 66%)다. noise 3에서는 cosine도 무너진다(균형 정확도 50–53%). [gradcam](gradcam_bird_share_cosine.csv), [stress](stress_epoch50_cosine.csv)
+
 ## 팀 가설로 보면
 
 | 가설 | 결과 | 판정 |
@@ -174,6 +200,12 @@ python3 reports/waterbirds_rerun50/scripts/cubfull_manifest.py
 DATA=cubfull PRETRAINED=1 LR=0.01 MULTISCENE=1 CACHE=1 bash reports/waterbirds_rerun50/scripts/run_all.sh 42
 python3 reports/core_flip/scripts/core_flip.py --dataset waterbirds --suffix _cubfull_pretrained_lr0.01_multiscene --seeds 42
 python3 reports/waterbirds_cubfull_pretrained/scripts/isolate.py
+python3 reports/waterbirds_cubfull_pretrained/scripts/isolate.py --suffix ""
+# cosine run
+DATA=cubfull PRETRAINED=1 LR=0.01 SCHED=cosine MULTISCENE=1 CACHE=1 bash reports/waterbirds_rerun50/scripts/run_all.sh 42
+python3 reports/core_flip/scripts/core_flip.py --dataset waterbirds --suffix _cubfull_pretrained_lr0.01_cosine_multiscene --seeds 42
+python3 reports/waterbirds_cubfull_pretrained/scripts/isolate.py --suffix _cubfull_pretrained_lr0.01_cosine_multiscene
+# 그림과 표
 python3 reports/waterbirds_cubfull_pretrained/scripts/report.py
 python3 reports/waterbirds_cubfull_pretrained/scripts/examples.py
 ```
@@ -183,8 +215,8 @@ python3 reports/waterbirds_cubfull_pretrained/scripts/examples.py
 | `run_all.sh` | corr당 약 30분 (epoch당 약 33초) | `runs/waterbirds_rerun50/A_corr*_seed42_e50_contentv3_cubfull_pretrained_lr0.01_multiscene/` |
 | `core_flip.py` | corr당 몇 분 | [`../core_flip/core_flip_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv`](../core_flip/core_flip_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv) |
 | `isolate.py` | corr당 몇 분 | [`isolate.csv`](isolate.csv) (원래 run 행은 `--suffix ""`) |
-| `examples.py` | 약 7분 | `figures/05–09`, `gradcam_bird_share*.csv`, `stress_epoch50*.csv` |
-| `report.py` | 몇 초 | [`summary.csv`](summary.csv), `figures/01–04` |
+| `examples.py` | 설정(이번·원래·cosine)당 몇 분 | `figures/05–09`, `gradcam_bird_share*.csv`, `stress_epoch50*.csv` |
+| `report.py` | 몇 초 | [`summary.csv`](summary.csv), `figures/01–04`, `10–11` |
 
 - `CACHE=1`(`--cache-eval`)은 평가 이미지를 한 번만 합성해 재사용하는 속도 옵션이다. 샘플과 지표는 같다.
 - core flip 계산은 학습 중 저장된 history와 일치한다(정확도·spurious flip 차이 최대 1장 = 0.08pp: [`check_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv`](../core_flip/check_waterbirds_cubfull_pretrained_lr0.01_multiscene.csv)).

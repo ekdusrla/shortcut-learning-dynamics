@@ -8,7 +8,7 @@ Balanced subset: 137 images per bird x background group (all waterbirds, random 
 Example birds are random picks (fixed seed) among birds of typical size (mask area within the middle 50% of this test
 split), the same for both settings; none is chosen by its prediction. The numbers use all 548 images, any bird size.
 The Grad-CAM grids show 3 waterbirds on land and 3 landbirds on water.
-Writes figures/05-09 (*_original = original runs), gradcam_bird_share*.csv and stress_epoch50*.csv.
+Writes figures/05-09 (*_original = original runs, *_cosine = cosine runs), gradcam_bird_share*.csv and stress_epoch50*.csv.
 Usage (from the repo root): python3 reports/waterbirds_cubfull_pretrained/scripts/examples.py [--parts swapgrid,cam,stress,stressgrid]
 """
 import argparse
@@ -25,7 +25,8 @@ import figs_checkpoints as fc  # noqa: E402
 
 CTAGS = ["095", "080", "065"]
 N = 137  # per group: the number of test waterbirds on each background
-SETTINGS = [("", "_cubfull_pretrained_lr0.01_multiscene", "pretrained + all CUB + B"), ("_original", "", "original, from scratch")]
+SETTINGS = [("", "_cubfull_pretrained_lr0.01_multiscene", "pretrained + all CUB + B"), ("_original", "", "original, from scratch"),
+            ("_cosine", "_cubfull_pretrained_lr0.01_cosine_multiscene", "pretrained + all CUB + B, cosine")]
 _sets, _subset, _build = {}, fc.subset, fc.se.build_model
 
 
@@ -81,8 +82,9 @@ def use(tag, suffix, label):
 
 def main():
     ap = argparse.ArgumentParser(); ap.add_argument("--parts", default="swapgrid,cam,stress,stressgrid")
-    parts = ap.parse_args().parts.split(",")
-    for tag, suffix, label in SETTINGS:
+    ap.add_argument("--settings", default="final,original,cosine")
+    a = ap.parse_args(); parts = a.parts.split(",")
+    for tag, suffix, label in [x for x in SETTINGS if (x[0].strip("_") or "final") in a.settings.split(",")]:
         use(tag, suffix, label)
         if "swapgrid" in parts: fc.part_swapgrid(CTAGS)
         if "cam" in parts:
